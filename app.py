@@ -128,17 +128,19 @@ def main():
         col1, col2 = st.columns(2)
 
         with col1:
-            if st.button("Education Learn"):
-                st.write("Education Learn page will be added later.")
-            if st.button("Job"):
-                st.write("Job page will be added later.")
+            # Keep the first column blank
+            pass
 
         with col2:
             # "Know About Me" button added here
             if st.button("Know About Me"):
                 st.session_state['show_about_me'] = not st.session_state['show_about_me']
+            if st.button("Education Learn"):
+                st.write("Education Learn page will be added later.")
             if st.button("Podcast"):
                 st.write("Podcast page will be added later.")
+            if st.button("Job"):
+                st.write("Job page will be added later.")
             if st.button("Travel Place"):
                 st.write("Travel Place page will be added later.")
 
