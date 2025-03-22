@@ -1,6 +1,5 @@
 import streamlit as st
 import psycopg2
-from streamlit_chat import message
 
 # Database connection
 def get_db_connection():
@@ -34,11 +33,6 @@ def insert_user(name, email, mobile):
     cur.close()
     conn.close()
 
-# Chatbot logic
-def chatbot_response(user_input):
-    # Simple echo chatbot for demonstration
-    return f"You said: {user_input}"
-
 # Streamlit app
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
@@ -46,22 +40,56 @@ def main():
     # Custom CSS for styling
     st.markdown("""
         <style>
-            .stTextInput>div>div>input {
-                padding: 8px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-                width: 200px;
+            /* Styling for the ORBT-LEARN heading */
+            h1 {
+                text-align: center;
+                color: #2E86C1;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                margin-bottom: 20px;
             }
-            .stChatbox {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 300px;
-                background-color: white;
-                border: 1px solid #ccc;
-                border-radius: 10px;
+
+            /* Styling for buttons */
+            .stButton>button {
+                width: 100%;
                 padding: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 5px 0;
+                border-radius: 5px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+
+            .stButton>button:hover {
+                background-color: #2E86C1;
+                color: white;
+                border-color: #2E86C1;
+            }
+
+            /* Styling for the logout button */
+            .logout-button {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .logout-button>button {
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                border: 2px solid #E74C3C;
+                background-color: transparent;
+                color: #E74C3C;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+
+            .logout-button>button:hover {
+                background-color: #E74C3C;
+                color: white;
+                border-color: #E74C3C;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -69,10 +97,6 @@ def main():
     # Initialize session state
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
-    if 'chatbot_open' not in st.session_state:
-        st.session_state['chatbot_open'] = False
-    if 'chat_history' not in st.session_state:
-        st.session_state['chat_history'] = []
 
     # Login page
     if not st.session_state['logged_in']:
@@ -95,12 +119,6 @@ def main():
     else:
         st.title("Welcome to ORBT-LEARN")
 
-        # Logout button on the left side (top corner)
-        if st.button("Logout", key="logout"):
-            st.session_state['logged_in'] = False
-            st.success("Logged out successfully!")
-            st.rerun()
-
         # Buttons arranged in 2 columns
         col1, col2 = st.columns(2)
 
@@ -116,30 +134,13 @@ def main():
             if st.button("Travel Place"):
                 st.write("Travel Place page will be added later.")
 
-        # Chatbot pop-up on the right side (bottom corner)
-        if st.button("Chatbot", key="chatbot"):
-            st.session_state['chatbot_open'] = not st.session_state['chatbot_open']
-
-        if st.session_state['chatbot_open']:
-            st.markdown("""
-                <div class="stChatbox">
-                    <h4>Chatbot</h4>
-                    <div id="chat-container">
-            """, unsafe_allow_html=True)
-
-            user_input = st.text_input("You:", key="chat_input")
-            if user_input:
-                response = chatbot_response(user_input)
-                st.session_state['chat_history'].append((user_input, response))
-
-            for i, (user_msg, bot_msg) in enumerate(st.session_state['chat_history']):
-                message(user_msg, is_user=True, key=f"user_{i}")
-                message(bot_msg, key=f"bot_{i}")
-
-            st.markdown("""
-                    </div>
-                </div>
-            """, unsafe_allow_html=True)
+        # Logout button centered below
+        st.markdown('<div class="logout-button">', unsafe_allow_html=True)
+        if st.button("Logout", key="logout"):
+            st.session_state['logged_in'] = False
+            st.success("Logged out successfully!")
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
