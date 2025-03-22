@@ -117,7 +117,8 @@ def main():
 
     # Main page after login
     else:
-        st.title("Welcome to ORBT-LEARN")
+        st.title("Welcome to orbt-LeARN")
+        st.title("Learn & Earn ")
 
         # Buttons arranged in 2 columns
         col1, col2 = st.columns(2)
