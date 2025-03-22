@@ -96,18 +96,18 @@ def main():
             .know-about-me-button {
                 position: fixed;
                 top: 20px;
-                left: 20px; /* Changed to left corner */
+                left: 20px; /* Positioned at the left corner */
                 z-index: 1000;
             }
             .know-about-me-button>button {
-                padding: 6px 12px;
+                padding: 4px 8px; /* Smaller padding */
                 border-radius: 5px;
                 border: 2px solid #8E44AD; /* Changed color */
                 background-color: transparent;
                 color: #8E44AD; /* Changed color */
-                font-size: 12px; /* Decreased size */
+                font-size: 10px; /* Smaller font size */
                 transition: all 0.3s ease;
-                width: 100px; /* Half size */
+                width: auto; /* Adjusted width to fit the content */
             }
             .know-about-me-button>button:hover {
                 background-color: #8E44AD; /* Changed color */
