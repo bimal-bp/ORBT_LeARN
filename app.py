@@ -33,6 +33,25 @@ def insert_user(name, email, mobile):
     cur.close()
     conn.close()
 
+# Function to display the story on a new page
+def show_story_page():
+    st.title("My Story")
+    st.markdown("""
+        Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
+        I’m not sharing this story because I was a 95% scorer, a topper, or someone earning 1 or 2 lakhs.  
+        I’m sharing this because I’ve spent a lot of time studying the wrong things and choosing the wrong career paths in my life.  
+        I just want to share this experience so that you don’t make the same mistakes as I have.  
+
+        **Go correct, work hard, live your life perfectly, and believe in God. That’s all.**  
+
+        Read the full story to gain knowledge.
+    """, unsafe_allow_html=True)
+
+    # Button to come back to the dashboard
+    if st.button("Come Back to Dashboard"):
+        st.session_state['show_story_page'] = False
+        st.rerun()
+
 # Streamlit app
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
@@ -111,8 +130,13 @@ def main():
         st.session_state['logged_in'] = False
     if 'show_about_me' not in st.session_state:
         st.session_state['show_about_me'] = False
-    if 'show_full_story' not in st.session_state:
-        st.session_state['show_full_story'] = False
+    if 'show_story_page' not in st.session_state:
+        st.session_state['show_story_page'] = False
+
+    # If "Read Once" is clicked, show the story page
+    if st.session_state.get('show_story_page'):
+        show_story_page()
+        return  # Stop rendering the rest of the app
 
     # Login page
     if not st.session_state['logged_in']:
@@ -172,34 +196,15 @@ def main():
 
             # "Read Once" button
             if st.sidebar.button("Read Once"):
-                st.session_state['show_full_story'] = True
-
-        # Display full story if "Read Once" is clicked
-        if st.session_state['show_full_story']:
-            st.markdown("### My Story")
-            st.markdown("""
-                Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
-                I’m not sharing this story because I was a 95% scorer, a topper, or someone earning 1 or 2 lakhs.  
-                I’m sharing this because I’ve spent a lot of time studying the wrong things and choosing the wrong career paths in my life.  
-                I just want to share this experience so that you don’t make the same mistakes as I have.  
-
-                **Go correct, work hard, live your life perfectly, and believe in God. That’s all.**  
-
-                Read the full story to gain knowledge.
-            """, unsafe_allow_html=True)
-
-            # Button to navigate to another page
-            if st.button("Read the Full Story"):
-                st.session_state['show_full_story'] = False
-                st.session_state['show_about_me'] = False
-                st.write("Full story page will be added later.")
+                st.session_state['show_story_page'] = True
+                st.rerun()
 
         # Logout button centered below
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
         if st.button("Logout", key="logout"):
             st.session_state['logged_in'] = False
             st.session_state['show_about_me'] = False
-            st.session_state['show_full_story'] = False
+            st.session_state['show_story_page'] = False
             st.success("Logged out successfully!")
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
