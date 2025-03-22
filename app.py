@@ -91,6 +91,18 @@ def main():
                 color: white;
                 border-color: #E74C3C;
             }
+
+            /* Green color for the "Know About Me" button */
+            .green-button>button {
+                background-color: #28a745;
+                color: white;
+                border: 2px solid #28a745;
+            }
+
+            .green-button>button:hover {
+                background-color: #218838;
+                border-color: #218838;
+            }
         </style>
     """, unsafe_allow_html=True)
 
@@ -99,6 +111,8 @@ def main():
         st.session_state['logged_in'] = False
     if 'show_about_me' not in st.session_state:
         st.session_state['show_about_me'] = False
+    if 'show_full_story' not in st.session_state:
+        st.session_state['show_full_story'] = False
 
     # Login page
     if not st.session_state['logged_in']:
@@ -138,9 +152,11 @@ def main():
                 st.write("Travel Place page will be added later.")
 
         with col2:
-            # "Know About Me" button added here
+            # "Know About Me" button with green color
+            st.markdown('<div class="green-button">', unsafe_allow_html=True)
             if st.button("Know About Me"):
                 st.session_state['show_about_me'] = not st.session_state['show_about_me']
+            st.markdown('</div>', unsafe_allow_html=True)
 
         # Display "About Me" information if the button is clicked
         if st.session_state['show_about_me']:
@@ -149,19 +165,41 @@ def main():
                 Hi there! 👋  
                 I'm the creator of this app. Here's a little about me:
                 - **<span style='font-size: 20px;'>Bimal Patra</span>** <!-- Increased size -->
-                - **Data Scientist**
+                - **Data Scientist at SG Group, Mumbai**
                 - **bimalpatrap@gmail.com**
                 - **9348245158**
             """, unsafe_allow_html=True)
 
             # "Read Once" button
             if st.sidebar.button("Read Once"):
-                st.sidebar.write("Story will be added later.")
+                st.session_state['show_full_story'] = True
+
+        # Display full story if "Read Once" is clicked
+        if st.session_state['show_full_story']:
+            st.markdown("### My Story")
+            st.markdown("""
+                Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
+                I’m not sharing this story because I was a 95% scorer, a topper, or someone earning 1 or 2 lakhs.  
+                I’m sharing this because I’ve spent a lot of time studying the wrong things and choosing the wrong career paths in my life.  
+                I just want to share this experience so that you don’t make the same mistakes as I have.  
+
+                **Go correct, work hard, live your life perfectly, and believe in God. That’s all.**  
+
+                Read the full story to gain knowledge.
+            """, unsafe_allow_html=True)
+
+            # Button to navigate to another page
+            if st.button("Read the Full Story"):
+                st.session_state['show_full_story'] = False
+                st.session_state['show_about_me'] = False
+                st.write("Full story page will be added later.")
 
         # Logout button centered below
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
         if st.button("Logout", key="logout"):
             st.session_state['logged_in'] = False
+            st.session_state['show_about_me'] = False
+            st.session_state['show_full_story'] = False
             st.success("Logged out successfully!")
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
