@@ -91,29 +91,6 @@ def main():
                 color: white;
                 border-color: #E74C3C;
             }
-
-            /* Styling for the "Know About Me" button */
-            .know-about-me-button {
-                position: fixed;
-                top: 20px;
-                left: 20px; /* Positioned at the left corner */
-                z-index: 1000;
-            }
-            .know-about-me-button>button {
-                padding: 4px 8px; /* Smaller padding */
-                border-radius: 5px;
-                border: 2px solid #8E44AD; /* Changed color */
-                background-color: transparent;
-                color: #8E44AD; /* Changed color */
-                font-size: 10px; /* Smaller font size */
-                transition: all 0.3s ease;
-                width: auto; /* Adjusted width to fit the content */
-            }
-            .know-about-me-button>button:hover {
-                background-color: #8E44AD; /* Changed color */
-                color: white;
-                border-color: #8E44AD; /* Changed color */
-            }
         </style>
     """, unsafe_allow_html=True)
 
@@ -147,11 +124,23 @@ def main():
     else:
         st.title("Learn & Earn ")
 
-        # "Know About Me" button in the top-left corner
-        st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
-        if st.button("Know About Me"):
-            st.session_state['show_about_me'] = not st.session_state['show_about_me']
-        st.markdown('</div>', unsafe_allow_html=True)
+        # Buttons arranged in 2 columns
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("Education Learn"):
+                st.write("Education Learn page will be added later.")
+            if st.button("Job"):
+                st.write("Job page will be added later.")
+
+        with col2:
+            # "Know About Me" button added here
+            if st.button("Know About Me"):
+                st.session_state['show_about_me'] = not st.session_state['show_about_me']
+            if st.button("Podcast"):
+                st.write("Podcast page will be added later.")
+            if st.button("Travel Place"):
+                st.write("Travel Place page will be added later.")
 
         # Display "About Me" information if the button is clicked
         if st.session_state['show_about_me']:
@@ -168,21 +157,6 @@ def main():
             # "Read Once" button
             if st.sidebar.button("Read Once"):
                 st.sidebar.write("Story will be added later.")
-
-        # Buttons arranged in 2 columns
-        col1, col2 = st.columns(2)
-
-        with col1:
-            if st.button("Education Learn"):
-                st.write("Education Learn page will be added later.")
-            if st.button("Job"):
-                st.write("Job page will be added later.")
-
-        with col2:
-            if st.button("Podcast"):
-                st.write("Podcast page will be added later.")
-            if st.button("Travel Place"):
-                st.write("Travel Place page will be added later.")
 
         # Logout button centered below
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
