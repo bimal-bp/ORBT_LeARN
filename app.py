@@ -1,3 +1,4 @@
+
 import streamlit as st
 import psycopg2
 
@@ -100,7 +101,7 @@ def main():
 
     # Login page
     if not st.session_state['logged_in']:
-        st.title("ORBT-LEARN Login")
+        st.title("ORBT-LeARN")
         name = st.text_input("Name", key="name")
         email = st.text_input("Email", key="email")
         mobile = st.text_input("Mobile Number", key="mobile")
