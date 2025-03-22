@@ -158,10 +158,10 @@ def main():
             st.sidebar.write("""
                 Hi there! 👋  
                 I'm the creator of this app. Here's a little about me:
-                - **Name**: Bimal Patra
-                - **Role**: Data Scientist
-                - **Mail**: bimalpatrap@gmail.com
-                - **Mob.No**: 9348245158
+                - **Bimal Patra**
+                - **Data Scientist**
+                - **bimalpatrap@gmail.com**
+                - **9348245158**
             """)
 
         # Buttons arranged in 2 columns
