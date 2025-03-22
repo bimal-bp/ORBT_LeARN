@@ -144,7 +144,7 @@ def main():
 
     # Main page after login
     else:
-        st.title("Welcome to ORBT-LEARN")
+        st.title("Learn & Earn ")
 
         # "Know About Me" button in the top-right corner
         st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
@@ -158,10 +158,10 @@ def main():
             st.sidebar.write("""
                 Hi there! 👋  
                 I'm the creator of this app. Here's a little about me:
-                - **Name**: John Doe
-                - **Role**: Developer
-                - **Hobbies**: Coding, Reading, Traveling
-                - **Contact**: johndoe@example.com
+                - **Name**: Bimal Patra
+                - **Role**: Data Scientist
+                - **Mail**: bimalpatrap@gmail.com
+                - **Mob.No**: 9348245158
             """)
 
         # Buttons arranged in 2 columns
