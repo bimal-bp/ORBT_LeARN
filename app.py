@@ -1,106 +1,86 @@
 import streamlit as st
 import random
 import time
-import psycopg2
+import smtplib
+from email.mime.text import MIMEText
+from twilio.rest import Client
 
 # Function to generate a random 6-digit OTP
 def generate_otp():
     return str(random.randint(100000, 999999))
 
-# Function to simulate sending OTP (for demonstration, we'll just display it)
-def send_otp(email, otp):
-    st.write(f"OTP sent to {email}: {otp}")  # Simulate sending OTP
-    time.sleep(2)  # Simulate delay in sending OTP
+# Function to send OTP via email
+def send_otp_email(email, otp):
+    # SMTP configuration (replace with your email provider's details)
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    sender_email = "your_email@gmail.com"  # Replace with your email
+    sender_password = "your_email_password"  # Replace with your email password
 
-# Database connection
-def get_db_connection():
-    conn = psycopg2.connect(
-        "postgresql://neondb_owner:npg_nRWri4OJ5vcs@ep-solitary-waterfall-a575ahao-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
-    )
-    return conn
+    # Create the email message
+    message = MIMEText(f"Your OTP for verification is: {otp}")
+    message["Subject"] = "OTP Verification"
+    message["From"] = sender_email
+    message["To"] = email
 
-# Create tables if they don't exist
-def create_tables():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            mobile TEXT NOT NULL
-        );
-    """)
-    conn.commit()
-    cur.close()
-    conn.close()
+    try:
+        # Connect to the SMTP server and send the email
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.sendmail(sender_email, email, message.as_string())
+        st.success("OTP sent to your email!")
+    except Exception as e:
+        st.error(f"Failed to send OTP via email: {e}")
 
-# Insert user data into the database
-def insert_user(name, email, mobile):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("INSERT INTO users (name, email, mobile) VALUES (%s, %s, %s)", (name, email, mobile))
-    conn.commit()
-    cur.close()
-    conn.close()
+# Function to send OTP via SMS using Twilio
+def send_otp_sms(mobile, otp):
+    # Twilio configuration (replace with your Twilio credentials)
+    account_sid = "your_twilio_account_sid"  # Replace with your Twilio account SID
+    auth_token = "your_twilio_auth_token"  # Replace with your Twilio auth token
+    twilio_phone_number = "your_twilio_phone_number"  # Replace with your Twilio phone number
+
+    try:
+        # Initialize Twilio client
+        client = Client(account_sid, auth_token)
+
+        # Send SMS
+        message = client.messages.create(
+            body=f"Your OTP for verification is: {otp}",
+            from_=twilio_phone_number,
+            to=mobile
+        )
+        st.success("OTP sent to your mobile number!")
+    except Exception as e:
+        st.error(f"Failed to send OTP via SMS: {e}")
 
 # Streamlit app
 def main():
-    st.set_page_config(page_title="ORBT-LEARN", layout="wide")
+    st.set_page_config(page_title="OTP Verification System", layout="centered")
 
     # Custom CSS for styling
     st.markdown("""
         <style>
-            /* Styling for the ORBT-LEARN heading */
-            h1 {
-                text-align: center;
-                color: #2E86C1;
-                font-family: 'Arial', sans-serif;
-                font-size: 2.5em;
-                margin-bottom: 20px;
+            .stTextInput>div>div>input {
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 100%;
             }
-
-            /* Styling for buttons */
             .stButton>button {
                 width: 100%;
                 padding: 10px;
-                margin: 5px 0;
                 border-radius: 5px;
-                border: 2px solid #2E86C1;
-                background-color: transparent;
-                color: #2E86C1;
+                border: 1px solid #ccc;
+                background-color: #f0f2f6;
+                color: #333;
                 font-size: 16px;
                 transition: all 0.3s ease;
             }
-
             .stButton>button:hover {
-                background-color: #2E86C1;
+                background-color: #4CAF50;
                 color: white;
-                border-color: #2E86C1;
-            }
-
-            /* Styling for the logout button */
-            .logout-button {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-            }
-
-            .logout-button>button {
-                width: 200px;
-                padding: 10px;
-                border-radius: 5px;
-                border: 2px solid #E74C3C;
-                background-color: transparent;
-                color: #E74C3C;
-                font-size: 16px;
-                transition: all 0.3s ease;
-            }
-
-            .logout-button>button:hover {
-                background-color: #E74C3C;
-                color: white;
-                border-color: #E74C3C;
+                border-color: #4CAF50;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -110,28 +90,33 @@ def main():
         st.session_state['otp'] = None
     if 'email' not in st.session_state:
         st.session_state['email'] = None
+    if 'mobile' not in st.session_state:
+        st.session_state['mobile'] = None
     if 'verified' not in st.session_state:
         st.session_state['verified'] = False
-    if 'logged_in' not in st.session_state:
-        st.session_state['logged_in'] = False
 
-    # OTP Verification System
+    # Login and OTP verification page
     if not st.session_state['verified']:
         st.title("OTP Verification System")
 
-        # Email input
+        # Collect user details
+        name = st.text_input("Enter your name:")
         email = st.text_input("Enter your email:")
+        mobile = st.text_input("Enter your mobile number:")
 
         if st.button("Send OTP"):
-            if email:
-                # Generate and send OTP
+            if name and email and mobile:
+                # Generate OTP
                 otp = generate_otp()
                 st.session_state['otp'] = otp
                 st.session_state['email'] = email
-                send_otp(email, otp)
-                st.success("OTP sent successfully!")
+                st.session_state['mobile'] = mobile
+
+                # Send OTP to email and mobile
+                send_otp_email(email, otp)
+                send_otp_sms(mobile, otp)
             else:
-                st.error("Please enter your email.")
+                st.error("Please fill in all fields.")
 
         # OTP input
         if st.session_state['otp']:
@@ -145,52 +130,18 @@ def main():
                 else:
                     st.error("Invalid OTP. Please try again.")
 
-    # ORBT-LEARN Application
-    elif st.session_state['verified'] and not st.session_state['logged_in']:
-        st.title("ORBT-LeARN")
-        name = st.text_input("Name", key="name")
-        email = st.text_input("Email", key="email")
-        mobile = st.text_input("Mobile Number", key="mobile")
+    # Main page after OTP verification
+    else:
+        st.title(f"Welcome, {st.session_state['email']}!")
+        st.write("You have successfully logged in.")
 
-        if st.button("Login"):
-            if name and email and mobile:
-                create_tables()
-                insert_user(name, email, mobile)
-                st.session_state['logged_in'] = True
-                st.success("Logged in successfully!")
-                st.rerun()
-            else:
-                st.error("Please fill in all fields.")
-
-    # Main page after login
-    elif st.session_state['logged_in']:
-        st.title("Learn & Earn ")
-
-        # Buttons arranged in 2 columns
-        col1, col2 = st.columns(2)
-
-        with col1:
-            if st.button("Education Learn"):
-                st.write("Education Learn page will be added later.")
-            if st.button("Job"):
-                st.write("Job page will be added later.")
-
-        with col2:
-            if st.button("Podcast"):
-                st.write("Podcast page will be added later.")
-            if st.button("Travel Place"):
-                st.write("Travel Place page will be added later.")
-
-        # Logout button centered below
-        st.markdown('<div class="logout-button">', unsafe_allow_html=True)
-        if st.button("Logout", key="logout"):
+        if st.button("Logout"):
             st.session_state['otp'] = None
             st.session_state['email'] = None
+            st.session_state['mobile'] = None
             st.session_state['verified'] = False
-            st.session_state['logged_in'] = False
             st.success("Logged out successfully!")
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
