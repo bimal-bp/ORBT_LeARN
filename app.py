@@ -1,5 +1,16 @@
 import streamlit as st
+import random
+import time
 import psycopg2
+
+# Function to generate a random 6-digit OTP
+def generate_otp():
+    return str(random.randint(100000, 999999))
+
+# Function to simulate sending OTP (for demonstration, we'll just display it)
+def send_otp(email, otp):
+    st.write(f"OTP sent to {email}: {otp}")  # Simulate sending OTP
+    time.sleep(2)  # Simulate delay in sending OTP
 
 # Database connection
 def get_db_connection():
@@ -95,11 +106,47 @@ def main():
     """, unsafe_allow_html=True)
 
     # Initialize session state
+    if 'otp' not in st.session_state:
+        st.session_state['otp'] = None
+    if 'email' not in st.session_state:
+        st.session_state['email'] = None
+    if 'verified' not in st.session_state:
+        st.session_state['verified'] = False
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
 
-    # Login page
-    if not st.session_state['logged_in']:
+    # OTP Verification System
+    if not st.session_state['verified']:
+        st.title("OTP Verification System")
+
+        # Email input
+        email = st.text_input("Enter your email:")
+
+        if st.button("Send OTP"):
+            if email:
+                # Generate and send OTP
+                otp = generate_otp()
+                st.session_state['otp'] = otp
+                st.session_state['email'] = email
+                send_otp(email, otp)
+                st.success("OTP sent successfully!")
+            else:
+                st.error("Please enter your email.")
+
+        # OTP input
+        if st.session_state['otp']:
+            otp_input = st.text_input("Enter OTP:")
+
+            if st.button("Verify OTP"):
+                if otp_input == st.session_state['otp']:
+                    st.session_state['verified'] = True
+                    st.success("OTP verified successfully!")
+                    st.rerun()
+                else:
+                    st.error("Invalid OTP. Please try again.")
+
+    # ORBT-LEARN Application
+    elif st.session_state['verified'] and not st.session_state['logged_in']:
         st.title("ORBT-LeARN")
         name = st.text_input("Name", key="name")
         email = st.text_input("Email", key="email")
@@ -116,8 +163,7 @@ def main():
                 st.error("Please fill in all fields.")
 
     # Main page after login
-    else:
-        st.title("Welcome to orbt-LeARN")
+    elif st.session_state['logged_in']:
         st.title("Learn & Earn ")
 
         # Buttons arranged in 2 columns
@@ -138,6 +184,9 @@ def main():
         # Logout button centered below
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
         if st.button("Logout", key="logout"):
+            st.session_state['otp'] = None
+            st.session_state['email'] = None
+            st.session_state['verified'] = False
             st.session_state['logged_in'] = False
             st.success("Logged out successfully!")
             st.rerun()
