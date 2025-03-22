@@ -96,22 +96,23 @@ def main():
             .know-about-me-button {
                 position: fixed;
                 top: 20px;
-                right: 20px;
+                left: 20px; /* Changed to left corner */
                 z-index: 1000;
             }
             .know-about-me-button>button {
                 padding: 6px 12px;
                 border-radius: 5px;
-                border: 2px solid #FF5733; /* Changed color */
+                border: 2px solid #8E44AD; /* Changed color */
                 background-color: transparent;
-                color: #FF5733; /* Changed color */
+                color: #8E44AD; /* Changed color */
                 font-size: 12px; /* Decreased size */
                 transition: all 0.3s ease;
+                width: 100px; /* Half size */
             }
             .know-about-me-button>button:hover {
-                background-color: #FF5733; /* Changed color */
+                background-color: #8E44AD; /* Changed color */
                 color: white;
-                border-color: #FF5733; /* Changed color */
+                border-color: #8E44AD; /* Changed color */
             }
         </style>
     """, unsafe_allow_html=True)
@@ -146,7 +147,7 @@ def main():
     else:
         st.title("Learn & Earn ")
 
-        # "Know About Me" button in the top-right corner
+        # "Know About Me" button in the top-left corner
         st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
         if st.button("Know About Me"):
             st.session_state['show_about_me'] = not st.session_state['show_about_me']
