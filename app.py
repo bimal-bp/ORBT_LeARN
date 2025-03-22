@@ -95,17 +95,17 @@ def main():
             /* Styling for the "Know About Me" button */
             .know-about-me-button {
                 position: fixed;
-                bottom: 20px;
+                top: 20px;
                 right: 20px;
                 z-index: 1000;
             }
             .know-about-me-button>button {
-                padding: 8px 16px;
+                padding: 6px 12px;
                 border-radius: 5px;
                 border: 2px solid #4CAF50;
                 background-color: transparent;
                 color: #4CAF50;
-                font-size: 14px;
+                font-size: 12px;
                 transition: all 0.3s ease;
             }
             .know-about-me-button>button:hover {
@@ -121,24 +121,6 @@ def main():
         st.session_state['logged_in'] = False
     if 'show_about_me' not in st.session_state:
         st.session_state['show_about_me'] = False
-
-    # "Know About Me" button
-    st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
-    if st.button("Know About Me"):
-        st.session_state['show_about_me'] = not st.session_state['show_about_me']
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Display "About Me" information if the button is clicked
-    if st.session_state['show_about_me']:
-        st.sidebar.markdown("### About Me")
-        st.sidebar.write("""
-            Hi there! 👋  
-            I'm the creator of this app. Here's a little about me:
-            - **Name**: John Doe
-            - **Role**: Developer
-            - **Hobbies**: Coding, Reading, Traveling
-            - **Contact**: johndoe@example.com
-        """)
 
     # Login page
     if not st.session_state['logged_in']:
@@ -163,6 +145,24 @@ def main():
     # Main page after login
     else:
         st.title("Welcome to ORBT-LEARN")
+
+        # "Know About Me" button in the top-right corner
+        st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
+        if st.button("Know About Me"):
+            st.session_state['show_about_me'] = not st.session_state['show_about_me']
+        st.markdown('</div>', unsafe_allow_html=True)
+
+        # Display "About Me" information if the button is clicked
+        if st.session_state['show_about_me']:
+            st.sidebar.markdown("### About Me")
+            st.sidebar.write("""
+                Hi there! 👋  
+                I'm the creator of this app. Here's a little about me:
+                - **Name**: John Doe
+                - **Role**: Developer
+                - **Hobbies**: Coding, Reading, Traveling
+                - **Contact**: johndoe@example.com
+            """)
 
         # Buttons arranged in 2 columns
         col1, col2 = st.columns(2)
