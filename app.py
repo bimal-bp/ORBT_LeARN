@@ -40,6 +40,48 @@ def chatbot_response(user_input):
     return f"You said: {user_input}"
 
 # Streamlit app
+import streamlit as st
+import psycopg2
+from streamlit_chat import message
+
+# Database connection
+def get_db_connection():
+    conn = psycopg2.connect(
+        "postgresql://neondb_owner:npg_nRWri4OJ5vcs@ep-solitary-waterfall-a575ahao-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
+    )
+    return conn
+
+# Create tables if they don't exist
+def create_tables():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            mobile TEXT NOT NULL
+        );
+    """)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+# Insert user data into the database
+def insert_user(name, email, mobile):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO users (name, email, mobile) VALUES (%s, %s, %s)", (name, email, mobile))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+# Chatbot logic
+def chatbot_response(user_input):
+    # Simple echo chatbot for demonstration
+    return f"You said: {user_input}"
+
+# Streamlit app
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
@@ -95,7 +137,7 @@ def main():
                 insert_user(name, email, mobile)
                 st.session_state['logged_in'] = True
                 st.success("Logged in successfully!")
-                st.experimental_rerun()
+                st.rerun()  # Updated to st.rerun()
             else:
                 st.error("Please fill in all fields.")
 
@@ -126,7 +168,7 @@ def main():
             if st.button("Logout"):
                 st.session_state['logged_in'] = False
                 st.success("Logged out successfully!")
-                st.experimental_rerun()
+                st.rerun()  # Updated to st.rerun()
 
         # Chatbot pop-up
         if st.button("Chatbot"):
