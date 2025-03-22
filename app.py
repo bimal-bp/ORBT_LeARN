@@ -102,16 +102,16 @@ def main():
             .know-about-me-button>button {
                 padding: 6px 12px;
                 border-radius: 5px;
-                border: 2px solid #4CAF50;
+                border: 2px solid #FF5733; /* Changed color */
                 background-color: transparent;
-                color: #4CAF50;
-                font-size: 12px;
+                color: #FF5733; /* Changed color */
+                font-size: 12px; /* Decreased size */
                 transition: all 0.3s ease;
             }
             .know-about-me-button>button:hover {
-                background-color: #4CAF50;
+                background-color: #FF5733; /* Changed color */
                 color: white;
-                border-color: #4CAF50;
+                border-color: #FF5733; /* Changed color */
             }
         </style>
     """, unsafe_allow_html=True)
@@ -155,14 +155,18 @@ def main():
         # Display "About Me" information if the button is clicked
         if st.session_state['show_about_me']:
             st.sidebar.markdown("### About Me")
-            st.sidebar.write("""
+            st.sidebar.markdown("""
                 Hi there! 👋  
                 I'm the creator of this app. Here's a little about me:
-                - **Bimal Patra**
+                - **<span style='font-size: 20px;'>Bimal Patra</span>** <!-- Increased size -->
                 - **Data Scientist**
                 - **bimalpatrap@gmail.com**
                 - **9348245158**
-            """)
+            """, unsafe_allow_html=True)
+
+            # "Read Once" button
+            if st.sidebar.button("Read Once"):
+                st.sidebar.write("Story will be added later.")
 
         # Buttons arranged in 2 columns
         col1, col2 = st.columns(2)
