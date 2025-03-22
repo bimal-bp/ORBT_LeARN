@@ -1,4 +1,3 @@
-
 import streamlit as st
 import psycopg2
 
@@ -92,12 +91,54 @@ def main():
                 color: white;
                 border-color: #E74C3C;
             }
+
+            /* Styling for the "Know About Me" button */
+            .know-about-me-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+            }
+            .know-about-me-button>button {
+                padding: 8px 16px;
+                border-radius: 5px;
+                border: 2px solid #4CAF50;
+                background-color: transparent;
+                color: #4CAF50;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            }
+            .know-about-me-button>button:hover {
+                background-color: #4CAF50;
+                color: white;
+                border-color: #4CAF50;
+            }
         </style>
     """, unsafe_allow_html=True)
 
     # Initialize session state
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
+    if 'show_about_me' not in st.session_state:
+        st.session_state['show_about_me'] = False
+
+    # "Know About Me" button
+    st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
+    if st.button("Know About Me"):
+        st.session_state['show_about_me'] = not st.session_state['show_about_me']
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # Display "About Me" information if the button is clicked
+    if st.session_state['show_about_me']:
+        st.sidebar.markdown("### About Me")
+        st.sidebar.write("""
+            Hi there! 👋  
+            I'm the creator of this app. Here's a little about me:
+            - **Name**: John Doe
+            - **Role**: Developer
+            - **Hobbies**: Coding, Reading, Traveling
+            - **Contact**: johndoe@example.com
+        """)
 
     # Login page
     if not st.session_state['logged_in']:
@@ -108,11 +149,14 @@ def main():
 
         if st.button("Login"):
             if name and email and mobile:
-                create_tables()
-                insert_user(name, email, mobile)
-                st.session_state['logged_in'] = True
-                st.success("Logged in successfully!")
-                st.rerun()
+                try:
+                    create_tables()
+                    insert_user(name, email, mobile)
+                    st.session_state['logged_in'] = True
+                    st.success("Logged in successfully!")
+                    st.rerun()
+                except psycopg2.errors.UniqueViolation:
+                    st.error("This email is already registered. Please use a different email.")
             else:
                 st.error("Please fill in all fields.")
 
