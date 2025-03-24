@@ -139,12 +139,13 @@ def main():
                 width: 100%;
                 padding: 10px;
                 margin: 5px 0;
-                border-radius: 5px;
+                border-radius: 50px;  /* Changed to make buttons round */
                 border: 2px solid #2E86C1;
                 background-color: transparent;
                 color: #2E86C1;
                 font-size: 16px;
                 transition: all 0.3s ease;
+                height: 50px;  /* Added for better round shape */
             }
             .stButton>button:hover {
                 background-color: #2E86C1;
@@ -156,6 +157,8 @@ def main():
                 color: white;
                 border: 2px solid #FF5733;
                 transition: all 0.3s ease;
+                border-radius: 50px;  /* Added for round shape */
+                height: 50px;
             }
             .know-about-me-button>button:hover {
                 background-color: #E64A19;
@@ -165,6 +168,8 @@ def main():
                 background-color: #E74C3C;
                 color: white;
                 border: 2px solid #E74C3C;
+                border-radius: 50px;  /* Added for round shape */
+                height: 50px;
             }
             .logout-button>button:hover {
                 background-color: #C0392B;
