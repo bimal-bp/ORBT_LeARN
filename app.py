@@ -266,15 +266,18 @@ def main():
             st.rerun()
 
     with col2:
-        # Create a container for the round button
-        st.markdown('<div class="button-container">', unsafe_allow_html=True)
+        # Create a round button using HTML and CSS
+        st.markdown("""
+        <div style="display: flex; justify-content: center; margin: 20px 0;">
+            <button class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                My<br>Mistakes
+            </button>
+        </div>
+        """, unsafe_allow_html=True)
         
-        # Create the medium round button
-        if st.button("My\nMistakes", key="round_button"):
+        # Hidden button to trigger the actual functionality
+        if st.button("My Mistakes", key="mistakes_button", help="Click to view my educational journey"):
             st.session_state.show_story_page = True
             st.rerun()
-            
-        st.markdown('</div>', unsafe_allow_html=True)
-
 if __name__ == "__main__":
     main()
