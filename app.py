@@ -114,16 +114,14 @@ def show_podcast_page():
         ## Data Science Podcasts for Different Experience Levels:
         
         ### 1. For Senior Data Scientists:
-        - "Data Skeptic" - Advanced topics in ML and statistics
-        - "TWIML AI" - Interviews with industry leaders
-        
+        -  How , When and overall Job Experince
+
         ### 2. For Mid-Level Professionals:
         - "DataFramed" - Practical applications of data science
-        - "Super Data Science" - Career growth and technical skills
         
         ### 3. For Junior Professionals:
-        - "Data Science Imposters" - For beginners in the field
-        - "Learning Machines 101" - Foundational concepts explained
+
+        - "Learning Machines " - Foundational concepts explained
     """)
     
     if st.button("Back to Dashboard"):
