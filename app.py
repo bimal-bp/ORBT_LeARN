@@ -1,37 +1,4 @@
 import streamlit as st
-import psycopg2
-
-# Database connection
-def get_db_connection():
-    conn = psycopg2.connect(
-        "postgresql://neondb_owner:npg_nRWri4OJ5vcs@ep-solitary-waterfall-a575ahao-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
-    )
-    return conn
-
-# Create tables if they don't exist
-def create_tables():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute(""" 
-        CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            mobile TEXT NOT NULL
-        );
-    """)
-    conn.commit()
-    cur.close()
-    conn.close()
-
-# Insert user data into the database
-def insert_user(name, email, mobile):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("INSERT INTO users (name, email, mobile) VALUES (%s, %s, %s)", (name, email, mobile))
-    conn.commit()
-    cur.close()
-    conn.close()
 
 # Function to display the story and "About Me" on a new page
 def show_story_page():
@@ -135,8 +102,6 @@ def main():
     """, unsafe_allow_html=True)
 
     # Initialize session state
-    if 'logged_in' not in st.session_state:
-        st.session_state['logged_in'] = False
     if 'show_story_page' not in st.session_state:
         st.session_state['show_story_page'] = False
     if 'show_job_page' not in st.session_state:
@@ -197,59 +162,29 @@ def main():
             st.rerun()
         return
 
-    # Login page
-    if not st.session_state['logged_in']:
-        st.title("ORBT-LeARN")
-        name = st.text_input("Name", key="name")
-        email = st.text_input("Email", key="email")
-        mobile = st.text_input("Mobile Number", key="mobile")
+    # Main dashboard
+    st.title("Learn & Earn")
 
-        if st.button("Login"):
-            if name and email and mobile:
-                try:
-                    create_tables()
-                    insert_user(name, email, mobile)
-                    st.session_state['logged_in'] = True
-                    st.success("Logged in successfully!")
-                    st.rerun()
-                except psycopg2.errors.UniqueViolation:
-                    st.error("This email is already registered. Please use a different email.")
-            else:
-                st.error("Please fill in all fields.")
+    # Buttons arranged in 2 columns
+    col1, col2 = st.columns(2)
 
-    # Main page after login
-    else:
-        st.title("Learn & Earn ")
+    with col1:
+        if st.button("Education Learn"):
+            st.session_state['show_education_page'] = True
+            st.rerun()
+        if st.button("Job"):
+            st.session_state['show_job_page'] = True
+            st.rerun()
+        if st.button("Podcast"):
+            st.write("Podcast page will be added later.")
+        if st.button("Travel Place"):
+            st.write("Travel Place page will be added later.")
 
-        # Buttons arranged in 2 columns
-        col1, col2 = st.columns(2)
-
-        with col1:
-            if st.button("Education Learn"):
-                st.session_state['show_education_page'] = True
-                st.rerun()
-            if st.button("Job"):
-                st.session_state['show_job_page'] = True
-                st.rerun()
-            if st.button("Podcast"):
-                st.write("Podcast page will be added later.")
-            if st.button("Travel Place"):
-                st.write("Travel Place page will be added later.")
-
-        with col2:
-            # "Know About Me" button with green color and green border
-            st.markdown('<div class="green-button">', unsafe_allow_html=True)
-            if st.button("Know About Me"):
-                st.session_state['show_story_page'] = True
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        # Logout button centered below with red border
-        st.markdown('<div class="logout-button">', unsafe_allow_html=True)
-        if st.button("Logout", key="logout"):
-            st.session_state['logged_in'] = False
-            st.session_state['show_story_page'] = False
-            st.success("Logged out successfully!")
+    with col2:
+        # "Know About Me" button with green color and green border
+        st.markdown('<div class="green-button">', unsafe_allow_html=True)
+        if st.button("Know About Me"):
+            st.session_state['show_story_page'] = True
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
