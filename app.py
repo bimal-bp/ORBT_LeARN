@@ -165,7 +165,7 @@ def main():
 
     # Main dashboard
     st.title(" **ORBT LeARN** ")
-    st.title("Learn & Earn")
+    st.title("LeARN & eARN ")
 
     # Buttons arranged in 2 columns
     col1, col2 = st.columns(2)
