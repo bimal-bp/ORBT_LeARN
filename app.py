@@ -139,37 +139,46 @@ def main():
                 width: 100%;
                 padding: 10px;
                 margin: 5px 0;
-                border-radius: 50px;  /* Changed to make buttons round */
+                border-radius: 8px;
                 border: 2px solid #2E86C1;
                 background-color: transparent;
                 color: #2E86C1;
                 font-size: 16px;
                 transition: all 0.3s ease;
-                height: 50px;  /* Added for better round shape */
+                height: auto;
             }
             .stButton>button:hover {
                 background-color: #2E86C1;
                 color: white;
                 border-color: #2E86C1;
             }
-            .know-about-me-button>button {
+            .circle-button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
                 background-color: #FF5733;
                 color: white;
                 border: 2px solid #FF5733;
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+                margin: 10px auto;
                 transition: all 0.3s ease;
-                border-radius: 50px;  /* Added for round shape */
-                height: 50px;
+                cursor: pointer;
             }
-            .know-about-me-button>button:hover {
+            .circle-button:hover {
                 background-color: #E64A19;
                 border-color: #E64A19;
+                transform: scale(1.05);
             }
             .logout-button>button {
                 background-color: #E74C3C;
                 color: white;
                 border: 2px solid #E74C3C;
-                border-radius: 50px;  /* Added for round shape */
-                height: 50px;
+                border-radius: 8px;
             }
             .logout-button>button:hover {
                 background-color: #C0392B;
@@ -254,11 +263,18 @@ def main():
             st.rerun()
 
     with col2:
-        st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
-        if st.button("My Mistakes"):
-            st.session_state.show_story_page = True
-            st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+        # Custom circular button using HTML and JavaScript
+        st.markdown("""
+        <div class="circle-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+            My Mistakes
+        </div>
+        <script>
+            // This function will be called when the button is clicked
+            function handleCircleButtonClick() {
+                window.streamlitScriptRunner.runScript('My Mistakes');
+            }
+        </script>
+        """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
