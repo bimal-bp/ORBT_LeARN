@@ -171,10 +171,10 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("Education Learn"):
+        if st.button("**Education Learn**"):
             st.session_state['show_education_page'] = True
             st.rerun()
-        if st.button("Job"):
+        if st.button("**Job**"):
             st.session_state['show_job_page'] = True
             st.rerun()
         if st.button("Podcast"):
