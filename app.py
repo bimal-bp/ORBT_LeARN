@@ -185,7 +185,7 @@ def main():
     with col2:
         # "Know About Me" button with custom orange color
         st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
-        if st.button("Know About Me"):
+        if st.button("My Mistakes"):
             st.session_state['show_story_page'] = True
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
