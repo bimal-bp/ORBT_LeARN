@@ -133,7 +133,7 @@ def show_podcast_page():
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
-    # Custom CSS for styling with round button
+    # Custom CSS for styling with medium round button
     st.markdown(""" 
         <style>
             h1 {
@@ -159,29 +159,38 @@ def main():
                 color: white;
                 border-color: #2E86C1;
             }
-            /* Round button style */
+            /* Medium round button style */
             .round-btn {
                 border-radius: 50% !important;
-                width: 120px !important;
-                height: 120px !important;
+                width: 150px !important;
+                height: 150px !important;
                 padding: 0 !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                margin: 10px auto !important;
+                margin: 20px auto !important;
                 background-color: #FF5733 !important;
                 color: white !important;
-                border: 2px solid #FF5733 !important;
+                border: 3px solid #FF5733 !important;
                 font-weight: bold !important;
+                font-size: 20px !important;
                 transition: all 0.3s ease !important;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
             }
             .round-btn:hover {
                 background-color: #E64A19 !important;
                 border-color: #E64A19 !important;
                 transform: scale(1.05) !important;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
             }
             .stButton>button:first-child {
                 height: auto !important;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -257,20 +266,15 @@ def main():
             st.rerun()
 
     with col2:
-        # Create a clickable round button that triggers the story page
-        st.markdown("""
-        <style>
-            div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column"] > div[data-testid="stVerticalBlock"] {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        </style>
-        """, unsafe_allow_html=True)
+        # Create a container for the round button
+        st.markdown('<div class="button-container">', unsafe_allow_html=True)
         
+        # Create the medium round button
         if st.button("My\nMistakes", key="round_button"):
             st.session_state.show_story_page = True
             st.rerun()
+            
+        st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
