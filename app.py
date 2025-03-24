@@ -111,13 +111,12 @@ def show_travel_page():
 def show_podcast_page():
     st.title("Podcast Recommendations")
     st.markdown("""
-        ## Data Science Podcasts for Different Experience Levels:
+        ##  !0 Questions With Experience Levels:
         
         ### 1. For Senior Data Scientists:
-        -  How , When and overall Job Experince
+        -  How Got the job , When  and   overall Job Experince
 
         ### 2. For Mid-Level Professionals:
-        - "DataFramed" - Practical applications of data science
         
         ### 3. For Junior Professionals:
 
