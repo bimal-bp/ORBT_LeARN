@@ -9,7 +9,6 @@ def get_db_connection():
     return conn
 
 # Create tables if they don't exist
-
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -102,40 +101,35 @@ def main():
                 border-color: #2E86C1;
             }
 
-            /* Styling for the logout button */
+            /* Custom styling for the "Know About Me" button */
+            .green-button>button {
+                background-color: #28a745; /* Green background */
+                color: white;
+                border: 2px solid #28a745; /* Green border */
+            }
+
+            .green-button>button:hover {
+                background-color: #218838; /* Darker green on hover */
+                border-color: #218838; /* Darker green border on hover */
+            }
+
+            /* Custom styling for the "Logout" button */
+            .logout-button>button {
+                background-color: #E74C3C; /* Red background */
+                color: white;
+                border: 2px solid #E74C3C; /* Red border */
+            }
+
+            .logout-button>button:hover {
+                background-color: #C0392B; /* Darker red on hover */
+                border-color: #C0392B; /* Darker red border on hover */
+            }
+
+            /* Centering the logout button */
             .logout-button {
                 display: flex;
                 justify-content: center;
                 margin-top: 20px;
-            }
-
-            .logout-button>button {
-                width: 200px;
-                padding: 10px;
-                border-radius: 5px;
-                border: 2px solid #E74C3C; /* Red border for logout */
-                background-color: transparent;
-                color: #E74C3C;
-                font-size: 16px;
-                transition: all 0.3s ease;
-            }
-
-            .logout-button>button:hover {
-                background-color: #E74C3C;
-                color: white;
-                border-color: #E74C3C;
-            }
-
-            /* Green color for the "Know About Me" button */
-            .green-button>button {
-                background-color: #28a745;
-                color: white;
-                border: 2px solid #3498DB; /* Blue border for Know About Me */
-            }
-
-            .green-button>button:hover {
-                background-color: #218838;
-                border-color: #3498DB; /* Blue border on hover */
             }
         </style>
     """, unsafe_allow_html=True)
@@ -189,7 +183,7 @@ def main():
                 st.write("Travel Place page will be added later.")
 
         with col2:
-            # "Know About Me" button with green color and blue border
+            # "Know About Me" button with green color and green border
             st.markdown('<div class="green-button">', unsafe_allow_html=True)
             if st.button("Know About Me"):
                 st.session_state['show_story_page'] = True
