@@ -2,7 +2,7 @@ import streamlit as st
 
 # Function to display the story and "About Me" on a new page
 def show_story_page():
-    st.title("My Story and About Me")
+    st.title(" About Me")
     
     # About Me Section
     st.markdown(""" 
