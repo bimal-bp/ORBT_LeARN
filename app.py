@@ -69,15 +69,16 @@ def main():
             }
 
             /* Custom styling for the "Know About Me" button */
-            .green-button>button {
-                background-color: #28a745; /* Green background */
+            .know-about-me-button>button {
+                background-color: #FF5733; /* Orange background */
                 color: white;
-                border: 2px solid #28a745; /* Green border */
+                border: 2px solid #FF5733; /* Orange border */
+                transition: all 0.3s ease;
             }
 
-            .green-button>button:hover {
-                background-color: #218838; /* Darker green on hover */
-                border-color: #218838; /* Darker green border on hover */
+            .know-about-me-button>button:hover {
+                background-color: #E64A19; /* Darker orange on hover */
+                border-color: #E64A19; /* Darker orange border on hover */
             }
 
             /* Custom styling for the "Logout" button */
@@ -182,8 +183,8 @@ def main():
             st.write("Travel Place page will be added later.")
 
     with col2:
-        # "Know About Me" button with green color and green border
-        st.markdown('<div class="green-button">', unsafe_allow_html=True)
+        # "Know About Me" button with custom orange color
+        st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
         if st.button("Know About Me"):
             st.session_state['show_story_page'] = True
             st.rerun()
