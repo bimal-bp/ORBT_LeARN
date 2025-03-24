@@ -9,6 +9,7 @@ def get_db_connection():
     return conn
 
 # Create tables if they don't exist
+
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
