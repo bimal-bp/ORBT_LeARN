@@ -33,10 +33,24 @@ def insert_user(name, email, mobile):
     cur.close()
     conn.close()
 
-# Function to display the story on a new page
+# Function to display the story and "About Me" on a new page
 def show_story_page():
-    st.title("My Story")
+    st.title("My Story and About Me")
+    
+    # About Me Section
     st.markdown("""
+        ### About Me
+        Hi there! 👋  
+        I'm the creator of this app. Here's a little about me:
+        - **<span style='font-size: 20px;'>Bimal Patra</span>** <!-- Increased size -->
+        - **Data Scientist at SG Group, Mumbai**
+        - **bimalpatrap@gmail.com**
+        - **9348245158**
+    """, unsafe_allow_html=True)
+
+    # Story Section
+    st.markdown("""
+        ### My Story
         Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
         I’m not sharing this story because I was a 95% scorer, a topper, or someone earning 1 or 2 lakhs.  
         I’m sharing this because I’ve spent a lot of time studying the wrong things and choosing the wrong career paths in my life.  
@@ -128,8 +142,6 @@ def main():
     # Initialize session state
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
-    if 'show_about_me' not in st.session_state:
-        st.session_state['show_about_me'] = False
     if 'show_story_page' not in st.session_state:
         st.session_state['show_story_page'] = False
 
@@ -179,31 +191,14 @@ def main():
             # "Know About Me" button with green color
             st.markdown('<div class="green-button">', unsafe_allow_html=True)
             if st.button("Know About Me"):
-                st.session_state['show_about_me'] = not st.session_state['show_about_me']
-            st.markdown('</div>', unsafe_allow_html=True)
-
-        # Display "About Me" information if the button is clicked
-        if st.session_state['show_about_me']:
-            st.sidebar.markdown("### About Me")
-            st.sidebar.markdown("""
-                Hi there! 👋  
-                I'm the creator of this app. Here's a little about me:
-                - **<span style='font-size: 20px;'>Bimal Patra</span>** <!-- Increased size -->
-                - **Data Scientist at SG Group, Mumbai**
-                - **bimalpatrap@gmail.com**
-                - **9348245158**
-            """, unsafe_allow_html=True)
-
-            # "Read Once" button
-            if st.sidebar.button("Read Once"):
                 st.session_state['show_story_page'] = True
                 st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
         # Logout button centered below
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
         if st.button("Logout", key="logout"):
             st.session_state['logged_in'] = False
-            st.session_state['show_about_me'] = False
             st.session_state['show_story_page'] = False
             st.success("Logged out successfully!")
             st.rerun()
