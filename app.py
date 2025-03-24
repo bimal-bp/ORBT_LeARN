@@ -180,20 +180,6 @@ def main():
                 border-color: #E64A19;
                 transform: scale(1.05);
             }
-            .logout-button>button {
-                background-color: #E74C3C;
-                color: white;
-                border: 2px solid #E74C3C;
-            }
-            .logout-button>button:hover {
-                background-color: #C0392B;
-                border-color: #C0392B;
-            }
-            .logout-button {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-            }
         </style>
     """, unsafe_allow_html=True)
 
@@ -268,26 +254,14 @@ def main():
             st.rerun()
 
     with col2:
-        # Create a round button using HTML and CSS
-        st.markdown("""
-        <div style="display: flex; justify-content: center; margin: 20px 0;">
-            <button class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                My<br>Mistakes
-            </button>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Hidden button to trigger the actual functionality
-        if st.button("My Mistakes", key="mistakes_button", help="Click to view my educational journey"):
+        # Create a clickable round button that triggers the story page
+        if st.button("My\nMistakes", key="round_button", 
+                    help="Click to view my educational journey",
+                    # These styles approximate the round button appearance
+                    use_container_width=True,
+                    ):
             st.session_state.show_story_page = True
             st.rerun()
-
-
-    # Logout button at the bottom
-    st.markdown('<div class="logout-button">', unsafe_allow_html=True)
-    if st.button("Logout"):
-        st.write("Logout functionality would go here")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
