@@ -35,7 +35,7 @@ def insert_user(name, email, mobile):
 
 # Function to display the story and "About Me" on a new page
 def show_story_page():
-    st.title("About Me")
+    st.title("My Story and About Me")
     
     # About Me Section
     st.markdown(""" 
@@ -139,11 +139,63 @@ def main():
         st.session_state['logged_in'] = False
     if 'show_story_page' not in st.session_state:
         st.session_state['show_story_page'] = False
+    if 'show_job_page' not in st.session_state:
+        st.session_state['show_job_page'] = False
+    if 'show_education_page' not in st.session_state:
+        st.session_state['show_education_page'] = False
 
     # If "Read Once" is clicked, show the story page
     if st.session_state.get('show_story_page'):
         show_story_page()
         return  # Stop rendering the rest of the app
+
+    # If "Job" is clicked, show the job page
+    if st.session_state.get('show_job_page'):
+        st.title("Job Opportunities")
+        st.markdown("### Explore Job Opportunities in Various Departments:")
+        job_list = [
+            "Sales and Marketing",
+            "Finance and Accounting",
+            "Human Resources (HR)",
+            "Operations",
+            "Customer Service",
+            "IT and Technical Support",
+            "Legal and Compliance",
+            "Research and Development (R&D)",
+            "Administration",
+            "Supply Chain and Logistics"
+        ]
+        for job in job_list:
+            st.write(f"- {job}")
+        
+        if st.button("Back to Dashboard"):
+            st.session_state['show_job_page'] = False
+            st.rerun()
+        return
+
+    # If "Education Learn" is clicked, show the education page
+    if st.session_state.get('show_education_page'):
+        st.title("Education and Learning")
+        st.markdown("### Explore Educational Opportunities:")
+        education_list = [
+            "Data Science and Machine Learning",
+            "Web Development",
+            "Mobile App Development",
+            "Digital Marketing",
+            "Business Administration",
+            "Graphic Design",
+            "Cybersecurity",
+            "Cloud Computing",
+            "Artificial Intelligence",
+            "Blockchain Technology"
+        ]
+        for education in education_list:
+            st.write(f"- {education}")
+        
+        if st.button("Back to Dashboard"):
+            st.session_state['show_education_page'] = False
+            st.rerun()
+        return
 
     # Login page
     if not st.session_state['logged_in']:
@@ -174,9 +226,11 @@ def main():
 
         with col1:
             if st.button("Education Learn"):
-                st.write("Education Learn page will be added later.")
+                st.session_state['show_education_page'] = True
+                st.rerun()
             if st.button("Job"):
-                st.write("Job page will be added later.")
+                st.session_state['show_job_page'] = True
+                st.rerun()
             if st.button("Podcast"):
                 st.write("Podcast page will be added later.")
             if st.button("Travel Place"):
