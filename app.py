@@ -1,4 +1,5 @@
 import streamlit as st
+
 def show_story_page():
     st.title(" About Me")
     
@@ -24,16 +25,13 @@ def show_story_page():
         **Go correct, work hard, live your life perfectly, and believe in God. That's all.**  
     """, unsafe_allow_html=True)
 
-    # Initialize session state for full story if not exists
     if 'show_full_story' not in st.session_state:
         st.session_state.show_full_story = False
 
-    # Button to toggle full story - with fixed variable name
     if st.button("Read Full Story"):
         st.session_state.show_full_story = not st.session_state.show_full_story
-        st.rerun()  # Add this to immediately show the change
+        st.rerun()
 
-    # Display full story if toggled
     if st.session_state.show_full_story:
         st.markdown("""
             ### My Educational Journey
@@ -57,19 +55,79 @@ def show_story_page():
             Now, the failure story starts because, till now, I didn't study properly. We will continue this story later.
         """)
 
-    # Button to come back to the dashboard
     if st.button("Come Back to Dashboard"):
         st.session_state.show_story_page = False
         st.rerun()
 
-# Streamlit app
+def show_travel_page():
+    st.title("Famous Travel Destinations in India")
+    
+    st.markdown("""
+        ## Explore these beautiful destinations across India:
+    """)
+    
+    destinations = [
+        {"name": "Ram Janmabhumi Temple", "location": "Ayodhya, Uttar Pradesh", "address": "Ayodhya, Uttar Pradesh"},
+        {"name": "Taj Mahal", "location": "Agra, Uttar Pradesh", "address": "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001"},
+        {"name": "Qutub Minar", "location": "New Delhi", "address": "Mehrauli, New Delhi, Delhi 110030"},
+        {"name": "Gateway of India", "location": "Mumbai, Maharashtra", "address": "Apollo Bandar, Colaba, Mumbai, Maharashtra 400001"},
+        {"name": "Jaipur City Palace", "location": "Jaipur, Rajasthan", "address": "City Palace, J.D.A. Market, Jaipur, Rajasthan 302003"},
+        {"name": "Kerala Backwaters", "location": "Kerala", "address": "Alleppey, Kumarakom, and other towns in Kerala"},
+        {"name": "Meghalaya - Cherrapunji", "location": "Cherrapunji, Meghalaya", "address": "Cherrapunji, East Khasi Hills, Meghalaya"},
+        {"name": "Red Fort", "location": "New Delhi", "address": "Netaji Subhash Marg, Lal Qila, Chandni Chowk, New Delhi 110006"},
+        {"name": "Leh-Ladakh", "location": "Jammu & Kashmir", "address": "Leh, Jammu & Kashmir 194101"},
+        {"name": "Ranthambore National Park", "location": "Sawai Madhopur, Rajasthan", "address": "Sawai Madhopur, Rajasthan 322001"},
+        {"name": "Varanasi (Ganges River)", "location": "Varanasi, Uttar Pradesh", "address": "Varanasi, Uttar Pradesh 221001"},
+        {"name": "Andaman Islands", "location": "Andaman and Nicobar Islands", "address": "Port Blair, Andaman & Nicobar Islands 744101"},
+        {"name": "Shimla", "location": "Himachal Pradesh", "address": "Shimla, Himachal Pradesh 171001"},
+        {"name": "Mysore Palace", "location": "Mysore, Karnataka", "address": "Amba Vilas Palace, Mysuru, Karnataka 570001"},
+        {"name": "Rishikesh", "location": "Uttarakhand", "address": "Rishikesh, Uttarakhand 249201"},
+        {"name": "Khajuraho Temples", "location": "Khajuraho, Madhya Pradesh", "address": "Khajuraho, Chhatarpur District, Madhya Pradesh 471606"}
+    ]
+    
+    for idx, place in enumerate(destinations, 1):
+        st.markdown(f"""
+        ### {idx}. {place['name']}
+        **Location:** {place['location']}  
+        **Address:** {place['address']}  
+        """)
+        st.write("---")
+    
+    if st.button("Back to Dashboard"):
+        st.session_state.show_travel_page = False
+        st.rerun()
+
+def show_podcast_page():
+    st.title("Podcast Recommendations")
+    
+    st.markdown("""
+        ## Data Science Podcasts for Different Experience Levels:
+        
+        ### 1. For Senior Data Scientists:
+        - "Data Skeptic" - Advanced topics in ML and statistics
+        - "Linear Digressions" - Deep dives into technical concepts
+        - "TWIML AI" - Interviews with industry leaders
+        
+        ### 2. For Mid-Level Professionals:
+        - "DataFramed" - Practical applications of data science
+        - "Not So Standard Deviations" - Data science in the real world
+        - "Super Data Science" - Career growth and technical skills
+        
+        ### 3. For Junior Professionals:
+        - "Data Science Imposters" - For beginners in the field
+        - "Learning Machines 101" - Foundational concepts explained
+        - "Data Science Mixer" - Entry-level discussions
+    """)
+    
+    if st.button("Back to Dashboard"):
+        st.session_state.show_podcast_page = False
+        st.rerun()
+
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
-    # Custom CSS for styling
     st.markdown(""" 
         <style>
-            /* Styling for the ORBT-LEARN heading */
             h1 {
                 text-align: center;
                 color: #2E86C1;
@@ -77,8 +135,6 @@ def main():
                 font-size: 2.5em;
                 margin-bottom: 20px;
             }
-
-            /* Styling for buttons */
             .stButton>button {
                 width: 100%;
                 padding: 10px;
@@ -90,39 +146,30 @@ def main():
                 font-size: 16px;
                 transition: all 0.3s ease;
             }
-
             .stButton>button:hover {
                 background-color: #2E86C1;
                 color: white;
                 border-color: #2E86C1;
             }
-
-            /* Custom styling for the "Know About Me" button */
             .know-about-me-button>button {
-                background-color: #FF5733; /* Orange background */
+                background-color: #FF5733;
                 color: white;
-                border: 2px solid #FF5733; /* Orange border */
+                border: 2px solid #FF5733;
                 transition: all 0.3s ease;
             }
-
             .know-about-me-button>button:hover {
-                background-color: #E64A19; /* Darker orange on hover */
-                border-color: #E64A19; /* Darker orange border on hover */
+                background-color: #E64A19;
+                border-color: #E64A19;
             }
-
-            /* Custom styling for the "Logout" button */
             .logout-button>button {
-                background-color: #E74C3C; /* Red background */
+                background-color: #E74C3C;
                 color: white;
-                border: 2px solid #E74C3C; /* Red border */
+                border: 2px solid #E74C3C;
             }
-
             .logout-button>button:hover {
-                background-color: #C0392B; /* Darker red on hover */
-                border-color: #C0392B; /* Darker red border on hover */
+                background-color: #C0392B;
+                border-color: #C0392B;
             }
-
-            /* Centering the logout button */
             .logout-button {
                 display: flex;
                 justify-content: center;
@@ -131,91 +178,80 @@ def main():
         </style>
     """, unsafe_allow_html=True)
 
-    # Initialize session state
-    if 'show_story_page' not in st.session_state:
-        st.session_state['show_story_page'] = False
-    if 'show_job_page' not in st.session_state:
-        st.session_state['show_job_page'] = False
-    if 'show_education_page' not in st.session_state:
-        st.session_state['show_education_page'] = False
+    # Initialize session states
+    session_vars = [
+        'show_story_page', 'show_job_page', 
+        'show_education_page', 'show_travel_page',
+        'show_podcast_page'
+    ]
+    for var in session_vars:
+        if var not in st.session_state:
+            st.session_state[var] = False
 
-    # If "Read Once" is clicked, show the story page
-    if st.session_state.get('show_story_page'):
+    # Page routing
+    if st.session_state.show_story_page:
         show_story_page()
-        return  # Stop rendering the rest of the app
-
-    # If "Job" is clicked, show the job page
-    if st.session_state.get('show_job_page'):
+        return
+    if st.session_state.show_job_page:
         st.title("Job Opportunities")
         st.markdown("### Explore Job Opportunities in Various Departments:")
-        job_list = [
-            "Sales and Marketing",
-            "Finance and Accounting",
-            "Human Resources (HR)",
-            "Operations",
-            "Customer Service",
-            "IT and Technical Support",
-            "Legal and Compliance",
-            "Research and Development (R&D)",
-            "Administration",
-            "Supply Chain and Logistics"
-        ]
-        for job in job_list:
+        for job in [
+            "Sales and Marketing", "Finance and Accounting", "Human Resources (HR)",
+            "Operations", "Customer Service", "IT and Technical Support",
+            "Legal and Compliance", "Research and Development (R&D)",
+            "Administration", "Supply Chain and Logistics"
+        ]:
             st.write(f"- {job}")
-        
         if st.button("Back to Dashboard"):
-            st.session_state['show_job_page'] = False
+            st.session_state.show_job_page = False
             st.rerun()
         return
-
-    # If "Education Learn" is clicked, show the education page
-    if st.session_state.get('show_education_page'):
+    if st.session_state.show_education_page:
         st.title("Education and Learning")
         st.markdown("### Explore Educational Opportunities:")
-        education_list = [
-            "Data Science and Machine Learning",
-            "Web Development",
-            "Mobile App Development",
-            "Digital Marketing",
-            "Business Administration",
-            "Graphic Design",
-            "Cybersecurity",
-            "Cloud Computing",
-            "Artificial Intelligence",
-            "Blockchain Technology"
-        ]
-        for education in education_list:
+        for education in [
+            "Data Science and Machine Learning", "Web Development",
+            "Mobile App Development", "Digital Marketing",
+            "Business Administration", "Graphic Design",
+            "Cybersecurity", "Cloud Computing",
+            "Artificial Intelligence", "Blockchain Technology"
+        ]:
             st.write(f"- {education}")
-        
         if st.button("Back to Dashboard"):
-            st.session_state['show_education_page'] = False
+            st.session_state.show_education_page = False
             st.rerun()
+        return
+    if st.session_state.show_travel_page:
+        show_travel_page()
+        return
+    if st.session_state.show_podcast_page:
+        show_podcast_page()
         return
 
     # Main dashboard
     st.title(" **ORBT LeARN** ")
     st.title("LeARN & eARN ")
 
-    # Buttons arranged in 2 columns
     col1, col2 = st.columns(2)
 
     with col1:
         if st.button("**Education Learn**"):
-            st.session_state['show_education_page'] = True
+            st.session_state.show_education_page = True
             st.rerun()
         if st.button("**Job**"):
-            st.session_state['show_job_page'] = True
+            st.session_state.show_job_page = True
             st.rerun()
         if st.button("Podcast"):
-            st.write("Podcast page will be added later.")
+            st.session_state.show_podcast_page = True
+            st.rerun()
         if st.button("Travel Place"):
-            st.write("Travel Place page will be added later.")
+            st.session_state.show_travel_page = True
+            st.rerun()
 
     with col2:
-        # "Know About Me" button with custom orange color
         st.markdown('<div class="know-about-me-button">', unsafe_allow_html=True)
         if st.button("My Mistakes"):
-            st.session_state['show_story_page'] = True
+            st.session_state.show_story_page = True
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
