@@ -129,12 +129,12 @@ def main():
             .green-button>button {
                 background-color: #28a745;
                 color: white;
-                border: 2px solid #28a745;
+                border: 2px solid #8E44AD; /* Purple border */
             }
 
             .green-button>button:hover {
                 background-color: #218838;
-                border-color: #218838;
+                border-color: #8E44AD; /* Purple border on hover */
             }
         </style>
     """, unsafe_allow_html=True)
@@ -188,7 +188,7 @@ def main():
                 st.write("Travel Place page will be added later.")
 
         with col2:
-            # "Know About Me" button with green color
+            # "Know About Me" button with green color and purple border
             st.markdown('<div class="green-button">', unsafe_allow_html=True)
             if st.button("Know About Me"):
                 st.session_state['show_story_page'] = True
