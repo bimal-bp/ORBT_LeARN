@@ -12,7 +12,7 @@ def get_db_connection():
 def create_tables():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("""
+    cur.execute(""" 
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
@@ -38,7 +38,7 @@ def show_story_page():
     st.title("My Story and About Me")
     
     # About Me Section
-    st.markdown("""
+    st.markdown(""" 
         ### About Me
         Hi there! 👋  
         I'm the creator of this app. Here's a little about me:
@@ -49,7 +49,7 @@ def show_story_page():
     """, unsafe_allow_html=True)
 
     # Story Section
-    st.markdown("""
+    st.markdown(""" 
         ### My Story
         Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
         I’m not sharing this story because I was a 95% scorer, a topper, or someone earning 1 or 2 lakhs.  
@@ -71,7 +71,7 @@ def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
     # Custom CSS for styling
-    st.markdown("""
+    st.markdown(""" 
         <style>
             /* Styling for the ORBT-LEARN heading */
             h1 {
@@ -112,7 +112,7 @@ def main():
                 width: 200px;
                 padding: 10px;
                 border-radius: 5px;
-                border: 2px solid #E74C3C;
+                border: 2px solid #E74C3C; /* Red border for logout */
                 background-color: transparent;
                 color: #E74C3C;
                 font-size: 16px;
@@ -129,12 +129,12 @@ def main():
             .green-button>button {
                 background-color: #28a745;
                 color: white;
-                border: 2px solid #8E44AD; /* Purple border */
+                border: 2px solid #3498DB; /* Blue border for Know About Me */
             }
 
             .green-button>button:hover {
                 background-color: #218838;
-                border-color: #8E44AD; /* Purple border on hover */
+                border-color: #3498DB; /* Blue border on hover */
             }
         </style>
     """, unsafe_allow_html=True)
@@ -188,14 +188,14 @@ def main():
                 st.write("Travel Place page will be added later.")
 
         with col2:
-            # "Know About Me" button with green color and purple border
+            # "Know About Me" button with green color and blue border
             st.markdown('<div class="green-button">', unsafe_allow_html=True)
             if st.button("Know About Me"):
                 st.session_state['show_story_page'] = True
                 st.rerun()
             st.markdown('</div>', unsafe_allow_html=True)
 
-        # Logout button centered below
+        # Logout button centered below with red border
         st.markdown('<div class="logout-button">', unsafe_allow_html=True)
         if st.button("Logout", key="logout"):
             st.session_state['logged_in'] = False
