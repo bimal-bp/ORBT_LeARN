@@ -160,25 +160,28 @@ def main():
                 border-color: #2E86C1;
             }
             /* Round button style */
-            .round-button {
-                border-radius: 50%;
-                width: 120px;
-                height: 120px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 10px auto;
-                background-color: #FF5733;
-                color: white;
-                border: 2px solid #FF5733;
-                font-weight: bold;
-                transition: all 0.3s ease;
+            .round-btn {
+                border-radius: 50% !important;
+                width: 120px !important;
+                height: 120px !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin: 10px auto !important;
+                background-color: #FF5733 !important;
+                color: white !important;
+                border: 2px solid #FF5733 !important;
+                font-weight: bold !important;
+                transition: all 0.3s ease !important;
             }
-            .round-button:hover {
-                background-color: #E64A19;
-                border-color: #E64A19;
-                transform: scale(1.05);
+            .round-btn:hover {
+                background-color: #E64A19 !important;
+                border-color: #E64A19 !important;
+                transform: scale(1.05) !important;
+            }
+            .stButton>button:first-child {
+                height: auto !important;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -255,11 +258,17 @@ def main():
 
     with col2:
         # Create a clickable round button that triggers the story page
-        if st.button("My\nMistakes", key="round_button", 
-                    help="Click to view my educational journey",
-                    # These styles approximate the round button appearance
-                    use_container_width=True,
-                    ):
+        st.markdown("""
+        <style>
+            div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column"] > div[data-testid="stVerticalBlock"] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+        
+        if st.button("My\nMistakes", key="round_button"):
             st.session_state.show_story_page = True
             st.rerun()
 
