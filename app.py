@@ -266,18 +266,54 @@ def main():
             st.rerun()
 
     with col2:
-        # Custom circular button using HTML and JavaScript
-        st.markdown("""
-        <div class="circle-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-            My Mistakes
-        </div>
-        <script>
-            // This function will be called when the button is clicked
-            function handleCircleButtonClick() {
-                window.streamlitScriptRunner.runScript('My Mistakes');
-            }
-        </script>
-        """, unsafe_allow_html=True)show_story_page = True
-            st.rerun()
+        # Create a container for the round button
+        container = st.container()
+        with container:
+            # Use markdown to create a clickable div that looks like a button
+            st.markdown("""
+            <div style="display: flex; justify-content: center;">
+                <div style="
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    background-color: #FF5733;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 20px;
+                    cursor: pointer;
+                    margin: 20px 0;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                " onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                    My Mistakes
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Add a hidden button that will be triggered by the JavaScript
+            if st.button("My Mistakes", key="my_mistakes_hidden", help="", on_click=None):
+                st.session_state.show_story_page = True
+                st.rerun()
+            
+            # JavaScript to trigger the hidden button
+            st.markdown("""
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const roundButton = document.querySelector('div[onclick*="My Mistakes"]');
+                if (roundButton) {
+                    roundButton.addEventListener('click', function() {
+                        const hiddenButton = parent.document.querySelector('button[kind="secondary"][data-testid="stMarkdownContainer"]');
+                        if (hiddenButton) {
+                            hiddenButton.click();
+                        }
+                    });
+                }
+            });
+            </script>
+            """, unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main()
