@@ -86,8 +86,7 @@ def show_travel_page():
     
     destinations = [
         {"name": "Ram Janmabhumi Temple", "location": "Ayodhya, Uttar Pradesh"},
-        {"name": "Taj Mahal", "location": "Agra, Uttar Pradesh"},
-        {"name": "Qutub Minar", "location": "New Delhi"},
+        {"name": "Somanath Temple", "location": "Veraval , Gujurat"},
         {"name": "Gateway of India", "location": "Mumbai, Maharashtra"},
         {"name": "Jaipur City Palace", "location": "Jaipur, Rajasthan"},
         {"name": "Kerala Backwaters", "location": "Kerala"},
