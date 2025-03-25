@@ -18,7 +18,7 @@ def show_story_page():
     st.markdown(""" 
         ### My Educational Journey
         Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
-        I'm sharing my story not because I was a topper, but because I made many mistakes in my educational choices.  
+        I'm sharing my story not because I was a topper or someone from iit iim college and earning in lakhs or have any business and owend a company , but because I made many mistakes in my educational choices.  
         I hope my experience helps you make better decisions.
     """, unsafe_allow_html=True)
 
@@ -73,6 +73,57 @@ def show_story_page():
             The key lesson from my journey is to understand your strengths and weaknesses before making educational choices. 
             Just because a field seems prestigious or others are doing it doesn't mean it's right for you. 
             Find what you're good at and passionate about, then pursue that with dedication.
+
+            **Gradutaion Story**
+            After scoring 68% in +2 (Science) and securing 1st division, I was unsure about my career path. Unlike after 10th grade—where there are clear options like diploma, ITI, or continuing +2—after +2, I only knew about B.Tech and +3 (Bachelor's degree).
+
+My two elder brothers had done diploma in engineering (electrical/mechanical) and understood the work pressure in those fields. They advised me to pursue +3 (graduation) and prepare for government jobs. At the time, I had some interest in civil engineering because I heard it had good earning potential. But the funny thing was—I had no idea about entrance exams like JEE, defence tests (NDA, CDS), or other competitive exams. My only plan was: complete +3 → do B.Ed → become a high school teacher.
+
+Later, a college offered me admission in BCA (Bachelor of Computer Applications), but I rejected it because I had zero knowledge about computer science or programming. In my village, I only knew 3-4 developers, but I learned about their careers much later.
+
+I ended up joining +3 at Binayak Acharya College (a government college). But like many students there, I rarely attended classes seriously—just played games, wasted time, and didn't prepare for any exams. My brothers kept telling me to study from 1st/2nd year so I could crack government exams, but I always said "yes" and never acted on it.
+
+Finally, I completed graduation with 62%, realizing too late that I had made another big mistake by not taking my future seriously.
+
+
+    **B.Ed story**
+
+    After completing +3 (graduation), my brothers advised me to either pursue B.Ed or a PG (Post-Graduation). I tried for B.Ed and gave the government entrance exam, but I failed. By then, the admission process for PG courses had also closed.
+
+Around that time, a relative of mine was doing B.Ed in Special Education. When I asked if I could join the same, he said yes. I discussed it with my brothers, and they agreed—though the downside was that they always let me do whatever I wanted without much guidance.
+
+I joined the course, but the college didn't provide proper certification. It was a special B.Ed program meant for teaching students with disabilities or mental rehabilitation, but none of us actually planned to work in that field. We just wanted to complete the degree, get the certificate, and use it for government job exams. The college assured us that the government would accept our certificates, so I went ahead with it.
+
+Eventually, I completed B.Ed and gave the government entrance exam twice but couldn't clear it. Frustrated, I shifted my focus to other government job exams. I started applying, giving tests, and scoring decent marks.
+
+My First Success: Clearing the Constable Exam
+After multiple attempts, I finally cleared a constable recruitment exam in the 3rd round. The selection process was tough:
+
+1st round: Selected candidates had to pass physical tests. Many failed.
+
+2nd round: Another elimination round.
+
+3rd round: I made it through and got selected!
+
+I was overjoyed—finally, I had achieved something. My brothers were proud and encouraged me to prepare harder for bigger exams.
+
+The Disappointment That Changed My Path
+Later, I came across another recruitment notification for 1,133 posts, but the selection process was strange:
+
+First, they shortlisted 9,352 candidates (8x the vacancies).
+
+Then, they cut it down to half for the next round.
+
+Finally, they called 2x the total posts (2,266 candidates) for document verification before selecting the final 1,133.
+
+This felt like a lottery—selection was based on certificate verification rather than merit. Losing hope in the system, I stopped focusing on government exams.
+
+A New Beginning: Discovering Data Science
+Then, out of nowhere, I stumbled upon Data Science. It felt like my first real, self-driven decision—almost like a gift from God. This was the turning point where I took control of my career.
+
+And now... my Data Science journey begins.
+
+
         """)
 
     # Button to return to dashboard
@@ -155,38 +206,35 @@ def main():
                 color: white;
                 border-color: #2E86C1;
             }
-            /* Medium round button style */
-            .round-btn {
-                border-radius: 50% !important;
-                width: 150px !important;
-                height: 150px !important;
-                padding: 0 !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                margin: 20px auto !important;
-                background-color: #FF5733 !important;
-                color: white !important;
-                border: 3px solid #FF5733 !important;
-                font-weight: bold !important;
-                font-size: 20px !important;
-                transition: all 0.3s ease !important;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
-            }
-            .round-btn:hover {
-                background-color: #E64A19 !important;
-                border-color: #E64A19 !important;
-                transform: scale(1.05) !important;
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
-            }
-            .stButton>button:first-child {
-                height: auto !important;
-            }
             .button-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin: 20px 0;
+            }
+            .round-button {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .round-button:hover {
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
             }
         </style>
     """, unsafe_allow_html=True)
@@ -265,51 +313,20 @@ def main():
         # Create a container for the round button
         container = st.container()
         with container:
-            # Use markdown to create a clickable div that looks like a button
-            st.markdown("""
-            <div style="display: flex; justify-content: center;">
-                <div style="
-                    width: 150px;
-                    height: 150px;
-                    border-radius: 50%;
-                    background-color: #FF5733;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    font-size: 20px;
-                    cursor: pointer;
-                    margin: 20px 0;
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                    transition: all 0.3s ease;
-                " onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+            # Use columns to center the button
+            _, center_col, _ = st.columns([1, 2, 1])
+            with center_col:
+                # Use markdown to create a styled div that looks like a button
+                st.markdown("""
+                <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
                     My Mistakes
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Add a hidden button that will be triggered by the JavaScript
-            if st.button("My Mistakes", key="my_mistakes_hidden", help="", on_click=None):
-                st.session_state.show_story_page = True
-                st.rerun()
-            
-            # JavaScript to trigger the hidden button
-            st.markdown("""
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const roundButton = document.querySelector('div[onclick*="My Mistakes"]');
-                if (roundButton) {
-                    roundButton.addEventListener('click', function() {
-                        const hiddenButton = parent.document.querySelector('button[kind="secondary"][data-testid="stMarkdownContainer"]');
-                        if (hiddenButton) {
-                            hiddenButton.click();
-                        }
-                    });
-                }
-            });
-            </script>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
+                
+                # Add the actual button that will be triggered
+                if st.button("My Mistakes", key="my_mistakes_button"):
+                    st.session_state.show_story_page = True
+                    st.rerun()
 
 if __name__ == "__main__":
     main()
