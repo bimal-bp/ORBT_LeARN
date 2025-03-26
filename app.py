@@ -21,7 +21,7 @@ def show_story_page():
         -  I'm sharing my story not because I was a topper or someone from IIT/IIM college 
         - and earning in lakhs or have any business and owend a company ,
 
-        but because I made many mistakes in my educational choices.  
+        but because I made many mistakes in my educational choices & dont do correct things in right time .  
         I hope my experience helps you make better decisions.
     """, unsafe_allow_html=True)
 
