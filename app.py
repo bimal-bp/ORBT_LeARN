@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show_story_page():
-    st.title("My Mistakes - Learning Journey")
+    st.title("My Mistakes ")
     
     # About Me Section
     st.markdown(""" 
@@ -16,7 +16,7 @@ def show_story_page():
 
     # Story Introduction
     st.markdown(""" 
-        ### My Educational Journey
+        ### Short Summary
         Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
         -  I'm sharing my story not because I was a topper or someone from IIT/IIM college 
         - and earning in lakhs or have any business and owend a company ,
