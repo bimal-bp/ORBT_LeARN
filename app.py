@@ -291,11 +291,90 @@ def main():
         st.title("Education and Learning")
         st.markdown("### Explore Educational Opportunities:")
         for education in [
-            "Data Science and Machine Learning", "Web Development",
-            "Mobile App Development", "Digital Marketing",
-            "Business Administration", "Graphic Design",
-            "Cybersecurity", "Cloud Computing",
-            "Artificial Intelligence", "Blockchain Technology"
+"After 10th": {
+        "Academic Streams": [
+            "Science (PCM/PCB)", 
+            "Commerce", 
+            "Arts/Humanities"
+        ],
+        "Diploma Courses": [
+            "Engineering (Mechanical/Civil/CS)", 
+            "Hotel Management", 
+            "Fashion Design",
+            "Medical Lab Technology"
+        ],
+        "ITI/Vocational": [
+            "Electrician", 
+            "Fitter", 
+            "Computer Operator",
+            "Beautician"
+        ],
+        "Certifications": [
+            "Digital Marketing", 
+            "Graphic Design", 
+            "Basic Programming"
+        ]
+    },
+    
+    # After 12th Grade Options
+    "After 12th": {
+        "Science Stream": [
+            "BTech/BE (Engineering)", 
+            "MBBS/BDS (Medical)", 
+            "BSc (Physics/Chemistry/CS)",
+            "BSc Agriculture"
+        ],
+        "Commerce Stream": [
+            "BCom/BCom(Hons)", 
+            "BBA", 
+            "CA Foundation",
+            "CS/CMA"
+        ],
+        "Arts/Humanities": [
+            "BA (History/Psychology)", 
+            "BJMC (Journalism)", 
+            "BFA (Fine Arts)",
+            "BA LLB (Law)"
+        ],
+        "Professional Courses": [
+            "Diploma in Animation", 
+            "Aviation Courses", 
+            "Hotel Management",
+            "NDA (Defense)"
+        ]
+    },
+    
+    # After Graduation Options
+    "After Graduation": {
+        "Higher Education": [
+            "MTech/MS (Engineering)", 
+            "MBA/PGDM", 
+            "MSc (Sciences)",
+            "PhD (Research)"
+        ],
+        "Government Exams": [
+            "UPSC Civil Services", 
+            "Banking (IBPS/RBI)", 
+            "SSC CGL",
+            "State PSCs"
+        ],
+        "Tech Certifications": [
+            "Data Science (Python/R)", 
+            "Cloud Computing (AWS/Azure)", 
+            "Cybersecurity (CEH)",
+            "AI/ML Certifications"
+        ],
+        "Creative Fields": [
+            "UI/UX Design", 
+            "Advanced Animation", 
+            "Film Making",
+            "Photography"
+        ],
+        "Study Abroad": [
+            "MS in USA/Germany", 
+            "MBA Abroad", 
+            "PhD Scholarships",
+            "Work-Study Programs"
         ]:
             st.write(f"- {education}")
         if st.button("Back to Dashboard"):
