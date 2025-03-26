@@ -13,7 +13,13 @@ def show_story_page():
         - **bimalpatrap@gmail.com**
         - **9348245158**
     """, unsafe_allow_html=True)
-
+    st.markdown("""
+    <style>
+        .stApp {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+    """, unsafe_allow_html=True)
     # Story Introduction
     st.markdown(""" 
         ### Short Summary
