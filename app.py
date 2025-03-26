@@ -560,14 +560,9 @@ def show_job_page():
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
-    # Apply gradient background to ALL pages
-    st.markdown("""
-    <style>
-        .stApp {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-    </style>
-    """, unsafe_allow_html=True)
+    # Green title
+    st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
 
     # Custom CSS for styling with medium round button
     st.markdown(""" 
@@ -656,7 +651,7 @@ def main():
         return
 
     # Main dashboard
-    st.title("ORBT LeARN")
+
     st.title("LeARN & eARN")
 
     col1, col2 = st.columns(2)
