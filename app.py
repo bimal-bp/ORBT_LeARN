@@ -288,7 +288,9 @@ def show_podcast_page():
     ### Want to suggest a guest or topic?
     [Submit your suggestions here](#) (link to form)
     """)
-
+    if st.button("← Back to Dashboard"):
+        st.session_state.show_podcast_page = False
+        st.rerun()
 
 def show_education_page():
     st.title("Education and Learning")
