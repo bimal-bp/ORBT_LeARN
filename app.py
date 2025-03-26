@@ -300,7 +300,167 @@ def show_education_page():
         st.session_state.show_education_page = False
         st.rerun()
 
-# ... [rest of your functions remain the same] ...
+def show_job_page():
+    st.title("Job Opportunities")
+    st.markdown("### Explore Job Opportunities Across All Fields:")
+
+    departments = {
+        "Software Development & Engineering": [
+            "Frontend Developer (React, Angular, Vue.js)",
+            "Backend Developer (Node.js, Python, Java, .NET)",
+            "Full-Stack Developer",
+            "Mobile App Developer (iOS, Android, Flutter, React Native)",
+            "Embedded Systems Engineer",
+            "Game Developer (Unity, Unreal Engine)",
+            "Blockchain Developer (Solidity, Web3)",
+            "AR/VR Developer",
+            "Cloud Engineer (AWS, Azure, GCP)",
+            "DevOps Engineer (Docker, Kubernetes, CI/CD)",
+            "Site Reliability Engineer (SRE)",
+            "Low-Code/No-Code Developer (Power Platform, OutSystems)"
+        ],
+        
+        "Data & AI/ML Roles": [
+            "Data Scientist (Python, R, TensorFlow)",
+            "Machine Learning Engineer",
+            "AI Research Scientist (NLP, Computer Vision)",
+            "Data Engineer (Spark, Hadoop, ETL)",
+            "Data Analyst (SQL, Tableau, Power BI)",
+            "Business Intelligence (BI) Analyst",
+            "Big Data Architect",
+            "Quantitative Analyst (Quant) (Finance + Data)"
+        ],
+        
+        "Cybersecurity & Ethical Hacking": [
+            "Cybersecurity Analyst",
+            "Penetration Tester (Ethical Hacker)",
+            "Security Architect",
+            "SOC (Security Operations Center) Analyst",
+            "Incident Response Analyst",
+            "Cryptographer",
+            "GRC (Governance, Risk, Compliance) Specialist"
+        ],
+        
+        "Cloud & Infrastructure": [
+            "Cloud Architect (AWS, Azure, GCP)",
+            "Cloud Security Specialist",
+            "Systems Administrator (Linux/Windows)",
+            "Network Engineer (CCNA, CCNP)",
+            "Database Administrator (DBA) (SQL, NoSQL)",
+            "IT Infrastructure Manager"
+        ],
+        
+        "Testing & QA": [
+            "Manual Tester",
+            "Automation Tester (Selenium, Cypress)",
+            "Performance Tester (JMeter, LoadRunner)",
+            "QA Lead/Manager",
+            "DevTestOps Engineer"
+        ],
+        
+        "IT Consulting & Management": [
+            "IT Consultant",
+            "Technical Project Manager",
+            "Scrum Master (Agile, SAFe)",
+            "Product Manager/Owner",
+            "Solutions Architect",
+            "Enterprise Architect",
+            "IT Auditor"
+        ],
+        
+        "Emerging & Niche Tech Roles": [
+            "Quantum Computing Engineer",
+            "Robotics Process Automation (RPA) Developer (UiPath, Blue Prism)",
+            "5G Network Specialist",
+            "IoT Solutions Architect",
+            "Digital Twin Engineer",
+            "Metaverse Developer"
+        ],
+        
+        "Hardware & Electronics": [
+            "Hardware Design Engineer",
+            "VLSI Engineer (Chip Design)",
+            "FPGA Engineer",
+            "PCB Design Engineer"
+        ],
+        
+        "Sales and Marketing": [
+            "Sales Executive", "Business Development Manager", "Account Manager",
+            "Digital Marketing Specialist", "SEO/SEM Expert", "Content Marketer",
+            "Social Media Manager", "Brand Manager", "Market Research Analyst",
+            "PR (Public Relations) Manager", "Affiliate Marketing Specialist"
+        ],
+        
+        "Finance and Accounting": [
+            "Accountant", "Financial Analyst", "Auditor",
+            "Tax Consultant", "CFO (Chief Financial Officer)", "Investment Banker",
+            "Risk Analyst", "Payroll Specialist", "Treasury Manager",
+            "Cost Accountant"
+        ],
+        
+        "Human Resources (HR)": [
+            "HR Manager", "Recruiter", "Talent Acquisition Specialist",
+            "Learning & Development (L&D) Manager", "Compensation & Benefits Analyst",
+            "HR Business Partner", "Diversity & Inclusion Officer",
+            "Employee Relations Manager"
+        ],
+        
+        "Operations": [
+            "Operations Manager", "Logistics Coordinator", "Supply Chain Analyst",
+            "Production Supervisor", "Quality Assurance (QA) Manager",
+            "Inventory Manager", "Process Engineer", "Facilities Manager"
+        ],
+        
+        "Customer Service": [
+            "Customer Support Representative", "Call Center Agent",
+            "Technical Support Engineer", "Client Success Manager",
+            "Helpdesk Analyst", "Customer Experience (CX) Specialist"
+        ],
+        
+        "Legal and Compliance": [
+            "Corporate Lawyer", "Compliance Officer", "Legal Consultant",
+            "Intellectual Property (IP) Specialist", "Data Privacy Officer",
+            "Contract Manager"
+        ],
+        
+        "Research and Development (R&D)": [
+            "Research Scientist", "Product Development Engineer",
+            "Biotech Researcher", "AI/ML Researcher", "Pharmaceutical Researcher",
+            "UX Researcher"
+        ],
+        
+        "Administration": [
+            "Executive Assistant", "Office Manager", "Administrative Coordinator",
+            "Receptionist", "Data Entry Operator", "Virtual Assistant"
+        ],
+        
+        "Supply Chain and Logistics": [
+            "Procurement Manager", "Warehouse Supervisor", "Transportation Manager",
+            "Demand Planner", "Logistics Engineer", "Import/Export Specialist"
+        ],
+        
+        "Non-Technical & Support Roles (IT Domain)": [
+            "Technical Writer",
+            "IT Recruiter",
+            "IT Sales Executive",
+            "Pre-Sales Consultant",
+            "Customer Support Engineer",
+            "IT Trainer",
+            "UX Researcher",
+            "UI/UX Designer",
+            "Digital Marketing Specialist (IT Domain)"
+        ]
+    }
+
+    # Display departments and roles in expandable sections
+    for dept, roles in departments.items():
+        with st.expander(f"📌 {dept} ({len(roles)} roles)"):
+            for role in roles:
+                st.markdown(f"• {role}")
+    
+    if st.button("Back to Dashboard"):
+        st.session_state.show_job_page = False
+        st.rerun()
 
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
@@ -379,18 +539,7 @@ def main():
         show_story_page()
         return
     if st.session_state.show_job_page:
-        st.title("Job Opportunities")
-        st.markdown("### Explore Job Opportunities in Various Departments:")
-        for job in [
-            "Sales and Marketing", "Finance and Accounting", "Human Resources (HR)",
-            "Operations", "Customer Service", "IT and Technical Support",
-            "Legal and Compliance", "Research and Development (R&D)",
-            "Administration", "Supply Chain and Logistics"
-        ]:
-            st.write(f"- {job}")
-        if st.button("Back to Dashboard"):
-            st.session_state.show_job_page = False
-            st.rerun()
+        show_job_page()
         return
     if st.session_state.show_education_page:
         show_education_page()
