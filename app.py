@@ -20,6 +20,7 @@ def show_story_page():
         Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
         -  I'm sharing my story not because I was a topper or someone from IIT/IIM college 
         - and earning in lakhs or have any business and owend a company ,
+
         but because I made many mistakes in my educational choices.  
         I hope my experience helps you make better decisions.
     """, unsafe_allow_html=True)
