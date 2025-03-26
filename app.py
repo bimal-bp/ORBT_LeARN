@@ -13,13 +13,7 @@ def show_story_page():
         - **bimalpatrap@gmail.com**
         - **9348245158**
     """, unsafe_allow_html=True)
-    st.markdown("""
-    <style>
-        .stApp {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-    </style>
-    """, unsafe_allow_html=True)
+
     # Story Introduction
     st.markdown(""" 
         ### Short Summary
@@ -565,6 +559,15 @@ def show_job_page():
 
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
+
+    # Apply gradient background to ALL pages
+    st.markdown("""
+    <style>
+        .stApp {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
     # Custom CSS for styling with medium round button
     st.markdown(""" 
