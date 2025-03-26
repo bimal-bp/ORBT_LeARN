@@ -182,21 +182,114 @@ def show_travel_page():
         st.rerun()
 
 def show_podcast_page():
-    st.title("Podcast Recommendations")
+    st.title("🎙 Career Insights Podcast")
     st.markdown("""
-        ##  !0 Questions With Experience Levels:
-        
-        ### 1. For Senior Data Scientists:
-        -  How Got the job , When  and   overall Job Experince
+    *"Learn directly from top professionals across diverse fields - their journeys, challenges, and advice for students like you!"*""")
 
-        ### 2. For Mid-Level Professionals:
-        
-        ### 3. For Junior Professionals:
-
-        - "Learning Machines " - Foundational concepts explained
-    """)
+    # Introduction
+    st.header("About the Podcast")
+    st.markdown("""
+    This podcast series brings you face-to-face with accomplished professionals from:
+    - Technology (Data Scientists, AI Engineers, Software Developers)
+    - Medicine (Doctors, Surgeons, Researchers)
+    - Government Services (IAS, IPS, IFS officers)
+    - Academia (IIT Professors, Top Researchers)
+    - Corporate Leaders (CEOs, Entrepreneurs)
+    - And many more exciting fields!
     
-    if st.button("Back to Dashboard"):
+    Each episode features deep-dive conversations about their career paths, daily work, and actionable advice.
+    """)
+
+    # Podcast Format
+    st.header("Episode Format")
+    st.subheader("12 Essential Questions We Ask Every Expert:")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        **1. Career Introduction**  
+        "Can you introduce yourself and describe your current role?"  
+        
+        **2. Career Journey**  
+        "What experiences led you to this position?"  
+        
+        **3. Educational Background**  
+        "How did your education prepare you for this career?"  
+        
+        **4. Breaking Into the Field**  
+        "What would you recommend to students wanting to enter this profession?"  
+        
+        **5. Daily Work Life**  
+        "What does a typical day look like in your job?"  
+        
+        **6. Skills & Tools**  
+        "What specific skills and tools are essential for your work?"  
+        """)
+    
+    with col2:
+        st.markdown("""
+        **7. Challenges & Rewards**  
+        "What's most challenging and rewarding about your work?"  
+        
+        **8. Career Motivation**  
+        "How do you stay motivated in your career?"  
+        
+        **9. Key Advice**  
+        "What one suggestion would you give aspiring professionals?"  
+        
+        **10. Early Mistakes**  
+        "What mistakes did you make early on that others should avoid?"  
+        
+        **11. Work-Life Balance**  
+        "How do you manage professional and personal life?"  
+        
+        **12. Future Trends**  
+        "Where do you see this field heading in the next 5 years?"  
+        """)
+
+    # Featured Professionals Section
+    st.header("🎧 Upcoming Episodes")
+    
+    tech = st.expander("💻 Technology Sector")
+    with tech:
+        st.markdown("""
+        - **AI Research Lead** - The future of machine learning
+        - **Senior Data Scientist** - How data drives entertainment
+        - **Open Source Maintainer** - Building community software
+        """)
+    
+    medicine = st.expander("🏥 Medical Field")
+    with medicine:
+        st.markdown("""
+        - **Neurosurgeon** - Advances in surgical technology
+        - **Public Health Researcher** - Pandemic response lessons
+        """)
+    
+    govt = st.expander("🏛 Government Services")
+    with govt:
+        st.markdown("""
+        - **IAS Officer** - Digital transformation in governance
+        - **IPS Officer** - Cybercrime challenges
+        - **Scientist @ ISRO** - India's space program
+        """)
+    
+    academia = st.expander("🎓 Academia & Research")
+    with academia:
+        st.markdown("""
+        - **IIT Professor** - Cutting-edge engineering research
+        - **PhD Student @ MIT** - Life in top-tier academia
+        - **Education Reformer** - Improving STEM education
+        """)
+
+    # Call to Action
+    st.markdown("""
+    ---
+    ### Want to suggest a guest or topic?
+    [Submit your suggestions here](#) (link to form)
+    """)
+
+    if st.button("← Back to Dashboard"):
         st.session_state.show_podcast_page = False
         st.rerun()
 
