@@ -559,7 +559,14 @@ def show_job_page():
 
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
-
+    st.markdown("""
+    <style>
+        .stApp {
+            background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Green title
     st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
