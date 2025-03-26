@@ -9,7 +9,7 @@ def show_story_page():
         Hi there! 👋  
         I'm the creator of this app. Here's a little about me:
         - **<span style='font-size: 20px;'>Bimal Patra</span>**
-        - **Data Scientist at SG Group, Mumbai**
+        - **Data Scientist( AI/ML) - SG Group, Mumbai**
         - **bimalpatrap@gmail.com**
         - **9348245158**
     """, unsafe_allow_html=True)
