@@ -197,6 +197,111 @@ def show_podcast_page():
         st.session_state.show_podcast_page = False
         st.rerun()
 
+def show_education_page():
+    st.title("Education and Learning")
+    
+    education_options = {
+        "After 10th": {
+            "Academic Streams": [
+                "Science (PCM/PCB)", 
+                "Commerce", 
+                "Arts/Humanities"
+            ],
+            "Diploma Courses": [
+                "Engineering (Mechanical/Civil/CS)", 
+                "Hotel Management", 
+                "Fashion Design",
+                "Medical Lab Technology"
+            ],
+            "ITI/Vocational": [
+                "Electrician", 
+                "Fitter", 
+                "Computer Operator",
+                "Beautician"
+            ],
+            "Certifications": [
+                "Digital Marketing", 
+                "Graphic Design", 
+                "Basic Programming"
+            ]
+        },
+        "After 12th": {
+            "Science Stream": [
+                "BTech/BE (Engineering)", 
+                "MBBS/BDS (Medical)", 
+                "BSc (Physics/Chemistry/CS)",
+                "BSc Agriculture"
+            ],
+            "Commerce Stream": [
+                "BCom/BCom(Hons)", 
+                "BBA", 
+                "CA Foundation",
+                "CS/CMA"
+            ],
+            "Arts/Humanities": [
+                "BA (History/Psychology)", 
+                "BJMC (Journalism)", 
+                "BFA (Fine Arts)",
+                "BA LLB (Law)"
+            ],
+            "Professional Courses": [
+                "Diploma in Animation", 
+                "Aviation Courses", 
+                "Hotel Management",
+                "NDA (Defense)"
+            ]
+        },
+        "After Graduation": {
+            "Higher Education": [
+                "MTech/MS (Engineering)", 
+                "MBA/PGDM", 
+                "MSc (Sciences)",
+                "PhD (Research)"
+            ],
+            "Government Exams": [
+                "UPSC Civil Services", 
+                "Banking (IBPS/RBI)", 
+                "SSC CGL",
+                "State PSCs"
+            ],
+            "Tech Certifications": [
+                "Data Science (Python/R)", 
+                "Cloud Computing (AWS/Azure)", 
+                "Cybersecurity (CEH)",
+                "AI/ML Certifications"
+            ],
+            "Creative Fields": [
+                "UI/UX Design", 
+                "Advanced Animation", 
+                "Film Making",
+                "Photography"
+            ],
+            "Study Abroad": [
+                "MS in USA/Germany", 
+                "MBA Abroad", 
+                "PhD Scholarships",
+                "Work-Study Programs"
+            ]
+        }
+    }
+
+    # Display education options
+    selected_level = st.selectbox("Select Education Level", list(education_options.keys()))
+    
+    if selected_level:
+        selected_category = st.selectbox("Choose Category", list(education_options[selected_level].keys()))
+        
+        if selected_category:
+            st.markdown("### Available Options:")
+            for option in education_options[selected_level][selected_category]:
+                st.write(f"- {option}")
+
+    if st.button("Back to Dashboard"):
+        st.session_state.show_education_page = False
+        st.rerun()
+
+# ... [rest of your functions remain the same] ...
+
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
 
@@ -288,98 +393,7 @@ def main():
             st.rerun()
         return
     if st.session_state.show_education_page:
-        st.title("Education and Learning")
-        st.markdown("### Explore Educational Opportunities:")
-        for education in [
-"After 10th": {
-        "Academic Streams": [
-            "Science (PCM/PCB)", 
-            "Commerce", 
-            "Arts/Humanities"
-        ],
-        "Diploma Courses": [
-            "Engineering (Mechanical/Civil/CS)", 
-            "Hotel Management", 
-            "Fashion Design",
-            "Medical Lab Technology"
-        ],
-        "ITI/Vocational": [
-            "Electrician", 
-            "Fitter", 
-            "Computer Operator",
-            "Beautician"
-        ],
-        "Certifications": [
-            "Digital Marketing", 
-            "Graphic Design", 
-            "Basic Programming"
-        ]
-    },
-    
-    # After 12th Grade Options
-    "After 12th": {
-        "Science Stream": [
-            "BTech/BE (Engineering)", 
-            "MBBS/BDS (Medical)", 
-            "BSc (Physics/Chemistry/CS)",
-            "BSc Agriculture"
-        ],
-        "Commerce Stream": [
-            "BCom/BCom(Hons)", 
-            "BBA", 
-            "CA Foundation",
-            "CS/CMA"
-        ],
-        "Arts/Humanities": [
-            "BA (History/Psychology)", 
-            "BJMC (Journalism)", 
-            "BFA (Fine Arts)",
-            "BA LLB (Law)"
-        ],
-        "Professional Courses": [
-            "Diploma in Animation", 
-            "Aviation Courses", 
-            "Hotel Management",
-            "NDA (Defense)"
-        ]
-    },
-    
-    # After Graduation Options
-    "After Graduation": {
-        "Higher Education": [
-            "MTech/MS (Engineering)", 
-            "MBA/PGDM", 
-            "MSc (Sciences)",
-            "PhD (Research)"
-        ],
-        "Government Exams": [
-            "UPSC Civil Services", 
-            "Banking (IBPS/RBI)", 
-            "SSC CGL",
-            "State PSCs"
-        ],
-        "Tech Certifications": [
-            "Data Science (Python/R)", 
-            "Cloud Computing (AWS/Azure)", 
-            "Cybersecurity (CEH)",
-            "AI/ML Certifications"
-        ],
-        "Creative Fields": [
-            "UI/UX Design", 
-            "Advanced Animation", 
-            "Film Making",
-            "Photography"
-        ],
-        "Study Abroad": [
-            "MS in USA/Germany", 
-            "MBA Abroad", 
-            "PhD Scholarships",
-            "Work-Study Programs"
-        ]:
-            st.write(f"- {education}")
-        if st.button("Back to Dashboard"):
-            st.session_state.show_education_page = False
-            st.rerun()
+        show_education_page()
         return
     if st.session_state.show_travel_page:
         show_travel_page()
