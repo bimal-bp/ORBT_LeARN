@@ -722,6 +722,7 @@ def get_random_color():
     ]
     return random.choice(colors)
 
+
 def main_page():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
