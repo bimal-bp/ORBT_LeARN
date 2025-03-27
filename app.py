@@ -649,6 +649,8 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
+
+
 def show_home_page():
     st.markdown(f"""
     <style>
@@ -667,12 +669,6 @@ def show_home_page():
             margin-bottom: 1rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-left: 5px solid #4b6cb7;
-        }}
-        .main-button {{
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin: 20px 0;
         }}
     </style>
     
@@ -710,11 +706,7 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
         
-    # Main website button - this will rerun the app with show_home_page=False to show the main dashboard
-    if st.button("Visit Our Main Website", 
-                key="main_website_button",
-                use_container_width=True,
-                type="primary"):
+    if st.button("Explore Now", use_container_width=True, type="primary"):
         st.session_state.show_home_page = False
         st.rerun()
 
