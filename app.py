@@ -672,9 +672,6 @@ def show_home_page():
         }}
     </style>
     
-    <div class="hero-section">
-        <h1 style="color:white;">Your Career Success Starts Here</h1>
-    </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
