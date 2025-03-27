@@ -674,15 +674,20 @@ def show_home_page():
     
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    ## Why ORBT-LEARN is Different
-    
-    Most educational websites just list courses and jobs. We show you:
-    - 🚀 The real career paths people have taken
-    - 💡 Practical advice from professionals across industries
-    - 🔍 Clear comparisons of different education options
-    - 🏆 What actually works in today's job market
-    """)
+st.markdown("""
+## Welcome to ORBT-LEARN 
+
+Why spend your time exploring our website? We respect your time and we provide:
+
+- 🚀 **The Right Way to Choose Your Education Path**  
+  Discover how to select the best learning options for your goals
+
+- 💡 **Practical Career Advice from Industry Professionals**  
+  Get real-world insights from experts across various fields
+
+- 🏆 **Education-to-Career Roadmaps**  
+  Learn which educational choices lead to your dream jobs
+""")
 
     col1, col2 = st.columns(2)
     
@@ -707,144 +712,172 @@ def show_home_page():
         st.session_state.show_home_page = False
         st.rerun()
 
-def main():
+def get_random_color():
+    """Generate a random pastel color"""
+    colors = [
+        "#FFD1DC", "#FFECB8", "#B5EAD7", "#C7CEEA", 
+        "#E2F0CB", "#FFDAC1", "#B5EAD7", "#F8B195",
+        "#F67280", "#C06C84", "#6C5B7B", "#355C7D"
+    ]
+    return random.choice(colors)
+
+def main_page():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
     # Initialize session states
-    session_vars = [
-        'show_story_page', 'show_job_page', 
-        'show_education_page', 'show_travel_page',
-        'show_podcast_page', 'show_home_page'
-    ]
-    for var in session_vars:
-        if var not in st.session_state:
-            st.session_state[var] = True  # Show home page by default
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = "home"
+    
+    # Main page styling
+    st.markdown(f"""
+    <style>
+        .hero-section {{
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }}
+        .feature-card {{
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4b6cb7;
+        }}
+        .stButton>button {{
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }}
+        .stButton>button:hover {{
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }}
+    </style>
+    """, unsafe_allow_html=True)
 
-    # Page routing
-    if st.session_state.show_home_page:
-        show_home_page()
-    else:
-        # Main dashboard styling
-        st.markdown("""
-        <style>
-            .stApp {
-                background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
-            }
-            h1 {
-                text-align: center;
-                color: #2E86C1;
-                font-family: 'Arial', sans-serif;
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }
-            .stButton>button {
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0;
-                border-radius: 8px;
-                border: 2px solid #2E86C1;
-                background-color: transparent;
-                color: #2E86C1;
-                font-size: 16px;
-                transition: all 0.3s ease;
-            }
-            .stButton>button:hover {
-                background-color: #2E86C1;
-                color: white;
-                border-color: #2E86C1;
-            }
-            .button-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 20px 0;
-            }
-            .round-button {
-                border-radius: 50%;
-                width: 150px;
-                height: 150px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 20px auto;
-                background-color: #FF5733;
-                color: white;
-                border: 3px solid #FF5733;
-                font-weight: bold;
-                font-size: 20px;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                cursor: pointer;
-            }
-            .round-button:hover {
-                background-color: #E64A19;
-                border-color: #E64A19;
-                transform: scale(1.05);
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
-        # Green title
-        st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
-        st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
-
-        # Page routing for other pages
-        if st.session_state.show_story_page:
-            show_story_page()
-        elif st.session_state.show_job_page:
-            show_job_page()
-        elif st.session_state.show_education_page:
-            show_education_page()
-        elif st.session_state.show_travel_page:
-            show_travel_page()
-        elif st.session_state.show_podcast_page:
-            show_podcast_page()
-        else:
-            # Main dashboard
-            col1, col2 = st.columns(2)
-
-            with col1:
-                if st.button("**Education Learn**"):
-                    st.session_state.show_education_page = True
-                    st.rerun()
-                if st.button("**Job**"):
-                    st.session_state.show_job_page = True
-                    st.rerun()
-                if st.button("Podcast"):
-                    st.session_state.show_podcast_page = True
-                    st.rerun()
-                if st.button("Travel Place"):
-                    st.session_state.show_travel_page = True
-                    st.rerun()
-
-            with col2:
-                # Create a container for the round button
-                container = st.container()
-                with container:
-                    # Use columns to center the button
-                    _, center_col, _ = st.columns([1, 2, 1])
-                    with center_col:
-                        # Use markdown to create a styled div that looks like a button
-                        st.markdown("""
-                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                            My Mistakes
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        # Add the actual button that will be triggered
-                        if st.button("My Mistakes", key="my_mistakes_button"):
-                            st.session_state.show_story_page = True
-                            st.rerun()
-
-            # Add a button to return to home page
-            if st.button("← Back to Home"):
-                st.session_state.show_home_page = True
-                for var in session_vars:
-                    if var != 'show_home_page':
-                        st.session_state[var] = False
+    if st.session_state.current_page == "home":
+        # Home Page Content
+        st.markdown("<h1 style='text-align: center; color: green;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center;'>LeARN & eARN</h2>", unsafe_allow_html=True)
+        
+        # Create columns for buttons
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Generate random colors for each button
+            btn1_color = get_random_color()
+            btn2_color = get_random_color()
+            btn3_color = get_random_color()
+            
+            st.markdown(f"""
+            <style>
+                #btn1 {{
+                    background-color: {btn1_color};
+                }}
+                #btn2 {{
+                    background-color: {btn2_color};
+                }}
+                #btn3 {{
+                    background-color: {btn3_color};
+                }}
+            </style>
+            """, unsafe_allow_html=True)
+            
+            if st.button("Education Learn", key="btn1"):
+                st.session_state.current_page = "education"
                 st.rerun()
+                
+            if st.button("Job Opportunities", key="btn2"):
+                st.session_state.current_page = "jobs"
+                st.rerun()
+                
+            if st.button("Podcasts", key="btn3"):
+                st.session_state.current_page = "podcasts"
+                st.rerun()
+        
+        with col2:
+            # Generate random colors for each button
+            btn4_color = get_random_color()
+            btn5_color = get_random_color()
+            btn6_color = get_random_color()
+            
+            st.markdown(f"""
+            <style>
+                #btn4 {{
+                    background-color: {btn4_color};
+                }}
+                #btn5 {{
+                    background-color: {btn5_color};
+                }}
+                #btn6 {{
+                    background-color: {btn6_color};
+                }}
+            </style>
+            """, unsafe_allow_html=True)
+            
+            if st.button("Travel Guide", key="btn4"):
+                st.session_state.current_page = "travel"
+                st.rerun()
+                
+            if st.button("My Story", key="btn5"):
+                st.session_state.current_page = "story"
+                st.rerun()
+                
+            if st.button("About Us", key="btn6"):
+                st.session_state.current_page = "about"
+                st.rerun()
+    
+    elif st.session_state.current_page == "education":
+        st.title("Education Guidance")
+        # Add education page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
+    
+    elif st.session_state.current_page == "jobs":
+        st.title("Job Opportunities")
+        # Add jobs page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
+    
+    elif st.session_state.current_page == "podcasts":
+        st.title("Career Podcasts")
+        # Add podcasts page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
+    
+    elif st.session_state.current_page == "travel":
+        st.title("Travel Guide")
+        # Add travel page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
+    
+    elif st.session_state.current_page == "story":
+        st.title("My Journey")
+        # Add story page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
+    
+    elif st.session_state.current_page == "about":
+        st.title("About Us")
+        # Add about page content here
+        if st.button("← Back to Home"):
+            st.session_state.current_page = "home"
+            st.rerun()
 
 if __name__ == "__main__":
-    main()
+    main_page()
