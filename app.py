@@ -706,6 +706,10 @@ def show_home_page():
         
     if st.button("Explore Now", use_container_width=True, type="primary"):
         st.session_state.show_home_page = False
+        # Reset all other page states to False
+        for var in ['show_story_page', 'show_job_page', 'show_education_page', 
+                   'show_travel_page', 'show_podcast_page']:
+            st.session_state[var] = False
         st.rerun()
 
 def main():
