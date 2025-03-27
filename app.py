@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 def show_story_page():
     st.title("My Mistakes ")
