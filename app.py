@@ -683,15 +683,20 @@ def show_home_page():
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    ## Why ORBT-LEARN is Different
-    
-    Most educational websites just list courses and jobs. We show you:
-    - 🚀 The real career paths people have taken
-    - 💡 Practical advice from professionals across industries
-    - 🔍 Clear comparisons of different education options
-    - 🏆 What actually works in today's job market
-    """)
+        st.markdown("""
+        ## Welcome to ORBT-LEARN 
+
+        Why spend your time exploring our website? We respect your time and we provide:
+
+        - 🚀 **The Right Way to Choose Your Education Path**  
+          Discover how to select the best learning options for your goals
+
+        - 💡 **Practical Career Advice from Industry Professionals**  
+          Get real-world insights from experts across various fields
+
+        - 🏆 **Education-to-Career Roadmaps**  
+          Learn which educational choices lead to your dream jobs
+        """)
 
     col1, col2 = st.columns(2)
     
