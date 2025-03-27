@@ -669,25 +669,16 @@ def show_home_page():
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-left: 5px solid #4b6cb7;
         }}
-        .testimonial {{
-            font-style: italic;
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1rem 0;
-        }}
-        .cta-button {{
-            background: #4b6cb7 !important;
-            color: white !important;
-            font-weight: bold !important;
-            padding: 0.75rem !important;
-            font-size: 1.1rem !important;
+        .main-button {{
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
         }}
     </style>
     
     <div class="hero-section">
         <h1 style="color:white;">Your Career Success Starts Here</h1>
-        <h3 style="color:white;">Avoid Common Mistakes • Make Smart Choices • Achieve Your Dreams</h3>
     </div>
     """, unsafe_allow_html=True)
 
@@ -695,7 +686,7 @@ def show_home_page():
     ## Why ORBT-LEARN is Different
     
     Most educational websites just list courses and jobs. We show you:
-    - 🚀 The real career paths people have taken (including their mistakes)
+    - 🚀 The real career paths people have taken
     - 💡 Practical advice from professionals across industries
     - 🔍 Clear comparisons of different education options
     - 🏆 What actually works in today's job market
@@ -720,57 +711,23 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
         
-    with col2:
-        st.markdown("""
-        <div class="feature-card">
-            <h3>🎧 Career Podcasts</h3>
-            <p>Listen to professionals share their journeys - 
-            what they wish they knew when they were students.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="feature-card">
-            <h3>🚀 Success Stories</h3>
-            <p>Learn from others' mistakes so you don't have to 
-            make them yourself.</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
+    # Main website button
     st.markdown("""
-    ## What Students Are Saying
-    
-    <div class="testimonial">
-    "I was completely lost after 12th grade. ORBT-LEARN showed me options I never knew existed,
-    and helped me choose the right IT course. Now I'm working at a top tech company!" 
-    <br><br><b>- Rahul, Mumbai</b>
-    </div>
-    
-    <div class="testimonial">
-    "The 'My Mistakes' story changed everything for me. Seeing how someone recovered from wrong 
-    choices gave me courage to pursue my passion for design instead of just following the crowd."
-    <br><br><b>- Priya, Bangalore</b>
+    <div class="main-button">
+        <a href="https://yourmainwebsite.com" target="_blank">
+            <button style="
+                background: #4b6cb7;
+                color: white;
+                font-weight: bold;
+                padding: 15px 30px;
+                font-size: 1.2rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            ">Visit Our Main Website</button>
+        </a>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    ## Ready to Take Control of Your Future?
-    
-    Start exploring now:
-    """)
-    
-    if st.button("Show Me Education Options →", key="edu_cta", use_container_width=True):
-        st.session_state.show_education_page = True
-        st.rerun()
-    
-    if st.button("Explore Career Paths →", key="job_cta", use_container_width=True):
-        st.session_state.show_job_page = True
-        st.rerun()
-    
-    if st.button("Learn From Others' Mistakes →", key="story_cta", use_container_width=True):
-        st.session_state.show_story_page = True
-        st.rerun()
-
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
