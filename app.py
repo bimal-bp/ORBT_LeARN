@@ -711,23 +711,14 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
         
-    # Main website button
-    st.markdown("""
-    <div class="main-button">
-        <a href="https://yourmainwebsite.com" target="_blank">
-            <button style="
-                background: #4b6cb7;
-                color: white;
-                font-weight: bold;
-                padding: 15px 30px;
-                font-size: 1.2rem;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-            ">Visit Our Main Website</button>
-        </a>
-    </div>
-    """, unsafe_allow_html=True)
+    # Main website button - this will rerun the app with show_home_page=False to show the main dashboard
+    if st.button("Visit Our Main Website", 
+                key="main_website_button",
+                use_container_width=True,
+                type="primary"):
+        st.session_state.show_home_page = False
+        st.rerun()
+
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
@@ -739,34 +730,133 @@ def main():
     ]
     for var in session_vars:
         if var not in st.session_state:
-            st.session_state[var] = False
-
-    # Set home page as default if no other page is selected
-    if not any(st.session_state[var] for var in session_vars if var != 'show_home_page'):
-        st.session_state.show_home_page = True
+            st.session_state[var] = True  # Show home page by default
 
     # Page routing
     if st.session_state.show_home_page:
         show_home_page()
-    elif st.session_state.show_story_page:
-        show_story_page()
-    elif st.session_state.show_job_page:
-        show_job_page()
-    elif st.session_state.show_education_page:
-        show_education_page()
-    elif st.session_state.show_travel_page:
-        show_travel_page()
-    elif st.session_state.show_podcast_page:
-        show_podcast_page()
+    else:
+        # Main dashboard styling
+        st.markdown("""
+        <style>
+            .stApp {
+                background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
+            }
+            h1 {
+                text-align: center;
+                color: #2E86C1;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            .stButton>button {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 8px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+            .stButton>button:hover {
+                background-color: #2E86C1;
+                color: white;
+                border-color: #2E86C1;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+            .round-button {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .round-button:hover {
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
+        </style>
+        """, unsafe_allow_html=True)
 
-    # Add footer navigation when not on home page
-    if not st.session_state.show_home_page:
-        if st.button("← Back to Home"):
-            st.session_state.show_home_page = True
-            for var in session_vars:
-                if var != 'show_home_page':
-                    st.session_state[var] = False
-            st.rerun()
+        # Green title
+        st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
+
+        # Page routing for other pages
+        if st.session_state.show_story_page:
+            show_story_page()
+        elif st.session_state.show_job_page:
+            show_job_page()
+        elif st.session_state.show_education_page:
+            show_education_page()
+        elif st.session_state.show_travel_page:
+            show_travel_page()
+        elif st.session_state.show_podcast_page:
+            show_podcast_page()
+        else:
+            # Main dashboard
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("**Education Learn**"):
+                    st.session_state.show_education_page = True
+                    st.rerun()
+                if st.button("**Job**"):
+                    st.session_state.show_job_page = True
+                    st.rerun()
+                if st.button("Podcast"):
+                    st.session_state.show_podcast_page = True
+                    st.rerun()
+                if st.button("Travel Place"):
+                    st.session_state.show_travel_page = True
+                    st.rerun()
+
+            with col2:
+                # Create a container for the round button
+                container = st.container()
+                with container:
+                    # Use columns to center the button
+                    _, center_col, _ = st.columns([1, 2, 1])
+                    with center_col:
+                        # Use markdown to create a styled div that looks like a button
+                        st.markdown("""
+                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Add the actual button that will be triggered
+                        if st.button("My Mistakes", key="my_mistakes_button"):
+                            st.session_state.show_story_page = True
+                            st.rerun()
+
+            # Add a button to return to home page
+            if st.button("← Back to Home"):
+                st.session_state.show_home_page = True
+                for var in session_vars:
+                    if var != 'show_home_page':
+                        st.session_state[var] = False
+                st.rerun()
 
 if __name__ == "__main__":
     main()
