@@ -683,20 +683,20 @@ def show_home_page():
     </div>
     """, unsafe_allow_html=True)
 
-     st.markdown("""
+    st.markdown("""
     ## Welcome to ORBT-LEARN 
 
-     Why spend your time exploring our website? We respect your time and we provide:
+    Why spend your time exploring our website? We respect your time and we provide:
 
     - 🚀 **The Right Way to Choose Your Education Path**  
-         Discover how to select the best learning options for your goals
+        Discover how to select the best learning options for your goals
 
     - 💡 **Practical Career Advice from Industry Professionals**  
         Get real-world insights from experts across various fields
 
     - 🏆 **Education-to-Career Roadmaps**  
-         Learn which educational choices lead to your dream jobs
-     """)
+        Learn which educational choices lead to your dream jobs
+    """)
 
     col1, col2 = st.columns(2)
     
@@ -724,7 +724,6 @@ def show_home_page():
                    'show_travel_page', 'show_podcast_page']:
             st.session_state[var] = False
         st.rerun()
-
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
