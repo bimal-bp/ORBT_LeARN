@@ -649,160 +649,166 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
+def show_home_page():
+    st.markdown(f"""
+    <style>
+        .hero-section {{
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }}
+        .feature-card {{
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4b6cb7;
+        }}
+        .testimonial {{
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }}
+        .cta-button {{
+            background: #4b6cb7 !important;
+            color: white !important;
+            font-weight: bold !important;
+            padding: 0.75rem !important;
+            font-size: 1.1rem !important;
+        }}
+    </style>
+    
+    <div class="hero-section">
+        <h1 style="color:white;">Your Career Success Starts Here</h1>
+        <h3 style="color:white;">Avoid Common Mistakes • Make Smart Choices • Achieve Your Dreams</h3>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    ## Why ORBT-LEARN is Different
+    
+    Most educational websites just list courses and jobs. We show you:
+    - 🚀 The real career paths people have taken (including their mistakes)
+    - 💡 Practical advice from professionals across industries
+    - 🔍 Clear comparisons of different education options
+    - 🏆 What actually works in today's job market
+    """)
+
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="feature-card">
+            <h3>📚 Education Guidance</h3>
+            <p>Confused about what to study after 10th/12th/college? 
+            We break down all your options with pros and cons.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h3>💼 Job Explorer</h3>
+            <p>Discover 200+ career paths you might not have considered, 
+            with real salary ranges and growth potential.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        st.markdown("""
+        <div class="feature-card">
+            <h3>🎧 Career Podcasts</h3>
+            <p>Listen to professionals share their journeys - 
+            what they wish they knew when they were students.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h3>🚀 Success Stories</h3>
+            <p>Learn from others' mistakes so you don't have to 
+            make them yourself.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    ## What Students Are Saying
+    
+    <div class="testimonial">
+    "I was completely lost after 12th grade. ORBT-LEARN showed me options I never knew existed,
+    and helped me choose the right IT course. Now I'm working at a top tech company!" 
+    <br><br><b>- Rahul, Mumbai</b>
+    </div>
+    
+    <div class="testimonial">
+    "The 'My Mistakes' story changed everything for me. Seeing how someone recovered from wrong 
+    choices gave me courage to pursue my passion for design instead of just following the crowd."
+    <br><br><b>- Priya, Bangalore</b>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    ## Ready to Take Control of Your Future?
+    
+    Start exploring now:
+    """)
+    
+    if st.button("Show Me Education Options →", key="edu_cta", use_container_width=True):
+        st.session_state.show_education_page = True
+        st.rerun()
+    
+    if st.button("Explore Career Paths →", key="job_cta", use_container_width=True):
+        st.session_state.show_job_page = True
+        st.rerun()
+    
+    if st.button("Learn From Others' Mistakes →", key="story_cta", use_container_width=True):
+        st.session_state.show_story_page = True
+        st.rerun()
+
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
-    # Generate a random gradient
-    colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
-    color1, color2 = random.sample(colors, 2)
-    
-    st.markdown(f"""
-    <style>
-        .stApp {{
-            background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
-            transition: background 1s ease;
-        }}
-    </style>
-    """, unsafe_allow_html=True)
-    
-    # JavaScript to change background periodically
-    st.markdown("""
-    <script>
-    function changeBackground() {
-        const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
-        const color1 = colors[Math.floor(Math.random() * colors.length)];
-        const color2 = colors[Math.floor(Math.random() * colors.length)];
-        document.querySelector('.stApp').style.background = 
-            `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
-    }
-    setInterval(changeBackground, 3000); // Change every 3 seconds
-    </script>
-    """, unsafe_allow_html=True)
-    
-    # Green title
-    st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
-    # Custom CSS for styling with medium round button
-    st.markdown(""" 
-        <style>
-            h1 {
-                text-align: center;
-                color: #2E86C1;
-                font-family: 'Arial', sans-serif;
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }
-            .stButton>button {
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0;
-                border-radius: 8px;
-                border: 2px solid #2E86C1;
-                background-color: transparent;
-                color: #2E86C1;
-                font-size: 16px;
-                transition: all 0.3s ease;
-            }
-            .stButton>button:hover {
-                background-color: #2E86C1;
-                color: white;
-                border-color: #2E86C1;
-            }
-            .button-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 20px 0;
-            }
-            .round-button {
-                border-radius: 50%;
-                width: 150px;
-                height: 150px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 20px auto;
-                background-color: #FF5733;
-                color: white;
-                border: 3px solid #FF5733;
-                font-weight: bold;
-                font-size: 20px;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                cursor: pointer;
-            }
-            .round-button:hover {
-                background-color: #E64A19;
-                border-color: #E64A19;
-                transform: scale(1.05);
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
     # Initialize session states
     session_vars = [
         'show_story_page', 'show_job_page', 
         'show_education_page', 'show_travel_page',
-        'show_podcast_page'
+        'show_podcast_page', 'show_home_page'
     ]
     for var in session_vars:
         if var not in st.session_state:
             st.session_state[var] = False
 
+    # Set home page as default if no other page is selected
+    if not any(st.session_state[var] for var in session_vars if var != 'show_home_page'):
+        st.session_state.show_home_page = True
+
     # Page routing
-    if st.session_state.show_story_page:
+    if st.session_state.show_home_page:
+        show_home_page()
+    elif st.session_state.show_story_page:
         show_story_page()
-        return
-    if st.session_state.show_job_page:
+    elif st.session_state.show_job_page:
         show_job_page()
-        return
-    if st.session_state.show_education_page:
+    elif st.session_state.show_education_page:
         show_education_page()
-        return
-    if st.session_state.show_travel_page:
+    elif st.session_state.show_travel_page:
         show_travel_page()
-        return
-    if st.session_state.show_podcast_page:
+    elif st.session_state.show_podcast_page:
         show_podcast_page()
-        return
 
-    # Main dashboard
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("**Education Learn**"):
-            st.session_state.show_education_page = True
+    # Add footer navigation when not on home page
+    if not st.session_state.show_home_page:
+        if st.button("← Back to Home"):
+            st.session_state.show_home_page = True
+            for var in session_vars:
+                if var != 'show_home_page':
+                    st.session_state[var] = False
             st.rerun()
-        if st.button("**Job**"):
-            st.session_state.show_job_page = True
-            st.rerun()
-        if st.button("Podcast"):
-            st.session_state.show_podcast_page = True
-            st.rerun()
-        if st.button("Travel Place"):
-            st.session_state.show_travel_page = True
-            st.rerun()
-
-    with col2:
-        # Create a container for the round button
-        container = st.container()
-        with container:
-            # Use columns to center the button
-            _, center_col, _ = st.columns([1, 2, 1])
-            with center_col:
-                # Use markdown to create a styled div that looks like a button
-                st.markdown("""
-                <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                    My Mistakes
-                </div>
-                """, unsafe_allow_html=True)
-                
-                # Add the actual button that will be triggered
-                if st.button("My Mistakes", key="my_mistakes_button"):
-                    st.session_state.show_story_page = True
-                    st.rerun()
 
 if __name__ == "__main__":
     main()
