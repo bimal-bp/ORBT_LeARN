@@ -650,11 +650,30 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
+import random
+import streamlit as st
+
+def get_random_gradient():
+    # List of beautiful gradient color combinations
+    gradients = [
+        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%)",
+        "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+        "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)",
+        "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
+        "linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)"
+    ]
+    return random.choice(gradients)
+
 def show_home_page():
+    random_gradient = get_random_gradient()
+    
     st.markdown(f"""
     <style>
         .hero-section {{
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            background: {random_gradient};
             padding: 3rem;
             border-radius: 15px;
             color: white;
@@ -678,7 +697,7 @@ def show_home_page():
     </style>
     
     <div class="hero-section">
-        <h1 style="color:white;">Your Career Success Starts Here</h1>
+        <h1 style="color:white;">Welcome to ORBT-LEARN</h1>
     </div>
     """, unsafe_allow_html=True)
 
@@ -711,13 +730,22 @@ def show_home_page():
         </div>
         """, unsafe_allow_html=True)
         
-    # Main website button - this will rerun the app with show_home_page=False to show the main dashboard
-    if st.button("Visit Our Main Website", 
-                key="main_website_button",
-                use_container_width=True,
-                type="primary"):
-        st.session_state.show_home_page = False
-        st.rerun()
+    with col2:
+        st.markdown("""
+        <div class="feature-card">
+            <h3>🎧 Career Podcasts</h3>
+            <p>Listen to interviews with professionals from different fields
+            sharing their real-world experiences and advice.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h3>✈️ Travel & Learn</h3>
+            <p>Discover educational travel opportunities that combine
+            learning with real-world experiences.</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
