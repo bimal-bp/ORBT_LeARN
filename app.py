@@ -192,15 +192,12 @@ def show_travel_page():
     with tab2:
         st.header("Must-Visit Tourist Places")
         places = [
-            {"name": "Taj Mahal", "location": "Agra, Uttar Pradesh", "type": "Historical Monument"},
             {"name": "Gateway of India", "location": "Mumbai, Maharashtra", "type": "Landmark"},
             {"name": "Jaipur City Palace", "location": "Jaipur, Rajasthan", "type": "Heritage Site"},
-            {"name": "Red Fort", "location": "New Delhi", "type": "Historical Fort"},
             {"name": "Mysore Palace", "location": "Mysuru, Karnataka", "type": "Royal Palace"},
             {"name": "India Gate", "location": "New Delhi", "type": "War Memorial"},
             {"name": "Hawa Mahal", "location": "Jaipur, Rajasthan", "type": "Architectural Wonder"},
             {"name": "Qutub Minar", "location": "New Delhi", "type": "Historical Tower"},
-            {"name": "Charminar", "location": "Hyderabad, Telangana", "type": "Cultural Icon"},
             {"name": "Victoria Memorial", "location": "Kolkata, West Bengal", "type": "Museum"}
         ]
         for place in places:
