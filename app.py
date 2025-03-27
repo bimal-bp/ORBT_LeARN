@@ -677,10 +677,7 @@ def show_home_page():
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div class="hero-section">
-        <h1>Welcome to ORBT-LEARN</h1>
-        <p>Your personalized career guidance platform</p>
-    </div>
+
     """, unsafe_allow_html=True)
 
     st.markdown("""
