@@ -652,39 +652,10 @@ def show_job_page():
         st.session_state.show_job_page = False
         st.rerun()
 def show_home_page():
-    st.markdown(f"""
-    <style>
-        .hero-section {{
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
-            padding: 3rem;
-            border-radius: 15px;
-            color: white;
-            margin-bottom: 2rem;
-            text-align: center;
-        }}
-        .feature-card {{
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-left: 5px solid #4b6cb7;
-        }}
-        .main-button {{
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin: 20px 0;
-        }}
-    </style>
-    
-    <div class="hero-section">
-        <h1 style="color:white;">Your Career Success Starts Here</h1>
-    </div>
-    """, unsafe_allow_html=True)
+
 
     st.markdown("""
-    ## Why ORBT-LEARN is Different
+    ## WelCoime to ORBT-LEARN
     
     Most educational websites just list courses and jobs. We show you:
     - 🚀 The real career paths people have taken
