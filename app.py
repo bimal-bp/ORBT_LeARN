@@ -653,26 +653,34 @@ def show_job_page():
 
 
 def show_home_page():
-    st.markdown(f"""
+    # Home page with no gradient background
+    st.markdown("""
     <style>
-        .hero-section {{
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+        .hero-section {
+            background: white;
             padding: 3rem;
             border-radius: 15px;
-            color: white;
+            color: #333;
             margin-bottom: 2rem;
             text-align: center;
-        }}
-        .feature-card {{
+            border: 1px solid #eee;
+        }
+        .feature-card {
             background: white;
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-left: 5px solid #4b6cb7;
-        }}
+        }
     </style>
-    
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="hero-section">
+        <h1>Welcome to ORBT-LEARN</h1>
+        <p>Your personalized career guidance platform</p>
+    </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
@@ -729,12 +737,36 @@ def main():
     if st.session_state.show_home_page:
         show_home_page()
     else:
+        # Only apply the gradient background to the dashboard page
+        colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
+        color1, color2 = random.sample(colors, 2)
+        
+        st.markdown(f"""
+        <style>
+            .stApp {{
+                background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
+                transition: background 1s ease;
+            }}
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # JavaScript to change background periodically (only on dashboard)
+        st.markdown("""
+        <script>
+        function changeBackground() {
+            const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
+            const color1 = colors[Math.floor(Math.random() * colors.length)];
+            const color2 = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.stApp').style.background = 
+                `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+        }
+        setInterval(changeBackground, 3000); // Change every 3 seconds
+        </script>
+        """, unsafe_allow_html=True)
+
         # Main dashboard styling
         st.markdown("""
         <style>
-            .stApp {
-                background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
-            }
             h1 {
                 text-align: center;
                 color: #2E86C1;
