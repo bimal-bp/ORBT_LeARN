@@ -1,3 +1,4 @@
+
 import streamlit as st
 import random
 
@@ -651,8 +652,66 @@ def show_job_page():
         st.rerun()
 
 
-import streamlit as st
-import random
+def show_home_page():
+    st.markdown(f"""
+    <style>
+        .hero-section {{
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }}
+        .feature-card {{
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4b6cb7;
+        }}
+    </style>
+    
+    """, unsafe_allow_html=True)
+
+st.markdown("""
+## Welcome to ORBT-LEARN 
+
+Why spend your time exploring our website? We respect your time and we provide:
+
+- 🚀 **The Right Way to Choose Your Education Path**  
+  Discover how to select the best learning options for your goals
+
+- 💡 **Practical Career Advice from Industry Professionals**  
+  Get real-world insights from experts across various fields
+
+- 🏆 **Education-to-Career Roadmaps**  
+  Learn which educational choices lead to your dream jobs
+""")
+
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="feature-card">
+            <h3>📚 Education Guidance</h3>
+            <p>Confused about what to study after 10th/12th/college? 
+            We break down all your options with pros and cons.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h3>💼 Job Explorer</h3>
+            <p>Discover 200+ career paths you might not have considered, 
+            with real salary ranges and growth potential.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    if st.button("Explore Now", use_container_width=True, type="primary"):
+        st.session_state.show_home_page = False
+        st.rerun()
 
 def get_random_color():
     """Generate a random pastel color"""
@@ -709,64 +768,13 @@ def main_page():
 
     if st.session_state.current_page == "home":
         # Home Page Content
-        st.markdown("<div class='hero-section'><h1>ORBT-LEARN</h1><h3>LeARN & eARN</h3></div>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: green;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center;'>LeARN & eARN</h2>", unsafe_allow_html=True)
         
-        st.markdown("""
-        ## Welcome to ORBT-LEARN 
-
-        Why spend your time exploring our website? We respect your time and we provide:
-
-        - 🚀 **The Right Way to Choose Your Education Path**  
-          Discover how to select the best learning options for your goals
-
-        - 💡 **Practical Career Advice from Industry Professionals**  
-          Get real-world insights from experts across various fields
-
-        - 🏆 **Education-to-Career Roadmaps**  
-          Learn which educational choices lead to your dream jobs
-        """)
-        
-        # Create columns for content
+        # Create columns for buttons
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown("""
-            <div class="feature-card">
-                <h3>📚 Education Guidance</h3>
-                <p>Confused about what to study after 10th/12th/college? 
-                We break down all your options with pros and cons.</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown("""
-            <div class="feature-card">
-                <h3>💼 Job Explorer</h3>
-                <p>Discover 200+ career paths you might not have considered, 
-                with real salary ranges and growth potential.</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-        with col2:
-            st.markdown("""
-            <div class="feature-card">
-                <h3>🎧 Career Podcasts</h3>
-                <p>Listen to interviews with professionals from various fields 
-                sharing their career journeys and advice.</p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown("""
-            <div class="feature-card">
-                <h3>🌍 Travel Guide</h3>
-                <p>Explore study abroad opportunities and international 
-                education options with our comprehensive guides.</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        # Create columns for buttons
-        btn_col1, btn_col2 = st.columns(2)
-        
-        with btn_col1:
             # Generate random colors for each button
             btn1_color = get_random_color()
             btn2_color = get_random_color()
@@ -798,7 +806,7 @@ def main_page():
                 st.session_state.current_page = "podcasts"
                 st.rerun()
         
-        with btn_col2:
+        with col2:
             # Generate random colors for each button
             btn4_color = get_random_color()
             btn5_color = get_random_color()
@@ -832,42 +840,42 @@ def main_page():
     
     elif st.session_state.current_page == "education":
         st.title("Education Guidance")
-        st.write("This section will provide guidance on educational paths...")
+        # Add education page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
     
     elif st.session_state.current_page == "jobs":
         st.title("Job Opportunities")
-        st.write("This section will provide information about job opportunities...")
+        # Add jobs page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
     
     elif st.session_state.current_page == "podcasts":
         st.title("Career Podcasts")
-        st.write("This section will feature career podcasts...")
+        # Add podcasts page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
     
     elif st.session_state.current_page == "travel":
         st.title("Travel Guide")
-        st.write("This section will provide travel guidance...")
+        # Add travel page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
     
     elif st.session_state.current_page == "story":
         st.title("My Journey")
-        st.write("This section will tell my personal story...")
+        # Add story page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
     
     elif st.session_state.current_page == "about":
         st.title("About Us")
-        st.write("This section will provide information about our organization...")
+        # Add about page content here
         if st.button("← Back to Home"):
             st.session_state.current_page = "home"
             st.rerun()
