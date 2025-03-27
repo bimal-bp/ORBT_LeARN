@@ -155,27 +155,122 @@ def show_story_page():
         st.rerun()
 
 def show_travel_page():
-    st.title("Famous Travel Destinations in India")
-    st.markdown("## Explore these beautiful destinations across India:")
+    st.title("Explore India's Diverse Tourist Attractions")
+    st.markdown("## Discover the best destinations across India")
     
-    destinations = [
-        {"name": "Ram Janmabhumi Temple", "location": "Ayodhya, Uttar Pradesh"},
-        {"name": "Somanath Temple", "location": "Veraval , Gujurat"},
-        {"name": "Gateway of India", "location": "Mumbai, Maharashtra"},
-        {"name": "Jaipur City Palace", "location": "Jaipur, Rajasthan"},
-        {"name": "Kerala Backwaters", "location": "Kerala"},
-        {"name": "Meghalaya - Cherrapunji", "location": "Cherrapunji, Meghalaya"},
-        {"name": "Red Fort", "location": "New Delhi"},
-        {"name": "Leh-Ladakh", "location": "Jammu & Kashmir"},
-        {"name": "Ranthambore National Park", "location": "Sawai Madhopur, Rajasthan"}
-    ]
+    # Categories tabs
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "🏛️ Famous Temples", 
+        "🏞️ Popular Tourist Places", 
+        "🎢 Water Parks & Fun", 
+        "⛰️ Mountain Destinations",
+        "🏖️ Beach Destinations"
+    ])
     
-    for idx, place in enumerate(destinations, 1):
-        st.markdown(f"""
-        ### {idx}. {place['name']}
-        **Location:** {place['location']}
-        """)
-        st.write("---")
+    with tab1:
+        st.header("Sacred Temples of India")
+        temples = [
+            {"name": "Ram Janmabhoomi Temple", "location": "Ayodhya, Uttar Pradesh", "highlight": "Newly constructed temple at Lord Ram's birthplace"},
+            {"name": "Kashi Vishwanath Temple", "location": "Varanasi, Uttar Pradesh", "highlight": "One of the 12 Jyotirlingas"},
+            {"name": "Somnath Temple", "location": "Veraval, Gujarat", "highlight": "First among 12 Jyotirlingas"},
+            {"name": "Tirupati Balaji", "location": "Tirumala, Andhra Pradesh", "highlight": "World's richest temple"},
+            {"name": "Golden Temple", "location": "Amritsar, Punjab", "highlight": "Glistening Sikh shrine with holy sarovar"},
+            {"name": "Meenakshi Temple", "location": "Madurai, Tamil Nadu", "highlight": "Iconic temple with stunning architecture"},
+            {"name": "Vaishno Devi", "location": "Katra, Jammu & Kashmir", "highlight": "Saccent cave shrine in Trikuta Mountains"},
+            {"name": "Jagannath Temple", "location": "Puri, Odisha", "highlight": "Famous for Rath Yatra festival"},
+            {"name": "Badrinath Temple", "location": "Badrinath, Uttarakhand", "highlight": "Important Char Dham pilgrimage site"},
+            {"name": "Shirdi Sai Baba Temple", "location": "Shirdi, Maharashtra", "highlight": "Popular Sai Baba shrine"}
+        ]
+        for temple in temples:
+            st.markdown(f"""
+            ### {temple['name']}
+            **Location:** {temple['location']}  
+            **Highlight:** {temple['highlight']}
+            """)
+            st.write("---")
+    
+    with tab2:
+        st.header("Must-Visit Tourist Places")
+        places = [
+            {"name": "Taj Mahal", "location": "Agra, Uttar Pradesh", "type": "Historical Monument"},
+            {"name": "Gateway of India", "location": "Mumbai, Maharashtra", "type": "Landmark"},
+            {"name": "Jaipur City Palace", "location": "Jaipur, Rajasthan", "type": "Heritage Site"},
+            {"name": "Red Fort", "location": "New Delhi", "type": "Historical Fort"},
+            {"name": "Mysore Palace", "location": "Mysuru, Karnataka", "type": "Royal Palace"},
+            {"name": "India Gate", "location": "New Delhi", "type": "War Memorial"},
+            {"name": "Hawa Mahal", "location": "Jaipur, Rajasthan", "type": "Architectural Wonder"},
+            {"name": "Qutub Minar", "location": "New Delhi", "type": "Historical Tower"},
+            {"name": "Charminar", "location": "Hyderabad, Telangana", "type": "Cultural Icon"},
+            {"name": "Victoria Memorial", "location": "Kolkata, West Bengal", "type": "Museum"}
+        ]
+        for place in places:
+            st.markdown(f"""
+            ### {place['name']}
+            **Location:** {place['location']}  
+            **Type:** {place['type']}
+            """)
+            st.write("---")
+    
+    with tab3:
+        st.header("Exciting Water Parks")
+        water_parks = [
+            {"name": "Wonderla", "location": "Bangalore/Kochi", "features": "Thrill rides, wave pools"},
+            {"name": "Adlabs Imagica", "location": "Khopoli, Maharashtra", "features": "Theme park with water attractions"},
+            {"name": "Water Kingdom", "location": "Mumbai, Maharashtra", "features": "Asia's largest theme water park"},
+            {"name": "Fun N Food Village", "location": "Delhi", "features": "Water slides, rain dance"},
+            {"name": "Ocean Park", "location": "Hyderabad, Telangana", "features": "Water rides, kids zone"},
+            {"name": "Kishkinta", "location": "Chennai, Tamil Nadu", "features": "Water slides, amusement park"},
+            {"name": "Aquatica", "location": "Goa", "features": "Beachside water park"},
+            {"name": "Pagoda Wonder Water Park", "location": "Lucknow, UP", "features": "Multiple water attractions"}
+        ]
+        for park in water_parks:
+            st.markdown(f"""
+            ### {park['name']}
+            **Location:** {park['location']}  
+            **Features:** {park['features']}
+            """)
+            st.write("---")
+    
+    with tab4:
+        st.header("Majestic Mountain Destinations")
+        mountains = [
+            {"name": "Leh-Ladakh", "location": "Jammu & Kashmir", "attractions": "Pangong Lake, Nubra Valley"},
+            {"name": "Shimla", "location": "Himachal Pradesh", "attractions": "Mall Road, Toy Train"},
+            {"name": "Manali", "location": "Himachal Pradesh", "attractions": "Solang Valley, Rohtang Pass"},
+            {"name": "Darjeeling", "location": "West Bengal", "attractions": "Tea Gardens, Toy Train"},
+            {"name": "Mussoorie", "location": "Uttarakhand", "attractions": "Kempty Falls, Camel's Back Road"},
+            {"name": "Ooty", "location": "Tamil Nadu", "attractions": "Botanical Gardens, Nilgiri Mountain Railway"},
+            {"name": "Munnar", "location": "Kerala", "attractions": "Tea Plantations, Eravikulam National Park"},
+            {"name": "Gulmarg", "location": "Jammu & Kashmir", "attractions": "Gondola Ride, Skiing"},
+            {"name": "Auli", "location": "Uttarakhand", "attractions": "Ski Resort, Cable Car"}
+        ]
+        for mountain in mountains:
+            st.markdown(f"""
+            ### {mountain['name']}
+            **Location:** {mountain['location']}  
+            **Attractions:** {mountain['attractions']}
+            """)
+            st.write("---")
+    
+    with tab5:
+        st.header("Beautiful Beach Destinations")
+        beaches = [
+            {"name": "Goa Beaches", "location": "Goa", "best_for": "Nightlife, water sports"},
+            {"name": "Kovalam Beach", "location": "Kerala", "best_for": "Ayurvedic resorts, lighthouse"},
+            {"name": "Andaman Beaches", "location": "Andaman & Nicobar", "best_for": "Pristine waters, coral reefs"},
+            {"name": "Puri Beach", "location": "Odisha", "best_for": "Temple visits, sand art"},
+            {"name": "Varkala Beach", "location": "Kerala", "best_for": "Cliff views, mineral springs"},
+            {"name": "Marina Beach", "location": "Chennai", "best_for": "Long urban beach, sunset views"},
+            {"name": "Gokarna Beaches", "location": "Karnataka", "best_for": "Peaceful retreats"},
+            {"name": "Diu Beach", "location": "Daman & Diu", "best_for": "Portuguese architecture"}
+        ]
+        for beach in beaches:
+            st.markdown(f"""
+            ### {beach['name']}
+            **Location:** {beach['location']}  
+            **Best For:** {beach['best_for']}
+            """)
+            st.write("---")
     
     if st.button("Back to Dashboard"):
         st.session_state.show_travel_page = False
