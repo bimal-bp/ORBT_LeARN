@@ -650,15 +650,69 @@ def show_job_page():
         st.session_state.show_job_page = False
         st.rerun()
 def show_home_page():
+    st.markdown(f"""
+    <style>
+        .feature-card {{
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }}
+        .feature-card:hover {{
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }}
+        .feature-icon {{
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4b6cb7;
+        }}
+        .feature-title {{
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }}
+        .feature-desc {{
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }}
+        .dashboard-btn {{
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 12px 24px !important;
+            font-size: 1rem !important;
+            margin: 8px 0 !important;
+            transition: all 0.3s ease !important;
+        }}
+        .dashboard-btn:hover {{
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
+        }}
+    </style>
+    
+    <h1 style="text-align:center; color:#2c3e50; margin-bottom:30px;">ORBT-LEARN</h1>
+    
+    <h2 style="text-align:center; color:#4b6cb7; margin-bottom:30px;">Your Complete Career Success Platform</h2>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
-    ## Why ORBT-LEARN is Different
+    ## 🎯 Perfect Career Roadmaps
+    - 🚀 Real career journeys with honest mistakes & lessons
+    - 💼 Job guidance tailored to current market demands
+    - 🔍 Side-by-side comparisons of education options
+    - 🏆 Verified success strategies that actually work
     
-    Most educational websites just list courses and jobs. We show you:
-    - 🚀 The real career paths people have taken (including their mistakes)
-    - 💡 Practical advice from professionals across industries
-    - 🔍 Clear comparisons of different education options
-    - 🏆 What actually works in today's job market
+    ## 🎓 Education That Matters
+    - 📚 Course recommendations matching your skills
+    - 🏛 Institution insights beyond brochures
+    - 🧠 Learning strategies from top performers
+    - 💡 Skill development for future-ready careers
     """)
 
     col1, col2 = st.columns(2)
@@ -666,73 +720,75 @@ def show_home_page():
     with col1:
         st.markdown("""
         <div class="feature-card">
-            <h3>📚 Education Guidance</h3>
-            <p>Confused about what to study after 10th/12th/college? 
-            We break down all your options with pros and cons.</p>
+            <div class="feature-icon">📚</div>
+            <h3 class="feature-title">Education Guidance</h3>
+            <p class="feature-desc">Confused about what to study after 10th/12th/college? 
+            We break down all your options with pros and cons with real student experiences.</p>
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="feature-card">
-            <h3>💼 Job Explorer</h3>
-            <p>Discover 200+ career paths you might not have considered, 
-            with real salary ranges and growth potential.</p>
+            <div class="feature-icon">💼</div>
+            <h3 class="feature-title">Job Explorer</h3>
+            <p class="feature-desc">Discover 200+ career paths with real salary ranges, 
+            growth potential, and day-in-the-life stories from professionals.</p>
         </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <h3>🎧 Career Podcasts</h3>
-            <p>Listen to professionals share their journeys - 
-            what they wish they knew when they were students.</p>
+            <div class="feature-icon">🎧</div>
+            <h3 class="feature-title">Career Podcasts</h3>
+            <p class="feature-desc">Listen to uncensored conversations with professionals 
+            about their struggles, failures, and what really leads to success.</p>
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="feature-card">
-            <h3>🚀 Success Stories</h3>
-            <p>Learn from others' mistakes so you don't have to 
-            make them yourself.</p>
+            <div class="feature-icon">🚀</div>
+            <h3 class="feature-title">Success Stories</h3>
+            <p class="feature-desc">Learn from others' mistakes through detailed case studies 
+            showing how ordinary students built extraordinary careers.</p>
         </div>
         """, unsafe_allow_html=True)
     
     st.markdown("""
-    ## What Students Are Saying
-    
-    <div class="testimonial">
-    "I was completely lost after 12th grade. ORBT-LEARN showed me options I never knew existed,
-    and helped me choose the right IT course. Now I'm working at a top tech company!" 
-    <br><br><b>- Rahul, Mumbai</b>
-    </div>
-    
-    <div class="testimonial">
-    "The 'My Mistakes' story changed everything for me. Seeing how someone recovered from wrong 
-    choices gave me courage to pursue my passion for design instead of just following the crowd."
-    <br><br><b>- Priya, Bangalore</b>
+    <div style="text-align:center; margin:40px 0;">
+        <h2 style="color:#4b6cb7;">Explore Our Dashboard</h2>
+        <p>Click any option below to begin your journey</p>
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
-    ## Ready to Take Control of Your Future?
+    # Dashboard buttons in 2x2 grid
+    btn_col1, btn_col2 = st.columns(2)
     
-    Start exploring now:
-    """)
-    
-    if st.button("Show Me Education Options →", key="edu_cta", use_container_width=True):
-        st.session_state.show_education_page = True
-        st.rerun()
-    
-    if st.button("Explore Career Paths →", key="job_cta", use_container_width=True):
-        st.session_state.show_job_page = True
-        st.rerun()
-    
-    if st.button("Learn From Others' Mistakes →", key="story_cta", use_container_width=True):
-        st.session_state.show_story_page = True
-        st.rerun()
+    with btn_col1:
+        if st.button("Education Learn", key="edu_dash", help="Discover courses and learning paths", 
+                    use_container_width=True, type="primary"):
+            st.session_state.show_education_page = True
+            st.rerun()
+            
+        if st.button("Job Opportunities", key="job_dash", help="Explore 200+ career options", 
+                    use_container_width=True, type="primary"):
+            st.session_state.show_job_page = True
+            st.rerun()
+            
+    with btn_col2:
+        if st.button("Career Podcasts", key="pod_dash", help="Listen to industry professionals", 
+                    use_container_width=True, type="primary"):
+            st.session_state.show_podcast_page = True
+            st.rerun()
+            
+        if st.button("My Mistakes Story", key="story_dash", help="Learn from real experiences", 
+                    use_container_width=True, type="primary"):
+            st.session_state.show_story_page = True
+            st.rerun()
 
 def main():
-    st.set_page_config(page_title="ORBT-LEARN", layout="wide")
+    st.set_page_config(page_title="ORBT-LEARN", layout="wide", page_icon="🚀")
     
     # Initialize session states
     session_vars = [
@@ -764,7 +820,7 @@ def main():
 
     # Add footer navigation when not on home page
     if not st.session_state.show_home_page:
-        if st.button("← Back to Home"):
+        if st.button("← Back to Home", use_container_width=True):
             st.session_state.show_home_page = True
             for var in session_vars:
                 if var != 'show_home_page':
