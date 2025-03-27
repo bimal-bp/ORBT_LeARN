@@ -648,21 +648,39 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
-
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
-    st.markdown("""
+    
+    # Generate a random gradient
+    colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
+    color1, color2 = random.sample(colors, 2)
+    
+    st.markdown(f"""
     <style>
-        .stApp {
-            background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
-        }
+        .stApp {{
+            background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
+            transition: background 1s ease;
+        }}
     </style>
+    """, unsafe_allow_html=True)
+    
+    # JavaScript to change background periodically
+    st.markdown("""
+    <script>
+    function changeBackground() {
+        const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
+        const color1 = colors[Math.floor(Math.random() * colors.length)];
+        const color2 = colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector('.stApp').style.background = 
+            `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+    }
+    setInterval(changeBackground, 3000); // Change every 3 seconds
+    </script>
     """, unsafe_allow_html=True)
     
     # Green title
     st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
-
     # Custom CSS for styling with medium round button
     st.markdown(""" 
         <style>
