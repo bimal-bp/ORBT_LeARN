@@ -653,32 +653,90 @@ def show_job_page():
 
 
 def show_home_page():
-    # Home page with no gradient background
-    st.markdown("""
-    <style>
-        .hero-section {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            color: #333;
-            margin-bottom: 2rem;
-            text-align: center;
-            border: 1px solid #eee;
-        }
-        .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-left: 5px solid #4b6cb7;
-        }
-    </style>
-    """, unsafe_allow_html=True)
+def main():
+    st.set_page_config(page_title="ORBT-LEARN", layout="wide")
+    
+    # Initialize session states
+    session_vars = [
+        'show_story_page', 'show_job_page', 
+        'show_education_page', 'show_travel_page',
+        'show_podcast_page', 'show_home_page'
+    ]
+    for var in session_vars:
+        if var not in st.session_state:
+            st.session_state[var] = True  # Show home page by default
 
-    st.markdown("""
-
-    """, unsafe_allow_html=True)
+    # Page routing
+    if st.session_state.show_home_page:
+        show_home_page()
+    else:
+        # Gradient background setup
+        colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
+        color1, color2 = random.sample(colors, 2)
+        
+        st.markdown(f"""
+        <style>
+            .stApp {{
+                background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
+                transition: background 1s ease;
+            }}
+            h1 {{
+                text-align: center;
+                color: #2E86C1;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }}
+            .stButton>button {{
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 8px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }}
+            .stButton>button:hover {{
+                background-color: #2E86C1;
+                color: white !important;
+                border-color: #2E86C1;
+            }}
+            .stButton>button:hover span {{
+                color: white !important;
+            }}
+            .stButton>button div p {{
+                color: black !important;
+                font-weight: bold !important;
+            }}
+            .round-button {{
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }}
+            .round-button:hover {{
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }}
+        </style>
+        """, unsafe_allow_html=True)
 
     st.markdown("""
     ## Welcome to ORBT-LEARN 
