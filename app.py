@@ -738,7 +738,7 @@ def main():
     if st.session_state.show_home_page:
         show_home_page()
     else:
-        # Only apply the gradient background to the dashboard page
+        # Gradient background setup
         colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
         color1, color2 = random.sample(colors, 2)
         
@@ -748,26 +748,6 @@ def main():
                 background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
                 transition: background 1s ease;
             }}
-        </style>
-        """, unsafe_allow_html=True)
-        
-        # JavaScript to change background periodically (only on dashboard)
-        st.markdown("""
-        <script>
-        function changeBackground() {
-            const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
-            const color1 = colors[Math.floor(Math.random() * colors.length)];
-            const color2 = colors[Math.floor(Math.random() * colors.length)];
-            document.querySelector('.stApp').style.background = 
-                `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
-        }
-        setInterval(changeBackground, 3000); // Change every 3 seconds
-        </script>
-        """, unsafe_allow_html=True)
-
-        # Main dashboard styling with updated button text styles
-        st.markdown("""
-        <style>
             h1 {
                 text-align: center;
                 color: #2E86C1;
@@ -792,20 +772,12 @@ def main():
                 color: white !important;
                 border-color: #2E86C1;
             }
-            /* Make button text white on hover */
             .stButton>button:hover span {
                 color: white !important;
             }
-            /* Make button text black by default */
             .stButton>button div p {
                 color: black !important;
                 font-weight: bold !important;
-            }
-            .button-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 20px 0;
             }
             .round-button {
                 border-radius: 50%;
@@ -834,65 +806,58 @@ def main():
         </style>
         """, unsafe_allow_html=True)
 
-        # Green title
+        # Title
         st.markdown("<h1 style='color: #00BFFF; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
         st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
 
-        # Page routing for other pages
-        if st.session_state.show_story_page:
-            show_story_page()
-        elif st.session_state.show_job_page:
-            show_job_page()
-        elif st.session_state.show_education_page:
-            show_education_page()
-        elif st.session_state.show_travel_page:
-            show_travel_page()
-        elif st.session_state.show_podcast_page:
-            show_podcast_page()
-        else:
-            # Main dashboard
-            col1, col2 = st.columns(2)
+        # Main dashboard layout
+        col1, col2 = st.columns(2)
 
-            with col1:
-                if st.button("**Education Learn**", key="edu_button"):
-                    st.session_state.show_education_page = True
-                    st.rerun()
-                if st.button("**Job**", key="job_button"):
-                    st.session_state.show_job_page = True
-                    st.rerun()
-                if st.button("**Podcast**", key="podcast_button"):
-                    st.session_state.show_podcast_page = True
-                    st.rerun()
-                if st.button("**Travel Place**", key="travel_button"):
-                    st.session_state.show_travel_page = True
-                    st.rerun()
-
-            with col2:
-                # Create a container for the round button
-                container = st.container()
-                with container:
-                    # Use columns to center the button
-                    _, center_col, _ = st.columns([1, 2, 1])
-                    with center_col:
-                        # Use markdown to create a styled div that looks like a button
-                        st.markdown("""
-                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                            My Mistakes
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        # Add the actual button that will be triggered
-                        if st.button("**My Mistakes**", key="my_mistakes_button"):
-                            st.session_state.show_story_page = True
-                            st.rerun()
-
-            # Add a button to return to home page
-            if st.button("← Back to Home", key="home_button"):
-                st.session_state.show_home_page = True
-                for var in session_vars:
-                    if var != 'show_home_page':
-                        st.session_state[var] = False
+        with col1:
+            if st.button("**Education Learn**", key="edu_button"):
+                st.session_state.show_education_page = True
                 st.rerun()
+            st.caption("Discover the best education paths after 10th/12th/graduation")
+            
+            if st.button("**Job**", key="job_button"):
+                st.session_state.show_job_page = True
+                st.rerun()
+            st.caption("Explore 200+ career options across all industries")
+            
+            if st.button("**Podcast**", key="podcast_button"):
+                st.session_state.show_podcast_page = True
+                st.rerun()
+            st.caption("Listen to career advice from top professionals")
+            
+            if st.button("**Travel Place**", key="travel_button"):
+                st.session_state.show_travel_page = True
+                st.rerun()
+            st.caption("Find amazing travel destinations across India")
+
+        with col2:
+            # Round button container
+            container = st.container()
+            with container:
+                _, center_col, _ = st.columns([1, 2, 1])
+                with center_col:
+                    st.markdown("""
+                    <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                        My Mistakes
+                    </div>
+                    """, unsafe_allow_html=True)
+                    st.caption("Learn from my educational journey and mistakes", help="Personal story of career choices")
+                    
+                    if st.button("**My Mistakes**", key="my_mistakes_button"):
+                        st.session_state.show_story_page = True
+                        st.rerun()
+
+        # Back to home button
+        if st.button("← Back to Home", key="home_button"):
+            st.session_state.show_home_page = True
+            for var in session_vars:
+                if var != 'show_home_page':
+                    st.session_state[var] = False
+            st.rerun()
 
 if __name__ == "__main__":
     main()
