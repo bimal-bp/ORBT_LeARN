@@ -650,7 +650,7 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
-
+ 
 
 import streamlit as st
 import random
@@ -906,12 +906,6 @@ def main():
                     st.session_state.show_travel_page = True
                     st.rerun()
                 
-                # Round button for "My Mistakes"
-                if st.button("My Mistakes", key="my_mistakes_button", 
-                           help="Click to learn from others' mistakes"):
-                    st.session_state.show_story_page = True
-                    st.rerun()
-                
                 # Back to home button
                 if st.button("← Back to Home", key="back_button", 
                            help="Click to return to the home page"):
@@ -919,6 +913,29 @@ def main():
                     for var in session_vars:
                         if var != 'show_home_page':
                             st.session_state[var] = False
+                    st.rerun()
+
+            # Add the round "My Mistakes" button in column 2
+            with col2:
+                st.markdown("""
+                <style>
+                    .mistakes-button-container {
+                        display: flex;
+                        justify-content: center;
+                        margin: 30px 0;
+                    }
+                </style>
+                <div class="mistakes-button-container">
+                    <button class="round-button" onclick="window.streamlitButtonClick('my_mistakes_button')">
+                        My Mistakes
+                    </button>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                if st.button("My Mistakes", key="my_mistakes_button", 
+                           help="Click to learn from others' mistakes", 
+                           type="primary", use_container_width=True):
+                    st.session_state.show_story_page = True
                     st.rerun()
 
             # Apply custom CSS to the buttons
@@ -962,17 +979,21 @@ def main():
                     color: #333 !important;
                 }
                 
-                /* Round button style */
-                button[data-testid="baseButton-danger"] {
-                    border-radius: 50%;
-                    width: 150px;
-                    height: 150px;
-                    margin: 20px auto;
-                    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%) !important;
-                    font-weight: bold;
-                    font-size: 20px;
+                /* Hide the regular My Mistakes button */
+                button[data-testid="baseButton-primary"][aria-label="My Mistakes"] {
+                    display: none !important;
                 }
             </style>
+            
+            <script>
+                // This function will be called when the round button is clicked
+                function streamlitButtonClick(buttonId) {
+                    const button = parent.document.querySelector(`button[data-testid="baseButton-primary"][aria-label="${buttonId}"]`);
+                    if (button) {
+                        button.click();
+                    }
+                }
+            </script>
             """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
