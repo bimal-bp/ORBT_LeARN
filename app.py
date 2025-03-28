@@ -825,7 +825,7 @@ def main():
         """, unsafe_allow_html=True)
 
         # Green title
-        st.markdown("<h1 style='color: #87CEEB; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='color: #00BFFF; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
         st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
 
         # Page routing for other pages
