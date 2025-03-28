@@ -854,16 +854,16 @@ def main():
             col1, col2 = st.columns(2)
 
             with col1:
-                if st.button("#**Education Learn**", key="edu_button"):
+                if st.button("**Education Learn**", key="edu_button"):
                     st.session_state.show_education_page = True
                     st.rerun()
-                if st.button("#**Job**", key="job_button"):
+                if st.button("**Job**", key="job_button"):
                     st.session_state.show_job_page = True
                     st.rerun()
-                if st.button("#**Podcast**", key="podcast_button"):
+                if st.button("**Podcast**", key="podcast_button"):
                     st.session_state.show_podcast_page = True
                     st.rerun()
-                if st.button("#**Travel Place**", key="travel_button"):
+                if st.button("**Travel Place**", key="travel_button"):
                     st.session_state.show_travel_page = True
                     st.rerun()
 
