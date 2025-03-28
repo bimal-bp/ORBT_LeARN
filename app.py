@@ -1,7 +1,6 @@
 import streamlit as st
 import random
 
-
 def show_story_page():
     st.title("My Mistakes ")
     
@@ -10,16 +9,16 @@ def show_story_page():
         ### About Me
         Hi there! 👋  
         I'm the creator of this app. Here's a little about me:
-        - **<span style='font-size: 20px;'>Bimal Patra</span>**
-        - **Data Scientist( AI/ML) - SG Group, Mumbai**
-        - **bimalpatrap@gmail.com**
-        - **9348245158**
+        - *<span style='font-size: 20px;'>Bimal Patra</span>*
+        - *Data Scientist( AI/ML) - SG Group, Mumbai*
+        - *bimalpatrap@gmail.com*
+        - *9348245158*
     """, unsafe_allow_html=True)
 
     # Story Introduction
     st.markdown(""" 
         ### Short Summary
-        Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
+        Hi, my name is *Bimal Patra, and I work as a **Data Scientist at SG Group in Mumbai*.  
         -  I'm sharing my story not because I was a topper or someone from IIT/IIM college 
         - and earning in lakhs or have any business and owend a company ,
 
@@ -186,8 +185,8 @@ def show_travel_page():
         for temple in temples:
             st.markdown(f"""
             ### {temple['name']}
-            **Location:** {temple['location']}  
-            **Highlight:** {temple['highlight']}
+            *Location:* {temple['location']}  
+            *Highlight:* {temple['highlight']}
             """)
             st.write("---")
     
@@ -205,8 +204,8 @@ def show_travel_page():
         for place in places:
             st.markdown(f"""
             ### {place['name']}
-            **Location:** {place['location']}  
-            **Type:** {place['type']}
+            *Location:* {place['location']}  
+            *Type:* {place['type']}
             """)
             st.write("---")
     
@@ -225,8 +224,8 @@ def show_travel_page():
         for park in water_parks:
             st.markdown(f"""
             ### {park['name']}
-            **Location:** {park['location']}  
-            **Features:** {park['features']}
+            *Location:* {park['location']}  
+            *Features:* {park['features']}
             """)
             st.write("---")
     
@@ -246,8 +245,8 @@ def show_travel_page():
         for mountain in mountains:
             st.markdown(f"""
             ### {mountain['name']}
-            **Location:** {mountain['location']}  
-            **Attractions:** {mountain['attractions']}
+            *Location:* {mountain['location']}  
+            *Attractions:* {mountain['attractions']}
             """)
             st.write("---")
     
@@ -266,8 +265,8 @@ def show_travel_page():
         for beach in beaches:
             st.markdown(f"""
             ### {beach['name']}
-            **Location:** {beach['location']}  
-            **Best For:** {beach['best_for']}
+            *Location:* {beach['location']}  
+            *Best For:* {beach['best_for']}
             """)
             st.write("---")
     
@@ -278,7 +277,7 @@ def show_travel_page():
 def show_podcast_page():
     st.title("🎙 Career Insights Podcast")
     st.markdown("""
-    *"Learn directly from top professionals across diverse fields - their journeys, challenges, and advice for students like you!"*""")
+    "Learn directly from top professionals across diverse fields - their journeys, challenges, and advice for students like you!"""")
 
     # Introduction
     st.header("About the Podcast")
@@ -302,43 +301,43 @@ def show_podcast_page():
     
     with col1:
         st.markdown("""
-        **1. Career Introduction**  
+        *1. Career Introduction*  
         "Can you introduce yourself and describe your current role?"  
         
-        **2. Career Journey**  
+        *2. Career Journey*  
         "What experiences led you to this position?"  
         
-        **3. Educational Background**  
+        *3. Educational Background*  
         "How did your education prepare you for this career?"  
         
-        **4. Breaking Into the Field**  
+        *4. Breaking Into the Field*  
         "What would you recommend to students wanting to enter this profession?"  
         
-        **5. Daily Work Life**  
+        *5. Daily Work Life*  
         "What does a typical day look like in your job?"  
         
-        **6. Skills & Tools**  
+        *6. Skills & Tools*  
         "What specific skills and tools are essential for your work?"  
         """)
     
     with col2:
         st.markdown("""
-        **7. Challenges & Rewards**  
+        *7. Challenges & Rewards*  
         "What's most challenging and rewarding about your work?"  
         
-        **8. Career Motivation**  
+        *8. Career Motivation*  
         "How do you stay motivated in your career?"  
         
-        **9. Key Advice**  
+        *9. Key Advice*  
         "What one suggestion would you give aspiring professionals?"  
         
-        **10. Early Mistakes**  
+        *10. Early Mistakes*  
         "What mistakes did you make early on that others should avoid?"  
         
-        **11. Work-Life Balance**  
+        *11. Work-Life Balance*  
         "How do you manage professional and personal life?"  
         
-        **12. Future Trends**  
+        *12. Future Trends*  
         "Where do you see this field heading in the next 5 years?"  
         """)
 
@@ -348,32 +347,32 @@ def show_podcast_page():
     tech = st.expander("💻 Technology Sector")
     with tech:
         st.markdown("""
-        - **AI Research Lead** - The future of machine learning
-        - **Senior Data Scientist** - How data drives entertainment
-        - **Open Source Maintainer** - Building community software
+        - *AI Research Lead* - The future of machine learning
+        - *Senior Data Scientist* - How data drives entertainment
+        - *Open Source Maintainer* - Building community software
         """)
     
     medicine = st.expander("🏥 Medical Field")
     with medicine:
         st.markdown("""
-        - **Neurosurgeon** - Advances in surgical technology
-        - **Public Health Researcher** - Pandemic response lessons
+        - *Neurosurgeon* - Advances in surgical technology
+        - *Public Health Researcher* - Pandemic response lessons
         """)
     
     govt = st.expander("🏛 Government Services")
     with govt:
         st.markdown("""
-        - **IAS Officer** - Digital transformation in governance
-        - **IPS Officer** - Cybercrime challenges
-        - **Scientist @ ISRO** - India's space program
+        - *IAS Officer* - Digital transformation in governance
+        - *IPS Officer* - Cybercrime challenges
+        - *Scientist @ ISRO* - India's space program
         """)
     
     academia = st.expander("🎓 Academia & Research")
     with academia:
         st.markdown("""
-        - **IIT Professor** - Cutting-edge engineering research
-        - **PhD Student @ MIT** - Life in top-tier academia
-        - **Education Reformer** - Improving STEM education
+        - *IIT Professor* - Cutting-edge engineering research
+        - *PhD Student @ MIT* - Life in top-tier academia
+        - *Education Reformer* - Improving STEM education
         """)
 
     # Call to Action
@@ -653,103 +652,45 @@ def show_job_page():
 
 
 def show_home_page():
-def main():
-    st.set_page_config(page_title="ORBT-LEARN", layout="wide")
-    
-    # Initialize session states
-    session_vars = [
-        'show_story_page', 'show_job_page', 
-        'show_education_page', 'show_travel_page',
-        'show_podcast_page', 'show_home_page'
-    ]
-    for var in session_vars:
-        if var not in st.session_state:
-            st.session_state[var] = True  # Show home page by default
+    # Home page with no gradient background
+    st.markdown("""
+    <style>
+        .hero-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4b6cb7;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
-    # Page routing
-    if st.session_state.show_home_page:
-        show_home_page()
-    else:
-        # Gradient background setup
-        colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
-        color1, color2 = random.sample(colors, 2)
-        
-        st.markdown(f"""
-        <style>
-            .stApp {{
-                background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
-                transition: background 1s ease;
-            }}
-            h1 {{
-                text-align: center;
-                color: #2E86C1;
-                font-family: 'Arial', sans-serif;
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }}
-            .stButton>button {{
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0;
-                border-radius: 8px;
-                border: 2px solid #2E86C1;
-                background-color: transparent;
-                color: #2E86C1;
-                font-size: 16px;
-                font-weight: bold;
-                transition: all 0.3s ease;
-            }}
-            .stButton>button:hover {{
-                background-color: #2E86C1;
-                color: white !important;
-                border-color: #2E86C1;
-            }}
-            .stButton>button:hover span {{
-                color: white !important;
-            }}
-            .stButton>button div p {{
-                color: black !important;
-                font-weight: bold !important;
-            }}
-            .round-button {{
-                border-radius: 50%;
-                width: 150px;
-                height: 150px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 20px auto;
-                background-color: #FF5733;
-                color: white;
-                border: 3px solid #FF5733;
-                font-weight: bold;
-                font-size: 20px;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                cursor: pointer;
-            }}
-            .round-button:hover {{
-                background-color: #E64A19;
-                border-color: #E64A19;
-                transform: scale(1.05);
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            }}
-        </style>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+
+    """, unsafe_allow_html=True)
 
     st.markdown("""
     ## Welcome to ORBT-LEARN 
 
     Why spend your time exploring our website? We respect your time and we provide:
 
-    - 🚀 **The Right Way to Choose Your Education Path & Job**  
+    - 🚀 *The Right Way to Choose Your Education Path & Job*  
         Discover how to select the best learning options for your goals
 
-    - 💡 **Practical Career Advice from Industry Professionals**  
+    - 💡 *Practical Career Advice from Industry Professionals*  
         Get real-world insights from experts across various fields
 
-    - 🏆 **Education-to-Career Roadmaps**  
+    - 🏆 *Education-to-Career Roadmaps*  
         Learn which educational choices lead to your dream jobs
     """)
 
@@ -796,7 +737,7 @@ def main():
     if st.session_state.show_home_page:
         show_home_page()
     else:
-        # Gradient background setup
+        # Only apply the gradient background to the dashboard page
         colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
         color1, color2 = random.sample(colors, 2)
         
@@ -806,6 +747,26 @@ def main():
                 background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
                 transition: background 1s ease;
             }}
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # JavaScript to change background periodically (only on dashboard)
+        st.markdown("""
+        <script>
+        function changeBackground() {
+            const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
+            const color1 = colors[Math.floor(Math.random() * colors.length)];
+            const color2 = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.stApp').style.background = 
+                linear-gradient(135deg, ${color1} 0%, ${color2} 100%);
+        }
+        setInterval(changeBackground, 3000); // Change every 3 seconds
+        </script>
+        """, unsafe_allow_html=True)
+
+        # Main dashboard styling with updated button text styles
+        st.markdown("""
+        <style>
             h1 {
                 text-align: center;
                 color: #2E86C1;
@@ -830,12 +791,20 @@ def main():
                 color: white !important;
                 border-color: #2E86C1;
             }
+            /* Make button text white on hover */
             .stButton>button:hover span {
                 color: white !important;
             }
+            /* Make button text black by default */
             .stButton>button div p {
                 color: black !important;
                 font-weight: bold !important;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
             }
             .round-button {
                 border-radius: 50%;
@@ -864,58 +833,65 @@ def main():
         </style>
         """, unsafe_allow_html=True)
 
-        # Title
+        # Green title
         st.markdown("<h1 style='color: #00BFFF; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
         st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
 
-        # Main dashboard layout
-        col1, col2 = st.columns(2)
+        # Page routing for other pages
+        if st.session_state.show_story_page:
+            show_story_page()
+        elif st.session_state.show_job_page:
+            show_job_page()
+        elif st.session_state.show_education_page:
+            show_education_page()
+        elif st.session_state.show_travel_page:
+            show_travel_page()
+        elif st.session_state.show_podcast_page:
+            show_podcast_page()
+        else:
+            # Main dashboard
+            col1, col2 = st.columns(2)
 
-        with col1:
-            if st.button("**Education Learn**", key="edu_button"):
-                st.session_state.show_education_page = True
-                st.rerun()
-            st.caption("Discover the best education paths after 10th/12th/graduation")
-            
-            if st.button("**Job**", key="job_button"):
-                st.session_state.show_job_page = True
-                st.rerun()
-            st.caption("Explore 200+ career options across all industries")
-            
-            if st.button("**Podcast**", key="podcast_button"):
-                st.session_state.show_podcast_page = True
-                st.rerun()
-            st.caption("Listen to career advice from top professionals")
-            
-            if st.button("**Travel Place**", key="travel_button"):
-                st.session_state.show_travel_page = True
-                st.rerun()
-            st.caption("Find amazing travel destinations across India")
+            with col1:
+                if st.button("*Education Learn*", key="edu_button"):
+                    st.session_state.show_education_page = True
+                    st.rerun()
+                if st.button("*Job*", key="job_button"):
+                    st.session_state.show_job_page = True
+                    st.rerun()
+                if st.button("*Podcast*", key="podcast_button"):
+                    st.session_state.show_podcast_page = True
+                    st.rerun()
+                if st.button("*Travel Place*", key="travel_button"):
+                    st.session_state.show_travel_page = True
+                    st.rerun()
 
-        with col2:
-            # Round button container
-            container = st.container()
-            with container:
-                _, center_col, _ = st.columns([1, 2, 1])
-                with center_col:
-                    st.markdown("""
-                    <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                        My Mistakes
-                    </div>
-                    """, unsafe_allow_html=True)
-                    st.caption("Learn from my educational journey and mistakes", help="Personal story of career choices")
-                    
-                    if st.button("**My Mistakes**", key="my_mistakes_button"):
-                        st.session_state.show_story_page = True
-                        st.rerun()
+            with col2:
+                # Create a container for the round button
+                container = st.container()
+                with container:
+                    # Use columns to center the button
+                    _, center_col, _ = st.columns([1, 2, 1])
+                    with center_col:
+                        # Use markdown to create a styled div that looks like a button
+                        st.markdown("""
+                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Add the actual button that will be triggered
+                        if st.button("*My Mistakes*", key="my_mistakes_button"):
+                            st.session_state.show_story_page = True
+                            st.rerun()
 
-        # Back to home button
-        if st.button("← Back to Home", key="home_button"):
-            st.session_state.show_home_page = True
-            for var in session_vars:
-                if var != 'show_home_page':
-                    st.session_state[var] = False
-            st.rerun()
+            # Add a button to return to home page
+            if st.button("← Back to Home", key="home_button"):
+                st.session_state.show_home_page = True
+                for var in session_vars:
+                    if var != 'show_home_page':
+                        st.session_state[var] = False
+                st.rerun()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
