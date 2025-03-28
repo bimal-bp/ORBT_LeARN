@@ -726,13 +726,13 @@ def main():
                 transition: background 1s ease;
             }}
             
-            /* Modern button styles */
+            /* Modern button styles - larger size */
             .modern-button {{
                 border: none;
                 border-radius: 8px;
-                padding: 12px 24px;
-                margin: 8px 0;
-                font-size: 16px;
+                padding: 16px 32px;
+                margin: 12px 0;
+                font-size: 18px;
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -754,8 +754,8 @@ def main():
             }}
             
             .modern-button i {{
-                margin-right: 8px;
-                font-size: 18px;
+                margin-right: 12px;
+                font-size: 20px;
             }}
             
             .button-primary {{
@@ -790,8 +790,8 @@ def main():
             
             .round-button {{
                 border-radius: 50%;
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
                 padding: 0;
                 display: flex;
                 align-items: center;
@@ -801,7 +801,7 @@ def main():
                 color: white;
                 border: none;
                 font-weight: bold;
-                font-size: 20px;
+                font-size: 24px;
                 transition: all 0.3s ease;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.2);
                 cursor: pointer;
@@ -814,13 +814,14 @@ def main():
             
             .pill-button {{
                 border-radius: 50px;
-                padding: 10px 20px;
-                margin: 5px;
+                padding: 12px 24px;
+                margin: 8px;
                 border: none;
                 background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
                 color: white;
                 font-weight: 600;
                 transition: all 0.3s ease;
+                font-size: 16px;
             }}
             
             .pill-button:hover {{
@@ -844,7 +845,7 @@ def main():
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 12px;
             }}
             
             .dashboard-title {{
@@ -861,6 +862,19 @@ def main():
                 text-align: center;
                 font-size: 2.2em;
                 margin-bottom: 30px;
+            }}
+            
+            .mistakes-section {{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 30px 0;
+            }}
+            
+            .back-to-dashboard {{
+                margin-top: 20px;
+                width: 100%;
+                max-width: 200px;
             }}
         </style>
         """, unsafe_allow_html=True)
@@ -915,19 +929,15 @@ def main():
                             st.session_state[var] = False
                     st.rerun()
 
-            # Add the round "My Mistakes" button in column 2
+            # Add the round "My Mistakes" button and "Back to Dashboard" in column 2
             with col2:
                 st.markdown("""
-                <style>
-                    .mistakes-button-container {
-                        display: flex;
-                        justify-content: center;
-                        margin: 30px 0;
-                    }
-                </style>
-                <div class="mistakes-button-container">
+                <div class="mistakes-section">
                     <button class="round-button" onclick="window.streamlitButtonClick('my_mistakes_button')">
                         My Mistakes
+                    </button>
+                    <button class="pill-button back-to-dashboard" onclick="window.streamlitButtonClick('back_to_dashboard_button')">
+                        ← Back to Dashboard
                     </button>
                 </div>
                 """, unsafe_allow_html=True)
@@ -937,6 +947,15 @@ def main():
                            type="primary", use_container_width=True):
                     st.session_state.show_story_page = True
                     st.rerun()
+                    
+                if st.button("← Back to Dashboard", key="back_to_dashboard_button", 
+                           help="Click to return to the dashboard", 
+                           type="secondary", use_container_width=True):
+                    # Reset all page states except home
+                    for var in session_vars:
+                        if var != 'show_home_page':
+                            st.session_state[var] = False
+                    st.rerun()
 
             # Apply custom CSS to the buttons
             st.markdown("""
@@ -944,9 +963,9 @@ def main():
                 div.stButton > button:first-child {
                     border: none;
                     border-radius: 8px;
-                    padding: 12px 24px;
-                    margin: 8px 0;
-                    font-size: 16px;
+                    padding: 16px 32px;
+                    margin: 12px 0;
+                    font-size: 18px;
                     font-weight: 600;
                     cursor: pointer;
                     transition: all 0.3s ease;
@@ -979,16 +998,17 @@ def main():
                     color: #333 !important;
                 }
                 
-                /* Hide the regular My Mistakes button */
-                button[data-testid="baseButton-primary"][aria-label="My Mistakes"] {
+                /* Hide the regular My Mistakes and Back to Dashboard buttons */
+                button[data-testid="baseButton-primary"][aria-label="My Mistakes"],
+                button[data-testid="baseButton-secondary"][aria-label="← Back to Dashboard"] {
                     display: none !important;
                 }
             </style>
             
             <script>
-                // This function will be called when the round button is clicked
+                // This function will be called when the custom buttons are clicked
                 function streamlitButtonClick(buttonId) {
-                    const button = parent.document.querySelector(`button[data-testid="baseButton-primary"][aria-label="${buttonId}"]`);
+                    const button = parent.document.querySelector(`button[data-testid^="baseButton-"][aria-label="${buttonId}"]`);
                     if (button) {
                         button.click();
                     }
