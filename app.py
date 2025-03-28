@@ -765,7 +765,7 @@ def main():
         </script>
         """, unsafe_allow_html=True)
 
-        # Main dashboard styling
+        # Main dashboard styling with updated button text styles
         st.markdown("""
         <style>
             h1 {
@@ -784,12 +784,22 @@ def main():
                 background-color: transparent;
                 color: #2E86C1;
                 font-size: 16px;
+                font-weight: bold;
                 transition: all 0.3s ease;
             }
             .stButton>button:hover {
                 background-color: #2E86C1;
-                color: white;
+                color: white !important;
                 border-color: #2E86C1;
+            }
+            /* Make button text white on hover */
+            .stButton>button:hover span {
+                color: white !important;
+            }
+            /* Make button text black by default */
+            .stButton>button div p {
+                color: black !important;
+                font-weight: bold !important;
             }
             .button-container {
                 display: flex;
@@ -844,16 +854,16 @@ def main():
             col1, col2 = st.columns(2)
 
             with col1:
-                if st.button("**Education Learn**"):
+                if st.button("**Education Learn**", key="edu_button"):
                     st.session_state.show_education_page = True
                     st.rerun()
-                if st.button("**Job**"):
+                if st.button("**Job**", key="job_button"):
                     st.session_state.show_job_page = True
                     st.rerun()
-                if st.button("Podcast"):
+                if st.button("**Podcast**", key="podcast_button"):
                     st.session_state.show_podcast_page = True
                     st.rerun()
-                if st.button("Travel Place"):
+                if st.button("**Travel Place**", key="travel_button"):
                     st.session_state.show_travel_page = True
                     st.rerun()
 
@@ -872,12 +882,12 @@ def main():
                         """, unsafe_allow_html=True)
                         
                         # Add the actual button that will be triggered
-                        if st.button("My Mistakes", key="my_mistakes_button"):
+                        if st.button("**My Mistakes**", key="my_mistakes_button"):
                             st.session_state.show_story_page = True
                             st.rerun()
 
             # Add a button to return to home page
-            if st.button("← Back to Home"):
+            if st.button("← Back to Home", key="home_button"):
                 st.session_state.show_home_page = True
                 for var in session_vars:
                     if var != 'show_home_page':
