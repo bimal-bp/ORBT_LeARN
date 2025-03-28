@@ -737,6 +737,7 @@ def main():
                 align-items: center;
                 justify-content: center;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 100%;
             }}
             
             .modern-button:hover {{
@@ -895,69 +896,91 @@ def main():
             col1, col2, col3 = st.columns([1, 2, 1])
             
             with col2:
-                # Modern gradient buttons
-                st.markdown("""
-                <button class="modern-button button-primary icon-button" onclick="window.streamlitScriptRunner.runScript('Education Learn')">
-                    <i>📚</i> Education Learn
-                </button>
-                """, unsafe_allow_html=True)
-                if st.button("Education Learn", key="education_button"):
-                    st.session_state.show_education_page = True
-                    st.rerun()
-                
-                st.markdown("""
-                <button class="modern-button button-secondary icon-button" onclick="window.streamlitScriptRunner.runScript('Job')">
-                    <i>💼</i> Job Explorer
-                </button>
-                """, unsafe_allow_html=True)
-                if st.button("Job", key="job_button"):
-                    st.session_state.show_job_page = True
-                    st.rerun()
-                
-                st.markdown("""
-                <button class="modern-button button-info icon-button" onclick="window.streamlitScriptRunner.runScript('Podcast')">
-                    <i>🎙️</i> Career Podcast
-                </button>
-                """, unsafe_allow_html=True)
-                if st.button("Podcast", key="podcast_button"):
-                    st.session_state.show_podcast_page = True
-                    st.rerun()
-                
-                st.markdown("""
-                <button class="modern-button button-warning icon-button" onclick="window.streamlitScriptRunner.runScript('Travel')">
-                    <i>✈️</i> Travel Guide
-                </button>
-                """, unsafe_allow_html=True)
-                if st.button("Travel Place", key="travel_button"):
-                    st.session_state.show_travel_page = True
-                    st.rerun()
-                
-                # Round button for "My Mistakes"
-                st.markdown("""
-                <div style="display: flex; justify-content: center; margin: 30px 0;">
-                    <button class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                        My Mistakes
+                # Modern gradient buttons with click handlers
+                components.html(f"""
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="modern-button button-primary icon-button" onclick="window.streamlitScriptRunner.runScript('Education Learn')">
+                        <i>📚</i> Education Learn
                     </button>
-                </div>
-                """, unsafe_allow_html=True)
-                if st.button("My Mistakes", key="my_mistakes_button"):
-                    st.session_state.show_story_page = True
-                    st.rerun()
-                
-                # Pill-shaped button for going back
-                st.markdown("""
-                <div style="display: flex; justify-content: center; margin-top: 20px;">
-                    <button class="pill-button" onclick="window.streamlitScriptRunner.runScript('Back to Home')">
-                        ← Back to Home
+                    
+                    <button class="modern-button button-secondary icon-button" onclick="window.streamlitScriptRunner.runScript('Job Explorer')">
+                        <i>💼</i> Job Explorer
                     </button>
+                    
+                    <button class="modern-button button-info icon-button" onclick="window.streamlitScriptRunner.runScript('Career Podcast')">
+                        <i>🎙️</i> Career Podcast
+                    </button>
+                    
+                    <button class="modern-button button-warning icon-button" onclick="window.streamlitScriptRunner.runScript('Travel Guide')">
+                        <i>✈️</i> Travel Guide
+                    </button>
+                    
+                    <div style="display: flex; justify-content: center; margin: 30px 0;">
+                        <button class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </button>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: center; margin-top: 20px;">
+                        <button class="pill-button" onclick="window.streamlitScriptRunner.runScript('Back to Home')">
+                            ← Back to Home
+                        </button>
+                    </div>
                 </div>
-                """, unsafe_allow_html=True)
-                if st.button("← Back to Home", key="back_button"):
-                    st.session_state.show_home_page = True
-                    for var in session_vars:
-                        if var != 'show_home_page':
-                            st.session_state[var] = False
+                
+                <script>
+                // Function to handle button clicks
+                function handleButtonClick(buttonText) {{
+                    // Send the button text to Streamlit
+                    window.parent.postMessage({{
+                        type: 'streamlit:componentMessage',
+                        data: {{value: buttonText}}
+                    }}, '*');
+                }}
+                
+                // Attach click handlers to all buttons
+                document.querySelectorAll('.modern-button, .round-button, .pill-button').forEach(button => {{
+                    button.addEventListener('click', function() {{
+                        const buttonText = this.textContent.trim();
+                        handleButtonClick(buttonText);
+                    }});
+                }});
+                </script>
+                """, height=500)
+                
+                # Handle button clicks from JavaScript
+                if 'button_click' in st.session_state:
+                    button_text = st.session_state.button_click
+                    
+                    if button_text == "Education Learn":
+                        st.session_state.show_education_page = True
+                    elif button_text == "Job Explorer":
+                        st.session_state.show_job_page = True
+                    elif button_text == "Career Podcast":
+                        st.session_state.show_podcast_page = True
+                    elif button_text == "Travel Guide":
+                        st.session_state.show_travel_page = True
+                    elif button_text == "My Mistakes":
+                        st.session_state.show_story_page = True
+                    elif button_text == "← Back to Home":
+                        st.session_state.show_home_page = True
+                        for var in session_vars:
+                            if var != 'show_home_page':
+                                st.session_state[var] = False
+                    
+                    del st.session_state.button_click
                     st.rerun()
 
 if __name__ == "__main__":
+    import streamlit.components.v1 as components
+    
+    # Add a custom component to handle button clicks
+    def button_click_handler(value):
+        st.session_state.button_click = value
+    
+    components.declare_component(
+        "custom_button_handler",
+        path="./custom_components/button_handler",
+    )
+    
     main()
