@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 import random
 
@@ -9,16 +11,16 @@ def show_story_page():
         ### About Me
         Hi there! 👋  
         I'm the creator of this app. Here's a little about me:
-        - *<span style='font-size: 20px;'>Bimal Patra</span>*
-        - *Data Scientist( AI/ML) - SG Group, Mumbai*
-        - *bimalpatrap@gmail.com*
-        - *9348245158*
+        - **<span style='font-size: 20px;'>Bimal Patra</span>**
+        - **Data Scientist( AI/ML) - SG Group, Mumbai**
+        - **bimalpatrap@gmail.com**
+        - **9348245158**
     """, unsafe_allow_html=True)
 
     # Story Introduction
     st.markdown(""" 
         ### Short Summary
-        Hi, my name is *Bimal Patra, and I work as a **Data Scientist at SG Group in Mumbai*.  
+        Hi, my name is **Bimal Patra**, and I work as a **Data Scientist at SG Group in Mumbai**.  
         -  I'm sharing my story not because I was a topper or someone from IIT/IIM college 
         - and earning in lakhs or have any business and owend a company ,
 
@@ -185,8 +187,8 @@ def show_travel_page():
         for temple in temples:
             st.markdown(f"""
             ### {temple['name']}
-            *Location:* {temple['location']}  
-            *Highlight:* {temple['highlight']}
+            **Location:** {temple['location']}  
+            **Highlight:** {temple['highlight']}
             """)
             st.write("---")
     
@@ -204,8 +206,8 @@ def show_travel_page():
         for place in places:
             st.markdown(f"""
             ### {place['name']}
-            *Location:* {place['location']}  
-            *Type:* {place['type']}
+            **Location:** {place['location']}  
+            **Type:** {place['type']}
             """)
             st.write("---")
     
@@ -224,8 +226,8 @@ def show_travel_page():
         for park in water_parks:
             st.markdown(f"""
             ### {park['name']}
-            *Location:* {park['location']}  
-            *Features:* {park['features']}
+            **Location:** {park['location']}  
+            **Features:** {park['features']}
             """)
             st.write("---")
     
@@ -245,8 +247,8 @@ def show_travel_page():
         for mountain in mountains:
             st.markdown(f"""
             ### {mountain['name']}
-            *Location:* {mountain['location']}  
-            *Attractions:* {mountain['attractions']}
+            **Location:** {mountain['location']}  
+            **Attractions:** {mountain['attractions']}
             """)
             st.write("---")
     
@@ -265,8 +267,8 @@ def show_travel_page():
         for beach in beaches:
             st.markdown(f"""
             ### {beach['name']}
-            *Location:* {beach['location']}  
-            *Best For:* {beach['best_for']}
+            **Location:** {beach['location']}  
+            **Best For:** {beach['best_for']}
             """)
             st.write("---")
     
@@ -277,7 +279,7 @@ def show_travel_page():
 def show_podcast_page():
     st.title("🎙 Career Insights Podcast")
     st.markdown("""
-    "Learn directly from top professionals across diverse fields - their journeys, challenges, and advice for students like you!"""")
+    *"Learn directly from top professionals across diverse fields - their journeys, challenges, and advice for students like you!"*""")
 
     # Introduction
     st.header("About the Podcast")
@@ -301,43 +303,43 @@ def show_podcast_page():
     
     with col1:
         st.markdown("""
-        *1. Career Introduction*  
+        **1. Career Introduction**  
         "Can you introduce yourself and describe your current role?"  
         
-        *2. Career Journey*  
+        **2. Career Journey**  
         "What experiences led you to this position?"  
         
-        *3. Educational Background*  
+        **3. Educational Background**  
         "How did your education prepare you for this career?"  
         
-        *4. Breaking Into the Field*  
+        **4. Breaking Into the Field**  
         "What would you recommend to students wanting to enter this profession?"  
         
-        *5. Daily Work Life*  
+        **5. Daily Work Life**  
         "What does a typical day look like in your job?"  
         
-        *6. Skills & Tools*  
+        **6. Skills & Tools**  
         "What specific skills and tools are essential for your work?"  
         """)
     
     with col2:
         st.markdown("""
-        *7. Challenges & Rewards*  
+        **7. Challenges & Rewards**  
         "What's most challenging and rewarding about your work?"  
         
-        *8. Career Motivation*  
+        **8. Career Motivation**  
         "How do you stay motivated in your career?"  
         
-        *9. Key Advice*  
+        **9. Key Advice**  
         "What one suggestion would you give aspiring professionals?"  
         
-        *10. Early Mistakes*  
+        **10. Early Mistakes**  
         "What mistakes did you make early on that others should avoid?"  
         
-        *11. Work-Life Balance*  
+        **11. Work-Life Balance**  
         "How do you manage professional and personal life?"  
         
-        *12. Future Trends*  
+        **12. Future Trends**  
         "Where do you see this field heading in the next 5 years?"  
         """)
 
@@ -347,32 +349,32 @@ def show_podcast_page():
     tech = st.expander("💻 Technology Sector")
     with tech:
         st.markdown("""
-        - *AI Research Lead* - The future of machine learning
-        - *Senior Data Scientist* - How data drives entertainment
-        - *Open Source Maintainer* - Building community software
+        - **AI Research Lead** - The future of machine learning
+        - **Senior Data Scientist** - How data drives entertainment
+        - **Open Source Maintainer** - Building community software
         """)
     
     medicine = st.expander("🏥 Medical Field")
     with medicine:
         st.markdown("""
-        - *Neurosurgeon* - Advances in surgical technology
-        - *Public Health Researcher* - Pandemic response lessons
+        - **Neurosurgeon** - Advances in surgical technology
+        - **Public Health Researcher** - Pandemic response lessons
         """)
     
     govt = st.expander("🏛 Government Services")
     with govt:
         st.markdown("""
-        - *IAS Officer* - Digital transformation in governance
-        - *IPS Officer* - Cybercrime challenges
-        - *Scientist @ ISRO* - India's space program
+        - **IAS Officer** - Digital transformation in governance
+        - **IPS Officer** - Cybercrime challenges
+        - **Scientist @ ISRO** - India's space program
         """)
     
     academia = st.expander("🎓 Academia & Research")
     with academia:
         st.markdown("""
-        - *IIT Professor* - Cutting-edge engineering research
-        - *PhD Student @ MIT* - Life in top-tier academia
-        - *Education Reformer* - Improving STEM education
+        - **IIT Professor** - Cutting-edge engineering research
+        - **PhD Student @ MIT** - Life in top-tier academia
+        - **Education Reformer** - Improving STEM education
         """)
 
     # Call to Action
@@ -684,13 +686,13 @@ def show_home_page():
 
     Why spend your time exploring our website? We respect your time and we provide:
 
-    - 🚀 *The Right Way to Choose Your Education Path & Job*  
+    - 🚀 **The Right Way to Choose Your Education Path & Job**  
         Discover how to select the best learning options for your goals
 
-    - 💡 *Practical Career Advice from Industry Professionals*  
+    - 💡 **Practical Career Advice from Industry Professionals**  
         Get real-world insights from experts across various fields
 
-    - 🏆 *Education-to-Career Roadmaps*  
+    - 🏆 **Education-to-Career Roadmaps**  
         Learn which educational choices lead to your dream jobs
     """)
 
@@ -758,7 +760,7 @@ def main():
             const color1 = colors[Math.floor(Math.random() * colors.length)];
             const color2 = colors[Math.floor(Math.random() * colors.length)];
             document.querySelector('.stApp').style.background = 
-                linear-gradient(135deg, ${color1} 0%, ${color2} 100%);
+                `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
         }
         setInterval(changeBackground, 3000); // Change every 3 seconds
         </script>
@@ -853,16 +855,16 @@ def main():
             col1, col2 = st.columns(2)
 
             with col1:
-                if st.button("*Education Learn*", key="edu_button"):
+                if st.button("**Education Learn**", key="edu_button"):
                     st.session_state.show_education_page = True
                     st.rerun()
-                if st.button("*Job*", key="job_button"):
+                if st.button("**Job**", key="job_button"):
                     st.session_state.show_job_page = True
                     st.rerun()
-                if st.button("*Podcast*", key="podcast_button"):
+                if st.button("**Podcast**", key="podcast_button"):
                     st.session_state.show_podcast_page = True
                     st.rerun()
-                if st.button("*Travel Place*", key="travel_button"):
+                if st.button("**Travel Place**", key="travel_button"):
                     st.session_state.show_travel_page = True
                     st.rerun()
 
@@ -881,7 +883,7 @@ def main():
                         """, unsafe_allow_html=True)
                         
                         # Add the actual button that will be triggered
-                        if st.button("*My Mistakes*", key="my_mistakes_button"):
+                        if st.button("**My Mistakes**", key="my_mistakes_button"):
                             st.session_state.show_story_page = True
                             st.rerun()
 
@@ -893,5 +895,5 @@ def main():
                         st.session_state[var] = False
                 st.rerun()
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
