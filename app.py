@@ -650,12 +650,10 @@ def show_job_page():
     if st.button("Back to Dashboard"):
         st.session_state.show_job_page = False
         st.rerun()
- 
 
-import streamlit as st
-import random
 
 def show_home_page():
+    # Home page with no gradient background
     st.markdown("""
     <style>
         .hero-section {
@@ -679,17 +677,43 @@ def show_home_page():
     """, unsafe_allow_html=True)
 
     st.markdown("""
+
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
     ## Welcome to ORBT-LEARN 
 
-    Why you will spend your time exploring our website? We respect your time and we provides:
+    Why spend your time exploring our website? We respect your time and we provide:
 
-    - 🚀 **The Right Way to Choose Your Education Path & Job**  
+    - 🚀 **The Right Way to Choose Your Education Path**  
         Discover how to select the best learning options for your goals
 
     - 💡 **Practical Career Advice from Industry Professionals**  
         Get real-world insights from experts across various fields
+
+    - 🏆 **Education-to-Career Roadmaps**  
+        Learn which educational choices lead to your dream jobs
     """)
 
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="feature-card">
+            <h3>📚 Education Guidance</h3>
+            <p>Confused about what to study after 10th/12th/college? 
+            We break down all your options with pros and cons.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h3>💼 Job Explorer</h3>
+            <p>Discover 200+ career paths you might not have considered, 
+            with real salary ranges and growth potential.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
     if st.button("Explore Now", use_container_width=True, type="primary"):
         st.session_state.show_home_page = False
         # Reset all other page states to False
@@ -697,7 +721,6 @@ def show_home_page():
                    'show_travel_page', 'show_podcast_page']:
             st.session_state[var] = False
         st.rerun()
-
 def main():
     st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
@@ -725,163 +748,85 @@ def main():
                 background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
                 transition: background 1s ease;
             }}
-            
-            /* Modern button styles - larger size */
-            .modern-button {{
-                border: none;
-                border-radius: 8px;
-                padding: 16px 32px;
-                margin: 12px 0;
-                font-size: 18px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                width: 100%;
-            }}
-            
-            .modern-button:hover {{
-                transform: translateY(-2px);
-                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            }}
-            
-            .modern-button:active {{
-                transform: translateY(0);
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }}
-            
-            .modern-button i {{
-                margin-right: 12px;
-                font-size: 20px;
-            }}
-            
-            .button-primary {{
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-            }}
-            
-            .button-secondary {{
-                background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-                color: white;
-            }}
-            
-            .button-danger {{
-                background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
-                color: white;
-            }}
-            
-            .button-warning {{
-                background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-                color: #333;
-            }}
-            
-            .button-info {{
-                background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-                color: #333;
-            }}
-            
-            .button-dark {{
-                background: linear-gradient(135deg, #434343 0%, #000000 100%);
-                color: white;
-            }}
-            
-            .round-button {{
-                border-radius: 50%;
-                width: 180px;
-                height: 180px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 20px auto;
-                background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
-                color: white;
-                border: none;
-                font-weight: bold;
-                font-size: 24px;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                cursor: pointer;
-            }}
-            
-            .round-button:hover {{
-                transform: scale(1.05);
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            }}
-            
-            .pill-button {{
-                border-radius: 50px;
-                padding: 12px 24px;
-                margin: 8px;
-                border: none;
-                background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-                color: white;
-                font-weight: 600;
-                transition: all 0.3s ease;
-                font-size: 16px;
-            }}
-            
-            .pill-button:hover {{
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            }}
-            
-            .outline-button {{
-                background: transparent;
-                border: 2px solid #4b6cb7;
-                color: #4b6cb7;
-                transition: all 0.3s ease;
-            }}
-            
-            .outline-button:hover {{
-                background: #4b6cb7;
-                color: white;
-            }}
-            
-            .icon-button {{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 12px;
-            }}
-            
-            .dashboard-title {{
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # JavaScript to change background periodically (only on dashboard)
+        st.markdown("""
+        <script>
+        function changeBackground() {
+            const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
+            const color1 = colors[Math.floor(Math.random() * colors.length)];
+            const color2 = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.stApp').style.background = 
+                `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+        }
+        setInterval(changeBackground, 3000); // Change every 3 seconds
+        </script>
+        """, unsafe_allow_html=True)
+
+        # Main dashboard styling
+        st.markdown("""
+        <style>
+            h1 {
                 text-align: center;
                 color: #2E86C1;
                 font-family: 'Arial', sans-serif;
                 font-size: 2.5em;
                 margin-bottom: 20px;
-                text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-            }}
-            
-            .green-title {{
-                color: #28a745;
-                text-align: center;
-                font-size: 2.2em;
-                margin-bottom: 30px;
-            }}
-            
-            .mistakes-section {{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin: 30px 0;
-            }}
-            
-            .back-to-dashboard {{
-                margin-top: 20px;
+            }
+            .stButton>button {
                 width: 100%;
-                max-width: 200px;
-            }}
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 8px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+            .stButton>button:hover {
+                background-color: #2E86C1;
+                color: white;
+                border-color: #2E86C1;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+            .round-button {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .round-button:hover {
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
         </style>
         """, unsafe_allow_html=True)
 
-        # Main dashboard
-        st.markdown('<h1 class="green-title">ORBT LeARN</h1>', unsafe_allow_html=True)
-        st.markdown('<h1 class="dashboard-title">LeARN & eARN</h1>', unsafe_allow_html=True)
+        # Green title
+        st.markdown("<h1 style='color: green; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
 
         # Page routing for other pages
         if st.session_state.show_story_page:
@@ -895,126 +840,49 @@ def main():
         elif st.session_state.show_podcast_page:
             show_podcast_page()
         else:
-            # Create columns for the dashboard layout
-            col1, col2, col3 = st.columns([1, 2, 1])
-            
-            with col2:
-                # Using Streamlit buttons with custom styling
-                if st.button("📚 Education Learn", key="education_button", 
-                           help="Click to explore education options"):
+            # Main dashboard
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("**Education Learn**"):
                     st.session_state.show_education_page = True
                     st.rerun()
-                
-                if st.button("💼 Job Explorer", key="job_button", 
-                           help="Click to explore job opportunities"):
+                if st.button("**Job**"):
                     st.session_state.show_job_page = True
                     st.rerun()
-                
-                if st.button("🎙️ Career Podcast", key="podcast_button", 
-                           help="Click to listen to career podcasts"):
+                if st.button("Podcast"):
                     st.session_state.show_podcast_page = True
                     st.rerun()
-                
-                if st.button("✈️ Travel Guide", key="travel_button", 
-                           help="Click to explore travel opportunities"):
+                if st.button("Travel Place"):
                     st.session_state.show_travel_page = True
                     st.rerun()
-                
-                # Back to home button
-                if st.button("← Back to Home", key="back_button", 
-                           help="Click to return to the home page"):
-                    st.session_state.show_home_page = True
-                    for var in session_vars:
-                        if var != 'show_home_page':
-                            st.session_state[var] = False
-                    st.rerun()
 
-            # Add the round "My Mistakes" button and "Back to Dashboard" in column 2
             with col2:
-                st.markdown("""
-                <div class="mistakes-section">
-                    <button class="round-button" onclick="window.streamlitButtonClick('my_mistakes_button')">
-                        My Mistakes
-                    </button>
-                    <button class="pill-button back-to-dashboard" onclick="window.streamlitButtonClick('back_to_dashboard_button')">
-                        ← Back to Dashboard
-                    </button>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                if st.button("My Mistakes", key="my_mistakes_button", 
-                           help="Click to learn from others' mistakes", 
-                           type="primary", use_container_width=True):
-                    st.session_state.show_story_page = True
-                    st.rerun()
-                    
-                if st.button("← Back to Dashboard", key="back_to_dashboard_button", 
-                           help="Click to return to the dashboard", 
-                           type="secondary", use_container_width=True):
-                    # Reset all page states except home
-                    for var in session_vars:
-                        if var != 'show_home_page':
-                            st.session_state[var] = False
-                    st.rerun()
+                # Create a container for the round button
+                container = st.container()
+                with container:
+                    # Use columns to center the button
+                    _, center_col, _ = st.columns([1, 2, 1])
+                    with center_col:
+                        # Use markdown to create a styled div that looks like a button
+                        st.markdown("""
+                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Add the actual button that will be triggered
+                        if st.button("My Mistakes", key="my_mistakes_button"):
+                            st.session_state.show_story_page = True
+                            st.rerun()
 
-            # Apply custom CSS to the buttons
-            st.markdown("""
-            <style>
-                div.stButton > button:first-child {
-                    border: none;
-                    border-radius: 8px;
-                    padding: 16px 32px;
-                    margin: 12px 0;
-                    font-size: 18px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    width: 100%;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                }
-                
-                div.stButton > button:first-child:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-                }
-                
-                /* Specific styles for different buttons */
-                button[data-testid="baseButton-secondary"] {
-                    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
-                }
-                
-                button[data-testid="baseButton-warning"] {
-                    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%) !important;
-                    color: #333 !important;
-                }
-                
-                button[data-testid="baseButton-info"] {
-                    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%) !important;
-                    color: #333 !important;
-                }
-                
-                /* Hide the regular My Mistakes and Back to Dashboard buttons */
-                button[data-testid="baseButton-primary"][aria-label="My Mistakes"],
-                button[data-testid="baseButton-secondary"][aria-label="← Back to Dashboard"] {
-                    display: none !important;
-                }
-            </style>
-            
-            <script>
-                // This function will be called when the custom buttons are clicked
-                function streamlitButtonClick(buttonId) {
-                    const button = parent.document.querySelector(`button[data-testid^="baseButton-"][aria-label="${buttonId}"]`);
-                    if (button) {
-                        button.click();
-                    }
-                }
-            </script>
-            """, unsafe_allow_html=True)
+            # Add a button to return to home page
+            if st.button("← Back to Home"):
+                st.session_state.show_home_page = True
+                for var in session_vars:
+                    if var != 'show_home_page':
+                        st.session_state[var] = False
+                st.rerun()
 
 if __name__ == "__main__":
     main()
