@@ -1,3 +1,6 @@
+
+
+
 import streamlit as st
 import random
 
@@ -747,75 +750,9 @@ def main():
                 background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
                 transition: background 1s ease;
             }}
-            
-            /* Custom round button style */
-            .round-button-container {{
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            }}
-            .round-button {{
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-                background-color: #FF5733;
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                font-size: 18px;
-                text-align: center;
-                border: none;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                margin: 0 auto;
-            }}
-            .round-button:hover {{
-                background-color: #E64A19;
-                transform: scale(1.05);
-                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-            }}
-            
-            /* Regular button styles */
-            .stButton>button {{
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0;
-                border-radius: 8px;
-                border: 2px solid #2E86C1;
-                background-color: transparent;
-                color: #2E86C1;
-                font-size: 16px;
-                font-weight: bold;
-                transition: all 0.3s ease;
-            }}
-            .stButton>button:hover {{
-                background-color: #2E86C1;
-                color: white !important;
-                border-color: #2E86C1;
-            }}
-            /* Make button text white on hover */
-            .stButton>button:hover span {{
-                color: white !important;
-            }}
-            /* Make button text black by default */
-            .stButton>button div p {{
-                color: black !important;
-                font-weight: bold !important;
-            }}
-            
-            h1 {{
-                text-align: center;
-                color: #2E86C1;
-                font-family: 'Arial', sans-serif;
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }}
         </style>
         """, unsafe_allow_html=True)
-
+        
         # JavaScript to change background periodically (only on dashboard)
         st.markdown("""
         <script>
@@ -828,6 +765,75 @@ def main():
         }
         setInterval(changeBackground, 3000); // Change every 3 seconds
         </script>
+        """, unsafe_allow_html=True)
+
+        # Main dashboard styling with updated button text styles
+        st.markdown("""
+        <style>
+            h1 {
+                text-align: center;
+                color: #2E86C1;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            .stButton>button {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 8px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+            .stButton>button:hover {
+                background-color: #2E86C1;
+                color: white !important;
+                border-color: #2E86C1;
+            }
+            /* Make button text white on hover */
+            .stButton>button:hover span {
+                color: white !important;
+            }
+            /* Make button text black by default */
+            .stButton>button div p {
+                color: black !important;
+                font-weight: bold !important;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+            .round-button {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .round-button:hover {
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
+        </style>
         """, unsafe_allow_html=True)
 
         # Green title
@@ -865,18 +871,22 @@ def main():
 
             with col2:
                 # Create a container for the round button
-                st.markdown("""
-                <div class="round-button-container">
-                    <button class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
-                        My Mistakes
-                    </button>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                # Add the actual button that will be triggered
-                if st.button("**My Mistakes**", key="my_mistakes_button", help="Click to view my story"):
-                    st.session_state.show_story_page = True
-                    st.rerun()
+                container = st.container()
+                with container:
+                    # Use columns to center the button
+                    _, center_col, _ = st.columns([1, 2, 1])
+                    with center_col:
+                        # Use markdown to create a styled div that looks like a button
+                        st.markdown("""
+                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Add the actual button that will be triggered
+                        if st.button("**My Mistakes**", key="my_mistakes_button"):
+                            st.session_state.show_story_page = True
+                            st.rerun()
 
             # Add a button to return to home page
             if st.button("← Back to Home", key="home_button"):
