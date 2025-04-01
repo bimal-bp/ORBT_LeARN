@@ -654,93 +654,62 @@ def show_job_page():
 
 
 import streamlit as st
-import random
 
 def show_home_page():
-    # Clean, professional design without gradient background
+    # Clean, minimalist styling
     st.markdown("""
     <style>
-        .hero-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            text-align: center;
-            border: 1px solid #e0e0e0;
+        .stButton>button {
+            border: 2px solid #4CAF50;
+            background-color: white;
+            color: #4CAF50;
+            padding: 10px 24px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .stButton>button:hover {
+            background-color: #4CAF50;
+            color: white;
         }
         .feature-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.2rem;
+            padding: 1.5rem;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid #4b6cb7;
-            transition: transform 0.2s;
-        }
-        .feature-card:hover {
-            transform: translateY(-2px);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #4CAF50;
         }
     </style>
     """, unsafe_allow_html=True)
 
+    st.title("ORBT-LEARN Career Navigator")
     st.markdown("""
-    <div class="hero-section">
-        <h1 style="color: #2c3e50;">ORBT-LEARN Career Navigator</h1>
-        <p style="color: #7f8c8d;">Your guided path from education to career success</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    ## Why Choose ORBT-LEARN?
-
-    We cut through the noise to give you exactly what you need for career decisions:
-
-    - 🎯 **Education Roadmaps** - Clear paths after 10th/12th/graduation
-    - 💡 **Real Career Insights** - What jobs actually require
-    - 🚀 **Practical Guidance** - No fluff, just actionable advice
+    ### Your guided path from education to career success
     """)
 
-    # Main features in cards
+    # Main features
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         <div class="feature-card">
             <h3>📚 Education Guidance</h3>
-            <p>See all your options after 10th/12th/college with clear pros and cons for each path.</p>
+            <p>Clear paths after 10th/12th/graduation with pros and cons</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
-        <div class="feature-card">
-            <h3>💼 Career Explorer</h3>
-            <p>Discover 200+ job roles across industries with salary ranges and growth potential.</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <h3>🎓 Degree Value Analysis</h3>
-            <p>Understand which degrees are worth the investment for your goals.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="feature-card">
-            <h3>📈 Skill Mapping</h3>
-            <p>See exactly what skills you need for different career paths.</p>
+            <h3>💼 Career Explorer</h3>
+            <p>Discover 200+ job roles with requirements and growth potential</p>
         </div>
         """, unsafe_allow_html=True)
 
-    # Call to action
-    st.markdown("""
-    ---
-    ### Ready to Explore Your Options?
-    Choose a section below to get started:
-    """)
-
-    # Navigation buttons
+    # Navigation buttons with clean styling
+    st.markdown("## Explore Sections")
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
@@ -765,16 +734,16 @@ def show_home_page():
 
 def main():
     # Initialize session state variables
-    if 'show_education_page' not in st.session_state:
-        st.session_state.show_education_page = False
-    if 'show_job_page' not in st.session_state:
-        st.session_state.show_job_page = False
-    if 'show_podcast_page' not in st.session_state:
-        st.session_state.show_podcast_page = False
-    if 'show_story_page' not in st.session_state:
-        st.session_state.show_story_page = False
-    if 'show_travel_page' not in st.session_state:
-        st.session_state.show_travel_page = False
+    session_vars = {
+        'show_education_page': False,
+        'show_job_page': False,
+        'show_podcast_page': False,
+        'show_story_page': False
+    }
+    
+    for var, default in session_vars.items():
+        if var not in st.session_state:
+            st.session_state[var] = default
 
     # Page routing
     if st.session_state.show_education_page:
@@ -785,8 +754,6 @@ def main():
         show_podcast_page()
     elif st.session_state.show_story_page:
         show_story_page()
-    elif st.session_state.show_travel_page:
-        show_travel_page()
     else:
         show_home_page()
 
