@@ -1,5 +1,7 @@
 
-Copy
+
+
+
 import streamlit as st
 import random
 
@@ -653,109 +655,247 @@ def show_job_page():
         st.rerun()
 
 
-import streamlit as st
-
 def show_home_page():
-    # Clean, minimalist styling
+    # Home page with no gradient background
     st.markdown("""
     <style>
-        .stButton>button {
-            border: 2px solid #4CAF50;
-            background-color: white;
-            color: #4CAF50;
-            padding: 10px 24px;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        .stButton>button:hover {
-            background-color: #4CAF50;
-            color: white;
+        .hero-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid #eee;
         }
         .feature-card {
+            background: white;
+            border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #4b6cb7;
         }
     </style>
     """, unsafe_allow_html=True)
 
-    st.title("ORBT-LEARN Career Navigator")
     st.markdown("""
-    ### Your guided path from education to career success
+
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    ## Welcome to ORBT-LEARN 
+
+    Why spend your time exploring our website? We respect your time and we provide:
+
+    - 🚀 **The Right Way to Choose Your Education Path & Job**  
+        Discover how to select the best learning options for your goals
+
+    - 💡 **Practical Career Advice from Industry Professionals**  
+        Get real-world insights from experts across various fields
+
+    - 🏆 **Education-to-Career Roadmaps**  
+        Learn which educational choices lead to your dream jobs
     """)
 
-    # Main features
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         <div class="feature-card">
             <h3>📚 Education Guidance</h3>
-            <p>Clear paths after 10th/12th/graduation with pros and cons</p>
+            <p>Confused about what to study after 10th/12th/college? 
+            We break down all your options with pros and cons.</p>
         </div>
         """, unsafe_allow_html=True)
         
-    with col2:
         st.markdown("""
         <div class="feature-card">
-            <h3>💼 Career Explorer</h3>
-            <p>Discover 200+ job roles with requirements and growth potential</p>
+            <h3>💼 Job Explorer</h3>
+            <p>Discover 200+ career paths you might not have considered, 
+            with real salary ranges and growth potential.</p>
         </div>
         """, unsafe_allow_html=True)
-
-    # Navigation buttons with clean styling
-    st.markdown("## Explore Sections")
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        if st.button("🎓 Education Paths"):
-            st.session_state.show_education_page = True
-            st.rerun()
-    
-    with col2:
-        if st.button("💼 Job Explorer"):
-            st.session_state.show_job_page = True
-            st.rerun()
-    
-    with col3:
-        if st.button("🎙 Career Podcast"):
-            st.session_state.show_podcast_page = True
-            st.rerun()
-    
-    with col4:
-        if st.button("📖 My Story"):
-            st.session_state.show_story_page = True
-            st.rerun()
-
+        
+    if st.button("Explore Now", use_container_width=True, type="primary"):
+        st.session_state.show_home_page = False
+        # Reset all other page states to False
+        for var in ['show_story_page', 'show_job_page', 'show_education_page', 
+                   'show_travel_page', 'show_podcast_page']:
+            st.session_state[var] = False
+        st.rerun()
 def main():
-    # Initialize session state variables
-    session_vars = {
-        'show_education_page': False,
-        'show_job_page': False,
-        'show_podcast_page': False,
-        'show_story_page': False
-    }
+    st.set_page_config(page_title="ORBT-LEARN", layout="wide")
     
-    for var, default in session_vars.items():
+    # Initialize session states
+    session_vars = [
+        'show_story_page', 'show_job_page', 
+        'show_education_page', 'show_travel_page',
+        'show_podcast_page', 'show_home_page'
+    ]
+    for var in session_vars:
         if var not in st.session_state:
-            st.session_state[var] = default
+            st.session_state[var] = True  # Show home page by default
 
     # Page routing
-    if st.session_state.show_education_page:
-        show_education_page()
-    elif st.session_state.show_job_page:
-        show_job_page()
-    elif st.session_state.show_podcast_page:
-        show_podcast_page()
-    elif st.session_state.show_story_page:
-        show_story_page()
-    else:
+    if st.session_state.show_home_page:
         show_home_page()
+    else:
+        # Only apply the gradient background to the dashboard page
+        colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"]
+        color1, color2 = random.sample(colors, 2)
+        
+        st.markdown(f"""
+        <style>
+            .stApp {{
+                background: linear-gradient(135deg, {color1} 0%, {color2} 100%);
+                transition: background 1s ease;
+            }}
+        </style>
+        """, unsafe_allow_html=True)
+        
+        # JavaScript to change background periodically (only on dashboard)
+        st.markdown("""
+        <script>
+        function changeBackground() {
+            const colors = ["#e6f7ff", "#b3e0ff", "#ffb3e6", "#b3ffb3", "#ffffb3", "#ffb3b3"];
+            const color1 = colors[Math.floor(Math.random() * colors.length)];
+            const color2 = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.stApp').style.background = 
+                `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+        }
+        setInterval(changeBackground, 3000); // Change every 3 seconds
+        </script>
+        """, unsafe_allow_html=True)
+
+        # Main dashboard styling with updated button text styles
+        st.markdown("""
+        <style>
+            h1 {
+                text-align: center;
+                color: #2E86C1;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            .stButton>button {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 8px;
+                border: 2px solid #2E86C1;
+                background-color: transparent;
+                color: #2E86C1;
+                font-size: 16px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+            .stButton>button:hover {
+                background-color: #2E86C1;
+                color: white !important;
+                border-color: #2E86C1;
+            }
+            /* Make button text white on hover */
+            .stButton>button:hover span {
+                color: white !important;
+            }
+            /* Make button text black by default */
+            .stButton>button div p {
+                color: black !important;
+                font-weight: bold !important;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+            .round-button {
+                border-radius: 50%;
+                width: 150px;
+                height: 150px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px auto;
+                background-color: #FF5733;
+                color: white;
+                border: 3px solid #FF5733;
+                font-weight: bold;
+                font-size: 20px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .round-button:hover {
+                background-color: #E64A19;
+                border-color: #E64A19;
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            }
+        </style>
+        """, unsafe_allow_html=True)
+
+        # Green title
+        st.markdown("<h1 style='color: #00BFFF; text-align: center;'>ORBT LeARN</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>LeARN & eARN</h1>", unsafe_allow_html=True)
+
+        # Page routing for other pages
+        if st.session_state.show_story_page:
+            show_story_page()
+        elif st.session_state.show_job_page:
+            show_job_page()
+        elif st.session_state.show_education_page:
+            show_education_page()
+        elif st.session_state.show_travel_page:
+            show_travel_page()
+        elif st.session_state.show_podcast_page:
+            show_podcast_page()
+        else:
+            # Main dashboard
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("**Education Learn**", key="edu_button"):
+                    st.session_state.show_education_page = True
+                    st.rerun()
+                if st.button("**Job**", key="job_button"):
+                    st.session_state.show_job_page = True
+                    st.rerun()
+                if st.button("**Podcast**", key="podcast_button"):
+                    st.session_state.show_podcast_page = True
+                    st.rerun()
+                if st.button("**Travel Place**", key="travel_button"):
+                    st.session_state.show_travel_page = True
+                    st.rerun()
+
+            with col2:
+                # Create a container for the round button
+                container = st.container()
+                with container:
+                    # Use columns to center the button
+                    _, center_col, _ = st.columns([1, 2, 1])
+                    with center_col:
+                        # Use markdown to create a styled div that looks like a button
+                        st.markdown("""
+                        <div class="round-button" onclick="window.streamlitScriptRunner.runScript('My Mistakes')">
+                            My Mistakes
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Add the actual button that will be triggered
+                        if st.button("**My Mistakes**", key="my_mistakes_button"):
+                            st.session_state.show_story_page = True
+                            st.rerun()
+
+            # Add a button to return to home page
+            if st.button("← Back to Home", key="home_button"):
+                st.session_state.show_home_page = True
+                for var in session_vars:
+                    if var != 'show_home_page':
+                        st.session_state[var] = False
+                st.rerun()
 
 if __name__ == "__main__":
     main()
